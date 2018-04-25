@@ -1,0 +1,18 @@
+---
+title: "Regression results"
+author: "Matthew Stephens"
+date: "4/24/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dscrutils)
+dscout <- dscquery(dsc.outdir = "../dsc_result",
+                   targets    = c("simulate.scenario","analyze","score.error"))
+dscr::shiny_plot(dscout,"simulate.scenario","analyze")
+```
+

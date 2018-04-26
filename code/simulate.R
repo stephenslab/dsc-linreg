@@ -1,10 +1,10 @@
 #' @title perform simulations under scenarios from Zhou and Hastie (2005)
 #' @details the value of n is set to the sum of the train+validate sample sizes from the paper
 #' @param scenario name of scenario (p312 of paper)
-en_sim = function(scenario = c("eg1", "eg2", "eg3", "eg4")) {
+en_sim = function(scenario = c("eg1", "eg1b", "eg2", "eg3", "eg4")) {
   scenario = match.arg(scenario)
 
-  if (scenario == "eg1" || scenario == "eg2") {
+  if (scenario == "eg1" || scenario == "eg2" || scenario== "eg1b") {
     n = 40
     p=8
     beta = rep(0,p)
@@ -13,6 +13,10 @@ en_sim = function(scenario = c("eg1", "eg2", "eg3", "eg4")) {
     beta[5] = 2
     sigma = 3
     design = "decreasing_corr"
+  }
+
+  if (scenario == "eg1b"){
+    beta = rev(beta) #reverse order to check it makes no difference
   }
 
   if (scenario == "eg2") {

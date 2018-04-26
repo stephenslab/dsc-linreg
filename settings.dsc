@@ -14,11 +14,12 @@
 
 
 en_sim : simulate.R + R(d = en_sim(scenario))
-  scenario: eg1, eg2, eg3, eg4
+  scenario: eg1, eg2, eg3, eg4, eg1b
   $Y: d$Y
   $X: d$X
   $Ytest: d$Ytest
   $Xtest: d$Xtest
+  $beta_true: d$beta
 
 sparse: simulate.R + R(d=simple_sim_regression(n,p,pve,pi0))
   scenario: sparse
@@ -30,6 +31,7 @@ sparse: simulate.R + R(d=simple_sim_regression(n,p,pve,pi0))
   $X: d$X
   $Ytest: d$Ytest
   $Xtest: d$Xtest
+  $beta_true: d$beta
 
 dense(sparse):
   scenario: dense
@@ -68,17 +70,22 @@ susie: R(fit=susieR::susie(X,Y=Y,L=L); bhat = susieR:::coef.susie(fit))
 susie2(susie):
     L: 20
 
-sq_err : R(mse = mean( (X %*% b - Y)^2))
+compute_errors : R(p = mean( (X %*% b - Y)^2); c = mean((a-b)^2))
   b: $beta_est
+  a: $beta_true
   Y: $Ytest
   X: $Xtest
-  $error: mse
+  $pred_err: p
+  $coef_err: c
+
+
 
 DSC:
   define:
      simulate: en_sim, sparse, dense
      analyze: lasso, ridge, en, susie, susie2, varbvs, varbvsmix
-     score: sq_err
+     score: compute_errors
   run: simulate * analyze * score
   exec_path: code
   output: dsc_result
+  R_libs: MASS, glmnet, varbvs@pcarbo/varbvs/varbvs-r, susieR@stephenslab/susieR

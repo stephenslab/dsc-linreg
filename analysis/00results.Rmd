@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(dscrutils)
-dscout <- dscquery(dsc.outdir = "../dsc_result",
-                   targets    = c("simulate.scenario","analyze","score.error"))
+dscout <- dscquery(dsc.outdir = "dsc_result",
+                   targets    = c("simulate.scenario","analyze","score.pred_err","score.coef_err"))
 dscr::shiny_plot(dscout,"simulate.scenario","analyze")
 ```
 

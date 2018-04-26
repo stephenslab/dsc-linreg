@@ -14,8 +14,7 @@
 # analyze: $Y, $X -> $beta_est
 # score: $beta_est, $Xtest, $Ytest -> $error
 
-en_sim: R(source("code/simulate.R");
-          d = en_sim(scenario))
+en_sim: simulate.R + R(d = en_sim(scenario))
   scenario: eg1, eg2, eg3, eg4, eg1b
   $Y: d$Y
   $X: d$X
@@ -23,8 +22,7 @@ en_sim: R(source("code/simulate.R");
   $Xtest: d$Xtest
   $beta_true: d$beta
 
-sparse: R(source("code/simulate.R");
-          d = simple_sim_regression(n,p,pve,pi0))
+sparse: simulate.R + R(d = simple_sim_regression(n,p,pve,pi0))
   scenario: sparse
   n: 100
   p: 100
@@ -66,7 +64,8 @@ varbvsmix: R(fit  = varbvs::varbvsmix(X,Z = NULL,y = Y,
   Y: $Y
   $beta_est: bhat
 
-susie: R(fit = susieR::susie(X,Y = Y,L = L); bhat = susieR:::coef.susie(fit))
+susie: R(fit  = susieR::susie(X,Y = Y,L = L);
+         bhat = susieR:::coef.susie(fit))
   L: 10
   X: $X
   Y: $Y

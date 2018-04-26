@@ -9,10 +9,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Let's take a look at the DSC results:
+
 ```{r}
+library(dscr)
 library(dscrutils)
-dscout <- dscquery(dsc.outdir = "dsc_result",
-                   targets    = c("simulate.scenario","analyze","score.pred_err","score.coef_err"))
-dscr::shiny_plot(dscout,"simulate.scenario","analyze")
+dscout <- dscquery(dsc.outdir = "../benchmark",
+                   targets    = c("simulate.scenario","analyze","score.err"))
+dscr::shiny_plot(subset(dscout,score == "pred_err"),
+				 "simulate.scenario","analyze")
+dscr::shiny_plot(subset(dscout,score == "coef_err"),
+				 "simulate.scenario","analyze")
 ```
 

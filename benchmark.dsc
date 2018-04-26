@@ -74,8 +74,6 @@ susie: R(fit = susieR::susie(X,Y = Y,L = L); bhat = susieR:::coef.susie(fit))
 
 susie2(susie):
   L: 20
-
-
   
 pred_err: R(p = mean((X %*% b - Y)^2))
   b: $beta_est

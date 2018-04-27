@@ -1,3 +1,5 @@
+#!/usr/bin/env dsc
+
 # pipeline variables
 # ==================
 # $Y an n vector of outcomes (training data).
@@ -78,7 +80,7 @@ susie: R(fit  = susieR::susie(X,Y = Y,L = L); bhat = susieR:::coef.susie(fit))
 susie2(susie):
   L: 20
 
-BayesC: R(temp = BGLR::BGLR; fit=temp(y=Y,ETA=list( list(X=X,model='BayesC'))))
+BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC'))))
   X: $X
   Y: $Y
   $beta_est: fit$ETA[[1]]$b

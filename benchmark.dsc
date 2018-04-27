@@ -83,11 +83,11 @@ susie: R(fit  = susieR::susie(X,Y = Y,L = L);
 susie2(susie):
   L: 20
 
-BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC'))))
+BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC')), saveAt=cache))
   X: $X
   Y: $Y
+  cache: file(BGLR)
   $beta_est: fit$ETA[[1]]$b
-
 
 # Score modules
 

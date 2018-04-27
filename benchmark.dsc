@@ -52,7 +52,8 @@ ridge(glmnet):
 en(glmnet):
   alpha: 0.5
 
-varbvs: R(fit = varbvs::varbvs(X,Z = NULL,y = Y))
+varbvs: R(fit = varbvs::varbvs(X,Z = NULL,y = Y,
+                               logodds = 10^seq(-p,0,length.out = 20)))
   X: $X
   Y: $Y
   $beta_est: fit$beta

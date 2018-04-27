@@ -1,3 +1,5 @@
+#!/usr/bin/env dsc
+
 # pipeline variables
 # ==================
 # $Y an n vector of outcomes (training data).
@@ -13,6 +15,8 @@
 # simulate: -> $X, $Y, $Xtest, $Ytest
 # analyze: $Y, $X -> $beta_est
 # score: $beta_est, $Xtest, $Ytest -> $error
+
+# simulate modules
 
 en_sim: simulate.R + R(d = en_sim(scenario))
   scenario: eg1, eg2, eg3, eg4, eg1b
@@ -37,6 +41,9 @@ sparse: simulate.R + R(d = simple_sim_regression(n,p,pve,pi0))
 dense(sparse):
   scenario: dense
   pi0: 0
+
+
+# analyze modules
 
 glmnet: glmnet_fit.R
   X: $X
@@ -65,8 +72,7 @@ varbvsmix: R(fit  = varbvs::varbvsmix(X,Z = NULL,y = Y,
   Y: $Y
   $beta_est: bhat
 
-susie: R(fit  = susieR::susie(X,Y = Y,L = L);
-         bhat = susieR:::coef.susie(fit))
+susie: R(fit  = susieR::susie(X,Y = Y,L = L); bhat = susieR:::coef.susie(fit))
   L: 10
   X: $X
   Y: $Y
@@ -74,13 +80,21 @@ susie: R(fit  = susieR::susie(X,Y = Y,L = L);
 
 susie2(susie):
   L: 20
-  
+
+BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC'))))
+  X: $X
+  Y: $Y
+  $beta_est: fit$ETA[[1]]$b
+
+
+# Score modules
+
 pred_err: R(p = mean((X %*% b - Y)^2))
   b: $beta_est
   Y: $Ytest
   X: $Xtest
   $err: p
-  
+
 coef_err: R(c = mean((a - b)^2))
   b: $beta_est
   a: $beta_true
@@ -89,9 +103,9 @@ coef_err: R(c = mean((a - b)^2))
 DSC:
   define:
     simulate: en_sim, sparse, dense
-    analyze: lasso, ridge, en, susie, susie2, varbvs, varbvsmix
+    analyze: lasso, ridge, en, susie, susie2, varbvs, varbvsmix, BayesC
     score: pred_err, coef_err
   run: simulate * analyze * score
   exec_path: code
-  R_libs: MASS, glmnet, varbvs@pcarbo/varbvs/varbvs-r,
+  R_libs: MASS, glmnet, BGLR, varbvs@pcarbo/varbvs/varbvs-r,
           susieR@stephenslab/susieR

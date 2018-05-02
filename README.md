@@ -9,15 +9,25 @@ For 20 replicates,
 ./benchmark.dsc --replicate 20
 ```
 
+For 200 replicate running a cluster system, with 40 maximum submitted jobs in the queue:
+
+```
+./benchmark.dsc --host midway.yml --replicate 200 -c 40
+```
+
+Notice that you need to configure `midway.yml` accordingly with your own account information.
+Also notice that the default check of job status interval is 60 secs so there will be an interval
+of at least 60 seconds between batches of submissions.
+
 ## Available pipelines
 
 ```
 $ ./benchmark.dsc -h
 
 INFO: MODULES
-+-----------+--------------------------+---------+-------------------------------+--------+
++-----------|--------------------------|---------|-------------------------------|--------+
 |           |        parameters        |  input  |             output            |  type  |
-+-----------+--------------------------+---------+-------------------------------+--------+
++-----------|--------------------------|---------|-------------------------------|--------+
 |   en_sim  |         scenario         |         | Y, X, Ytest, Xtest, beta_true |   R    |
 |   sparse  | scenario, n, p, pve, pi0 |         | Y, X, Ytest, Xtest, beta_true |   R    |
 |   dense   | scenario, n, p, pve, pi0 |         | Y, X, Ytest, Xtest, beta_true |   R    |
@@ -32,7 +42,7 @@ INFO: MODULES
 |  pred_err |                          | b, Y, X |              err              |   R    |
 |  coef_err |                          |   b, a  |              err              |   R    |
 |   glmnet  |                          |   X, Y  |            beta_est           | unused |
-+-----------+--------------------------+---------+-------------------------------+--------+
++-----------|--------------------------|---------|-------------------------------|--------+
 
 INFO: PIPELINES
 1: simulate -> analyze -> score
@@ -89,13 +99,13 @@ INFO: PIPELINES EXPANDED
 
 INFO: R LIBRARIES
 INFO: Scanning package versions ...
-+--------+---------+
++--------|---------+
 |  name  | version |
-+--------+---------+
++--------|---------+
 |  BGLR  |  1.0.5  |
 |  MASS  |  7.3.47 |
 | glmnet |  2.0.13 |
 | susieR |  0.1.4  |
 | varbvs |  2.5.2  |
-+--------+---------+
++--------|---------+
 ```

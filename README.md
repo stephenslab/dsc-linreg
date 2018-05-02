@@ -16,6 +16,7 @@ For 200 replicate running a cluster system, with 40 maximum submitted jobs in th
 ```
 
 Notice that you need to configure `midway.yml` accordingly with your own account information.
+The default setup basically assumes 5 minutes run time per module instance for all modules.
 Also notice that the default check of job status interval is 60 secs so there will be an interval
 of at least 60 seconds between batches of submissions.
 

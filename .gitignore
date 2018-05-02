@@ -1,4 +1,5 @@
 **/*.scripts.html
+**/*.queue.yml
 dsc_result.html
 dsc_result
 **/.sos

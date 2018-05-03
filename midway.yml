@@ -43,16 +43,23 @@ DSC:
 
 default:
   queue: midway2
-  time_per_instance: 10m
-  instances_per_job: 2
+  time_per_instance: 3m
+  instances_per_job: 20
   n_cpu: 1
   mem_per_cpu: 2G
 
 # module specific configurations
 # mostly to consolidate small jobs
 simulate:
-  instances_per_job: 20
+  time_per_instance: 2m
+  instances_per_job: 50
 
 score:
-  instances_per_job: 20
+  time_per_instance: 2m
+  instances_per_job: 50
 
+varbvs:
+  time_per_instance: 10m
+
+varbvsmix:
+  time_per_instance: 10m

@@ -1,3 +1,5 @@
+#!/usr/bin/env dsc
+
 # pipeline variables
 # ==================
 # $Y an n vector of outcomes (training data).
@@ -57,7 +59,9 @@ ridge(glmnet):
 en(glmnet):
   alpha: 0.5
 
-varbvs: R(fit = varbvs::varbvs(X,Z = NULL,y = Y))
+varbvs: R(p   = ncol(X);
+          fit = varbvs::varbvs(X,Z = NULL,y = Y,
+                               logodds = 10^seq(-p,0,length.out = 20)))
   X: $X
   Y: $Y
   $beta_est: fit$beta
@@ -87,11 +91,11 @@ susie_04(susie_02):
   res_var: 0.4
 
 
-BayesC: R(temp = BGLR::BGLR; fit=temp(y=Y,ETA=list( list(X=X,model='BayesC'))))
+BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC')), saveAt=cache))
   X: $X
   Y: $Y
+  cache: file(BGLR)
   $beta_est: fit$ETA[[1]]$b
-
 
 # Score modules
 

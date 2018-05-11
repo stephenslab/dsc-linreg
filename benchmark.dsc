@@ -80,14 +80,14 @@ susie: R(fit  = susieR::susie(X,Y = Y,L = L,residual_variance=res_var); bhat = s
   Y: $Y
   $beta_est: bhat
 
-susie_02(susie):
+susie02(susie):
   res_var: 0.2
   L: 20
 
-susie_01(susie_02):
+susie01(susie02):
   res_var: 0.1
 
-susie_04(susie_02):
+susie04(susie02):
   res_var: 0.4
 
 
@@ -113,7 +113,7 @@ coef_err: R(c = mean((a - b)^2))
 DSC:
   define:
     simulate: en_sim, sparse, dense
-    analyze: lasso, ridge, en, susie, susie_02, susie_04, susie_01, varbvs, varbvsmix, BayesC
+    analyze: lasso, ridge, en, susie, susie02, susie04, susie01, varbvs, varbvsmix, BayesC
     score: pred_err, coef_err
   run: simulate * analyze * score
   exec_path: code

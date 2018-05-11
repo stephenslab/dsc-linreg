@@ -73,7 +73,8 @@ varbvsmix: R(fit  = varbvs::varbvsmix(X,Z = NULL,y = Y,
   Y: $Y
   $beta_est: bhat
 
-susie: R(fit  = susieR::susie(X,Y = Y,L = L,residual_variance=res_var); bhat = susieR:::coef.susie(fit))
+# fits susie without intercept and returns coefficients without intercept
+susie: R(fit  = susieR::susie(X,Y = Y,L = L,residual_variance=res_var, intercept=FALSE); bhat = susieR:::coef.susie(fit)[-1])
   res_var: 0.2
   L: 10
   X: $X

@@ -9,23 +9,41 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Generate the DSC results:
+Generate the DSC results: (eval set to FALSE to avoid running)
 
-```{r}
+```{r, eval=FALSE}
 setwd("..")
 system("dsc benchmark.dsc --replicate 20")
 setwd("analysis")
 ```
 
-Let's take a look at the DSC results using an interactive Shiny plot:
 
+
+Here we extract the DSC results:
 ```{r}
 library(dscrutils)
 dscout <- dscquery(dsc.outdir = "../benchmark",
                    targets    = c("simulate.scenario","analyze","score.err"))
+```
+
+
+Here we add a column that for each method/scenario combination includes the median error across methods
+```{r}
+library("dplyr")
+library("magrittr")
+temp = dscout %>%
+  group_by(DSC, simulate.scenario, score) %>%
+  summarize(median.err = median(score.err, na.rm = TRUE))
+dscout = inner_join(temp,dscout)
+dscout$err.diff =  dscout$score.err - dscout$median.err 
+```
+
+Now view using an interactive Shiny plot
+```{r}
 shiny_plot(subset(dscout,score == "pred_err"),
 				 "simulate.scenario","analyze")
 shiny_plot(subset(dscout,score == "coef_err"),
 				 "simulate.scenario","analyze")
 ```
+
 

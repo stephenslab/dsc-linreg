@@ -74,22 +74,31 @@ varbvsmix: R(fit  = varbvs::varbvsmix(X,Z = NULL,y = Y,
   $beta_est: bhat
 
 # fits susie without intercept and returns coefficients without intercept
-susie: R(fit  = susieR::susie(X,Y = Y,L = L,residual_variance=res_var, intercept=FALSE); bhat = susieR:::coef.susie(fit)[-1])
-  res_var: 0.2
+susie: R(fit  = susieR::susie(X,Y = Y,L = L,estimate_residual_variance = estimate_residual_variance, prior_variance=prior_var, intercept=FALSE); bhat = susieR:::coef.susie(fit)[-1])
+  prior_var: 0.2
   L: 10
   X: $X
   Y: $Y
+  estimate_residual_variance: raw(FALSE)	
   $beta_est: bhat
 
 susie02(susie):
-  res_var: 0.2
+  prior_var: 0.2
   L: 20
 
 susie01(susie02):
-  res_var: 0.1
+  prior_var: 0.1
 
 susie04(susie02):
-  res_var: 0.4
+  prior_var: 0.4
+
+susie05(susie02):
+  estimate_residual_variance: raw(TRUE)
+
+susie_auto: R(fit  = susieR::susie_auto(X,Y); bhat = susieR:::coef.susie(fit)[-1])
+  X: $X
+  Y: $Y
+  $beta_est: bhat
 
 
 BayesC: R(fit=BGLR::BGLR(y=Y,ETA=list( list(X=X,model='BayesC')), saveAt=cache))
@@ -114,7 +123,7 @@ coef_err: R(c = mean((a - b)^2))
 DSC:
   define:
     simulate: en_sim, sparse, dense
-    analyze: lasso, ridge, en, susie, susie02, susie04, susie01, varbvs, varbvsmix, BayesC
+    analyze: lasso, ridge, en, susie, susie02, susie04, susie05, susie01, susie_auto, varbvs, varbvsmix, BayesC
     score: pred_err, coef_err
   run: simulate * analyze * score
   exec_path: code

@@ -19,7 +19,7 @@
 # simulate modules
 
 en_sim: simulate.R + R(d = en_sim(scenario))
-  scenario: eg1, eg2, eg3, eg4, eg1b
+  scenario: "eg1", "eg2", "eg3", "eg4", "eg1b"
   $Y: d$Y
   $X: d$X
   $Ytest: d$Ytest
@@ -27,7 +27,7 @@ en_sim: simulate.R + R(d = en_sim(scenario))
   $beta_true: d$beta
 
 sparse: simulate.R + R(d = simple_sim_regression(n,p,pve,pi0))
-  scenario: sparse
+  scenario: "sparse"
   n: 100
   p: 100
   pve: 0.5
@@ -39,7 +39,7 @@ sparse: simulate.R + R(d = simple_sim_regression(n,p,pve,pi0))
   $beta_true: d$beta
 
 dense(sparse):
-  scenario: dense
+  scenario: "dense"
   pi0: 0
 
 
@@ -79,7 +79,7 @@ susie: R(fit  = susieR::susie(X,Y = Y,L = L,estimate_residual_variance = estimat
   L: 10
   X: $X
   Y: $Y
-  estimate_residual_variance: raw(FALSE)	
+  estimate_residual_variance: FALSE
   $beta_est: bhat
 
 susie02(susie):
@@ -93,7 +93,7 @@ susie04(susie02):
   prior_var: 0.4
 
 susie05(susie02):
-  estimate_residual_variance: raw(TRUE)
+  estimate_residual_variance: TRUE
 
 susie_auto: R(fit  = susieR::susie_auto(X,Y); bhat = susieR:::coef.susie(fit)[-1])
   X: $X

@@ -74,7 +74,7 @@ varbvsmix: R(fit  = varbvs::varbvsmix(X,Z = NULL,y = Y,
   $beta_est: bhat
 
 # fits susie without intercept and returns coefficients without intercept
-susie: R(fit  = susieR::susie(X,Y = Y,L = L,estimate_residual_variance = estimate_residual_variance, prior_variance=prior_var, intercept=FALSE); bhat = susieR:::coef.susie(fit)[-1])
+susie: R(fit  = susieR::susie(X,Y = Y,L = L,estimate_residual_variance = estimate_residual_variance, scaled_prior_variance=prior_var, intercept=FALSE); bhat = susieR:::coef.susie(fit)[-1])
   prior_var: 0.2
   L: 10
   X: $X
@@ -127,5 +127,5 @@ DSC:
     score: pred_err, coef_err
   run: simulate * analyze * score
   exec_path: code
-  R_libs: MASS, glmnet, BGLR, varbvs@pcarbo/varbvs/varbvs-r,
+  R_libs: MASS, glmnet, BGLR, varbvs,
           susieR@stephenslab/susieR

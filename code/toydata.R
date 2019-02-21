@@ -28,6 +28,28 @@ simulate_predictors_decaying_corr <- function (n, p, s = 0.5) {
   return(MASS::mvrnorm(n,rep(0,p),S))
 }
 
+# Return a matrix of samples drawn according to the procedure
+# described for the predictors in Example 4 of Zou & Hastie (2005).
+# The return value is a matrix with n rows and 8*p columns, where n is
+# the number of samples and 8*p is the number of predictors.
+simulate_predictors_grouped <- function (n, p, s = 0.1) {
+  X                  <- matrix(0,n,8*p)
+  X[,seq(1,3*p)]     <- rnorm(3*n*p,sd = s)
+  X[,seq(3*p+1,8*p)] <- rnorm(5*n*p)
+  i <- 1:p
+  for (k in 1:3) {
+    X[,i] <- X[,i] + rnorm(n)
+    i     <- i + p
+  }
+  return(X)
+}
+
+# TO DO: Explain here what this function does.
+simulate_predictors <- function (n, p, design = c("corr", "decaying_corr",
+                                                  "grouped")) {
+
+}
+
 # Simulate design matrix X under different scenarios, specifically the
 # scenarios from Zhou and Hastie (2005).
 X_sim = function(n, p, design = c("decreasing_corr", "equal_corr",

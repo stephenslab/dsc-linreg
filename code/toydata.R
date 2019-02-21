@@ -1,21 +1,32 @@
 # TO DO: Summarize the contents of this file.
 
 # Return a matrix of samples drawn from the multivariate normal
-# distribution with zero mean and covariance S. The return value is an
-# n x p matrix, where n the number of samples, and p is the number of
-# predictors. The covariance matrix is 1 along the diagonal, with
-# off-diagonal entries s, where s is a number between 0 and 1.
+# distribution with zero mean and covariance S, where S is defined
+# below. The return value is an n x p matrix, where n the number of
+# samples, and p is the number of predictors. The p x p covariance
+# matrix S is 1 along the diagonal, with off-diagonal entries s, where
+# s is a number between 0 and 1.
 #
 # Setting s = 0.5 reproduces the simulation of the predictors used in
 # Example 3 of Zou & Hastie (2005).
-simulate_predictors_corr <- function (n, p, s) {
+simulate_predictors_corr <- function (n, p, s = 0.5) {
   S <- matrix(s,p,p)
   diag(S) <- 1
   return(MASS::mvrnorm(n,rep(0,p),S))
 }
 
-# TO DO: Explain here what this function does, and how to use it.
-simulate_predictors_decaying_corr <- function (n, p)
+# Return a matrix of samples drawn from the multivariate normal
+# distribution with zero mean and covariance S, where S is defined
+# below. The return value is an n x p matrix, where n is the number of
+# samples, and p is the number of predictors. The p x p covariance
+# matrix S has entries S[i,j] = s^abs(i - j) for all i, j.
+#
+# Setting s = 0.5 reproduces the simulation of the predictors used in
+# Examples 1 and 2 of Zou & Hastie (2005).
+simulate_predictors_decaying_corr <- function (n, p, s = 0.5) {
+  S <- s^abs(outer(1:p, 1:p,"-"))
+  return(MASS::mvrnorm(n,rep(0,p),S))
+}
 
 # Simulate design matrix X under different scenarios, specifically the
 # scenarios from Zhou and Hastie (2005).

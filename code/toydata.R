@@ -44,11 +44,21 @@ simulate_predictors_grouped <- function (n, p, s = 0.1) {
   return(X)
 }
 
+# Returns outcomes y simulated from a linear regression model, y = X*b
+# + e, in which the residuals e are i.i.d. normally with zero mean and
+# standard deviation se.
+simulate_outcomes <- function (X, b, se) {
+  n <- nrow(X)
+  return(X %*% b + rnorm(n,sd = se))
+}
+
+# TO DO: Fix this description.
+# 
 # Return a matrix of samples drawn according to the chosen scenario
 # (see the "design" input argument). The three different designs are
-# meant to recapitulate the three different procedures used to
+# intended to recapitulate the three different procedures used to
 # simulate the predictors in Zou & Hastie (2005).
-simulate_predictors <-
+simulate_toy_data <-
   function (n, p, design = c("corr", "decaying_corr", "grouped")) {
   design <- match.arg(design)
   if (design == "corr")

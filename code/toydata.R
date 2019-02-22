@@ -49,23 +49,38 @@ simulate_predictors_grouped <- function (n, p, s = 0.1) {
 # standard deviation se.
 simulate_outcomes <- function (X, b, se) {
   n <- nrow(X)
-  return(X %*% b + rnorm(n,sd = se))
+  return(drop(X %*% b + rnorm(n,sd = se)))
 }
 
 # TO DO: Fix this description.
 # 
-# Return a matrix of samples drawn according to the chosen scenario
-# (see the "design" input argument). The three different designs are
-# intended to recapitulate the three different procedures used to
-# simulate the predictors in Zou & Hastie (2005).
-simulate_toy_data <-
-  function (n, p, design = c("corr", "decaying_corr", "grouped")) {
-  design <- match.arg(design)
-  if (design == "corr")
-    X <- simulate_predictors_corr(n,p,0.5)
-  else if (design == "decaying_corr")
-    X <- simulate_predictors_decaying_corr(n,p,0.5)
-  else if (design == "grouped")
-    X <- simulate_predictors_grouped(n,p,0.1)
-  return(X)
+# Return a matrix of samples drawn according to the chosen
+# scenario. The three different designs are intended to recapitulate
+# the three different procedures used to simulate the predictors in
+# Zou & Hastie (2005).
+#
+simulate_toy_data <- function (scenario) {
+  if (scenario == 1) {
+      
+    # From Zou & Hastie (2005): In Example 1, we simulated 20/20/200
+    # observations and 8 predictors. We let beta = (3, 1.5, 0, 0, 2,
+    # 0, 0, 0) and sigma = 3. The pairwise correlation between xi and
+    # xj was set to be corr(i,j) = 0.5^|i-j|.
+    b      <- c(3,1.5,0,0,2,0,0,0)
+    se     <- 3
+    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
+  } else if (scenario == 2) {
+  } else if (scenario == 3) {
+  } else if (scenario == 4) {
+  } else
+    stop("Input argument \"scenario\" should be a number between 1 and 4")
+
+  # Simulate the training and test outcomes.
+  ytrain <- simulate_outcomes(Xtrain,b,se)
+  ytest  <- simulate_outcomes(Xtest,b,se)
+
+  # Output the training and test sets.
+  return(list(train = list(X = Xtrain,y = ytrain),
+              test  = list(X = Xtest,y = ytest)))
 }

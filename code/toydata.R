@@ -62,32 +62,32 @@ simulate_outcomes <- function (X, b, se) {
 simulate_toy_data <- function (scenario) {
   if (scenario == 1) {
       
-    # From Zou & Hastie (2005): In Example 1, we simulated 20/20/200
-    # observations and 8 predictors. We let b = (3, 1.5, 0, 0, 2,
-    # 0, 0, 0) and sigma = 3. The pairwise correlation between xi and
-    # xj was set to be cor(i,j) = 0.5^|i-j|.
-    b      <- c(3,1.5,0,0,2,0,0,0)
+    # Example 1 from Zou & Hastie (2005).
     se     <- 3
+    b      <- c(3,1.5,0,0,2,0,0,0)
     Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
     Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
   } else if (scenario == 2) {
 
-    # From Zou & Hastie (2005): Example 2 is the same as Example 1,
-    # except that bj = 0.85 for all j.
-    b      <- rep(0.85,8)
+    # Example 2 from Zou & Hastie (2005).
     se     <- 3
+    b      <- rep(0.85,8)
     Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
     Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
   } else if (scenario == 3) {
 
-    # From Zou & Hastie (2005): In Example 3, we simulated 100/100/400
-    # observations and 40 predictors. We set b = ... and sigma = 15;
-    # cor(i,j) = 0.5 for all i,j.
-    b      <- rep(c(rep(0,10),rep(2,10)),2)
+    # Example 3 from rom Zou & Hastie (2005).
     se     <- 15
+    b      <- rep(c(rep(0,10),rep(2,10)),2)
     Xtrain <- simulate_predictors_corr(200,40,0.5)
     Xtest  <- simulate_predictors_decaying_corr(400,40,0.5)
   } else if (scenario == 4) {
+
+    # Example 4 from Zou & Hastie (2005).
+    se     <- 15
+    b      <- c(rep(3,15),rep(0,25))
+    Xtrain <- simulate_predictors_grouped(100,5,0.1)
+    Xtest  <- simulate_predictors_grouped(400,5,0.1)
   } else
     stop("Input argument \"scenario\" should be a number between 1 and 4")
 

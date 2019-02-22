@@ -50,7 +50,9 @@ simulate_predictors_grouped <- function (n, p, s = 0.1) {
 
 # Returns outcomes y simulated from a linear regression model, y = X*b
 # + e, in which the residuals e are i.i.d. normally with zero mean and
-# standard deviation se.
+# standard deviation se > 0. Input X should be an n x p numeric
+# matrix, where n is the number of simulated samples and p is the
+# number of simulated predictors.
 simulate_outcomes <- function (X, b, se) {
   n <- nrow(X)
   return(drop(X %*% b + rnorm(n,sd = se)))

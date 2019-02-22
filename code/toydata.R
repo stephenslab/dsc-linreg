@@ -63,15 +63,30 @@ simulate_toy_data <- function (scenario) {
   if (scenario == 1) {
       
     # From Zou & Hastie (2005): In Example 1, we simulated 20/20/200
-    # observations and 8 predictors. We let beta = (3, 1.5, 0, 0, 2,
+    # observations and 8 predictors. We let b = (3, 1.5, 0, 0, 2,
     # 0, 0, 0) and sigma = 3. The pairwise correlation between xi and
-    # xj was set to be corr(i,j) = 0.5^|i-j|.
+    # xj was set to be cor(i,j) = 0.5^|i-j|.
     b      <- c(3,1.5,0,0,2,0,0,0)
     se     <- 3
     Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
     Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
   } else if (scenario == 2) {
+
+    # From Zou & Hastie (2005): Example 2 is the same as Example 1,
+    # except that bj = 0.85 for all j.
+    b      <- rep(0.85,8)
+    se     <- 3
+    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
   } else if (scenario == 3) {
+
+    # From Zou & Hastie (2005): In Example 3, we simulated 100/100/400
+    # observations and 40 predictors. We set b = ... and sigma = 15;
+    # cor(i,j) = 0.5 for all i,j.
+    b      <- rep(c(rep(0,10),rep(2,10)),2)
+    se     <- 15
+    Xtrain <- simulate_predictors_corr(200,40,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(400,40,0.5)
   } else if (scenario == 4) {
   } else
     stop("Input argument \"scenario\" should be a number between 1 and 4")

@@ -52,13 +52,14 @@ simulate_outcomes <- function (X, b, se) {
   return(drop(X %*% b + rnorm(n,sd = se)))
 }
 
-# TO DO: Fix this description.
-# 
-# Return a matrix of samples drawn according to the chosen
-# scenario. The three different designs are intended to recapitulate
-# the three different procedures used to simulate the predictors in
-# Zou & Hastie (2005).
-#
+# Return training and test data simulated according one of the four
+# scenarios described in Zou & Hastie (2005). The return value is a
+# list object containing two elements, "train" and "test", containing
+# the training and test data, respectively. Each of these list
+# elements is in turn a list containing an n x p matrix of simulated
+# predictors, X, and a vector of outcomes, y, of length n (n
+# represents the number of samples and p represents the number of
+# predictors).
 simulate_toy_data <- function (scenario) {
   if (scenario == 1) {
       

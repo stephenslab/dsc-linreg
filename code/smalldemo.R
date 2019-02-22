@@ -2,32 +2,21 @@
 library(MASS)
 source("toydata.R")
 
-# SCRIPT PARAMETERS
-# -----------------
-scenarios <- c("zh1","zh2","zh3","zh4")
-methods   <- c("lasso")
-
 # Initialize the sequence of pseudorandom numbers.
 set.seed(1)
 
-# Repeat for each simulation scenario.
-for (scenario in scenarios) {
+# GENERATE DATA
+# -------------
+cat("Generating data set.\n")
+out <- simulate_toy_data(scenario =  1)
 
-  # GENERATE DATA
-  # -------------
-  cat(sprintf("Generating data for \"%s\" scenario.\n",scenario))
-  # TO DO.
+# RUN ELASTIC NET METHOD
+# ----------------------
+# TO DO.
 
-  # Repeat for each method.
-  for (method in methods) {
-
-    # FIT MODEL
-    # ---------
-    # TO DO.
-
-    # PREDICT TEST OUTCOMES
-    # ---------------------
-    # TO DO.
+# PREDICT TEST OUTCOMES
+# ---------------------
+# TO DO.
 
     # EVALUATE PREDICTIONS
     # --------------------

@@ -1,4 +1,8 @@
-# TO DO: Summarize the contents of this file.
+# This file contains functions that simulate "toy" data sets for
+# evaluating methods for linear regression. The data simulations are
+# drawn from Zou & Hastie (2005), "Regularization and variable
+# selection via the elastic net", Journal of the Royal Statistical
+# Society, Series B, 67(2): 301–320.
 
 # Return a matrix of samples drawn from the multivariate normal
 # distribution with zero mean and covariance S, where S is defined
@@ -96,7 +100,11 @@ simulate_toy_data <- function (scenario) {
   ytrain <- simulate_outcomes(Xtrain,b,se)
   ytest  <- simulate_outcomes(Xtest,b,se)
 
-  # Output the training and test sets.
+  # Output the training and test sets, as well as the coefficients (b)
+  # and residual standard deviation (se) used to simulate the training
+  # and test data.
   return(list(train = list(X = Xtrain,y = ytrain),
-              test  = list(X = Xtest,y = ytest)))
+              test  = list(X = Xtest,y = ytest),
+              b     = b,
+              se    = se))
 }

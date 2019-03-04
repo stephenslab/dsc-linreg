@@ -3,6 +3,7 @@ library(MASS)
 source("toydata.R")
 source("fit.R")
 source("predict.R")
+source("score.R")
 
 # Initialize the sequence of pseudorandom numbers.
 set.seed(1)
@@ -29,10 +30,14 @@ en <- with(dat$train,fit_elastic_net(X,y))
 
 # PREDICT TEST OUTCOMES
 # ---------------------
+cat("Predicting outcomes in test examples using fitted models.\n")
 y.ridge <- with(dat$test,predict_ridge(ridge,X))
 y.lasso <- with(dat$test,predict_lasso(lasso,X))
 y.en    <- with(dat$test,predict_elastic_net(en,X))
 
 # EVALUATE PREDICTIONS
 # --------------------
-# TO DO.
+cat("Mean squared error in test examples:\n")
+cat(sprintf(" - ridge:       %0.4f\n",mse(dat$test$y,y.ridge)))
+cat(sprintf(" - lasso:       %0.4f\n",mse(dat$test$y,y.lasso)))
+cat(sprintf(" - elastic net: %0.4f\n",mse(dat$test$y,y.en)))

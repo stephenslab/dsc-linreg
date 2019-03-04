@@ -59,3 +59,4 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   fit <- glmnet::glmnet(X,y,standardize = FALSE,alpha = alpha.min)
   return(list(fit = fit,cv = out.cv,alpha = alpha.min))
 }
+

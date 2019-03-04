@@ -1,15 +1,25 @@
-# TO DO: Summarize the contents of this file.
+# This file contains functions to predict outcomes given various
+# fitted models.
 
-# TO DO: Describe here what this function does, and how to use it.
-predict_ridge <- function (fit, X) {
-  predict.glmnet(fit,X,lambda = )
-}
+# Use the fitted ridge regression model, "ridge", to predict n continuous
+# outcomes given n x p matrix of observations X. The return value is a
+# vector of length n.
+predict_ridge <- function (ridge, X)
+  predict_elastic_net(ridge,X)
 
-# TO DO: Describe here what this function does, and how to use it.
-predict_lasso <- function (lasso, X) {
-  if (!inherits(lasso$fit,"glmnet"))
-    stop("Input argument \"lasso$fit\" should be a \"glmnet\" object")
-  fit    <- lasso$fit
-  lambda <- lasso$cv$lambda.min
+# Use the fitted Lasso model, "lasso", to predict n continuous
+# outcomes given n x p matrix of observations X. The return value is a
+# vector of length n.
+predict_lasso <- function (lasso, X)
+  predict_elastic_net(lasso,X)
+
+# Use the fitted Elastic Net model, "en", to predict n continuous
+# outcomes given n x p matrix of observations X. The return value is a
+# vector of length n.
+predict_elastic_net <- function (en, X) {
+  if (!inherits(en$fit,"glmnet"))
+    stop("Input argument \"en$fit\" should be a \"glmnet\" object")
+  fit    <- en$fit
+  lambda <- en$cv$lambda.min
   return(drop(predict(fit,X,lambda)))
 }

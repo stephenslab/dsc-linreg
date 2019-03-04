@@ -38,7 +38,8 @@ fit_lasso <- function (X, y, nfolds = 10) {
 # object, (2) the output of cv.glmnet, and (3) the setting of alpha
 # minimizing the mean cross-validation error.
 fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
-  foldid     <- rep_len(1:nfolds,nrow(X))
+  n          <- nrow(X)
+  foldid     <- rep_len(1:nfolds,n)
   out.cv     <- NULL
   cvm.min    <- Inf
   alpha.min  <- 1

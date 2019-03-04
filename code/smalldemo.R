@@ -11,7 +11,7 @@ set.seed(1)
 # GENERATE DATA
 # -------------
 cat("Generating data set.\n")
-dat <- simulate_toy_data(scenario = 4)
+dat <- simulate_toy_data(scenario = 1)
 
 # FITMODELS
 # ----------

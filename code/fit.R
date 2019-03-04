@@ -63,12 +63,23 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p
 # numeric matrix, and input y should be a numeric vector of length n.
+# 
+# In this implementation, candidate values of the prior inclusion
+# probability (determined by "logodds") are provided, and the results
+# are averaged over the settings, whereas the hyperparameters are
+# automatically fitted separately for each logodds setting.
 fit_varbvs <- function (X, y) {
   logodds <- seq(-log10(ncol(X)),1,length.out = 40)
   return(varbvs::varbvs(X,NULL,y,logodds = logodds,verbose = FALSE))
 }
 
-# TO DO: Explain here what this function does, and how to use it.
+# Fit a "sum of single effects" (SuSiE) regression model to the
+# provided data. The data are specified by inputs X and y; X should be
+# an n x p numeric matrix, and y should be a numeric vector of length n.
+#
+# We found that it is important to use the "estimate_prior_variance"
+# option in susie to allow the model with a large number of components
+# (L) to better adapt to the data.
 fit_susie <- function (X, y)
   susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
                 estimate_prior_variance = TRUE)

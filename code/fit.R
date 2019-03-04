@@ -60,6 +60,8 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   return(list(fit = fit,cv = out.cv,alpha = alpha.min))
 }
 
-# TO DO: Explain here what this function does, and how to use it.
+# Compute a fully-factorized variational approximation for Bayesian
+# variable selection in linear regression. Input X should be an n x p
+# numeric matrix, and input y should be a numeric vector of length n.
 fit_varbvs <- function (X, y)
   varbvs::varbvs(X,NULL,y,verbose = FALSE)

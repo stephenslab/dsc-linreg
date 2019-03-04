@@ -3,7 +3,13 @@
 # the Lasso, the Elastic Net, and varbvs (variational inference for
 # Bayesian variable selection).
 
-# TO DO: Explain here what this function does, and how to you use.
+# Fit a ridge regression model to the data, and estimate the penalty
+# strength (i.e., the normal prior on the regression coefficients)
+# using cross-validation. Input X should be an n x p numeric matrix,
+# and input y should be a numeric vector of length n. Input "nfolds"
+# is the number of folds used in the cross-validation. The return
+# value is a list with two elements: (1) the fitted glmnet object, (2)
+# the output of cv.glmnet.
 fit_ridge <- function (X, y, nfolds = 10) {
   out.cv <- glmnet::cv.glmnet(X,y,alpha = 0,nfolds = nfolds)
   fit    <- glmnet::glmnet(X,y,alpha = 0,standardize = FALSE)

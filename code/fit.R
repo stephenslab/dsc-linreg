@@ -3,7 +3,7 @@
 # Fit a Lasso model to the data, and estimate the penalty strength
 # (lambda) using cross-validation. Input X should be an n x p numeric
 # matrix, and input y should be a numeric vector of length n. Input
-# "nfolds" the number of folds used in the cross-validation. The
+# "nfolds" is the number of folds used in the cross-validation. The
 # return value is a list with two elements: (1) the fitted glmnet
 # object, (2) the output of cv.glmnet.
 fit_lasso <- function (X, y, nfolds = 10) {
@@ -12,20 +12,33 @@ fit_lasso <- function (X, y, nfolds = 10) {
   return(list(fit = fit,cv = out.cv))
 }
 
-# TO DO: Explain here what this function does, and how to use it.
+# Fit an Elastic Net model to the data, and estimate the Elastic Net
+# parameters (penalty strength, "lambda", and mixing parameter,
+# "alpha"). Input X should be an n x p numeric matrix, and input y
+# should be a numeric vector of length n. Input "nfolds" is the number
+# of folds used in the cross-validation, and input "alpha" is the
+# vector of candidate values of the Elastic Net mixing parameter. The
+# return value is a list with three elements: (1) the fitted glmnet
+# object, (2) the output of cv.glmnet, and (3) the setting of alpha
+# minimizing the mean cross-validation error.
 fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
-  rows       <- sample(nrow(X))
+  foldid     <- rep_len(1:nfolds,nrow(X))
   out.cv     <- NULL
-  lambda.min <- Inf
+  cvm.min    <- Inf
   alpha.min  <- 1
+
+  # Repeat for each candidate value of the alpha parameter, finding
+  # the value of alpha that minimizes the mean cross-validation error.
   for (i in alpha) {
-    out <- glmnet::cv.glmnet(X,y,nfolds = nfolds,foldid = rows,alpha = i)
-    if (out$lambda.min < lambda.min) {
-      lambda.min <- out$lambda.min
+    out <- glmnet::cv.glmnet(X,y,nfolds = nfolds,foldid = foldid,alpha = i)
+    if (min(out$cvm) < cvm.min) {
+      cvm.min    <- min(out$cvm)
       alpha.min  <- i
       out.cv     <- out
     }
   }
-  fit <- glmnet::glmnet(X,y,standardize = FALSE,)
-  return(list(fit = fit,cv = out.cv))
+
+  # Fit the Elastic Net model using the chosen value of alpha.
+  fit <- glmnet::glmnet(X,y,standardize = FALSE,alpha = alpha.min)
+  return(list(fit = fit,cv = out.cv,alpha = alpha.min))
 }

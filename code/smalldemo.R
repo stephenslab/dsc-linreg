@@ -11,6 +11,11 @@ set.seed(1)
 cat("Generating data set.\n")
 dat <- simulate_toy_data(scenario = 1)
 
+# RUN RIDGE REGRESSION
+# --------------------
+cat("Fitting ridge regression model to training data.\n")
+ridge <- with(dat$train,fit_ridge(X,y))
+
 # RUN LASSO METHOD
 # ----------------
 cat("Fitting Lasso model to training data.\n")

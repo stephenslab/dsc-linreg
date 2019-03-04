@@ -1,4 +1,14 @@
-# TO DO: Summarize the contents of this file.
+# This file contains simple implementations of various methods for
+# fitting linear regression models; methods include ridge regression,
+# the Lasso, the Elastic Net, and varbvs (variational inference for
+# Bayesian variable selection).
+
+# TO DO: Explain here what this function does, and how to you use.
+fit_ridge <- function (X, y, nfolds = 10) {
+  out.cv <- glmnet::cv.glmnet(X,y,alpha = 0,nfolds = nfolds)
+  fit    <- glmnet::glmnet(X,y,alpha = 0,standardize = FALSE)
+  return(list(fit = fit,cv = out.cv))
+}
 
 # Fit a Lasso model to the data, and estimate the penalty strength
 # (lambda) using cross-validation. Input X should be an n x p numeric

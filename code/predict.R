@@ -23,3 +23,10 @@ predict_elastic_net <- function (en, X) {
   lambda <- en$cv$lambda.min
   return(drop(predict(fit,X,lambda)))
 }
+
+# TO DO: Explain here what this function does, and how to use it.
+predict_varbvs <- function (fit, X) {
+  if (!inherits(fit,"varbvs"))
+    stop("Input argument \"fit\" should be a \"varbvs\" object")
+  return(predict(fit,X))
+}

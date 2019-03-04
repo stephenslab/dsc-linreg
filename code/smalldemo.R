@@ -28,12 +28,18 @@ lasso <- with(dat$train,fit_lasso(X,y))
 cat("Fitting Elastic Net model to training data.\n")
 en <- with(dat$train,fit_elastic_net(X,y))
 
+# RUN VARBVS METHOD
+# -----------------
+cat("Fitting varbvs model to training data.\n")
+varbvs <- with(dat$train,fit_varbvs(X,y))
+
 # PREDICT TEST OUTCOMES
 # ---------------------
 cat("Predicting outcomes in test examples using fitted models.\n")
-y.ridge <- with(dat$test,predict_ridge(ridge,X))
-y.lasso <- with(dat$test,predict_lasso(lasso,X))
-y.en    <- with(dat$test,predict_elastic_net(en,X))
+y.ridge  <- with(dat$test,predict_ridge(ridge,X))
+y.lasso  <- with(dat$test,predict_lasso(lasso,X))
+y.en     <- with(dat$test,predict_elastic_net(en,X))
+y.varbvs <- with(dat$test,predict_varbvs(varbvs,X))
 
 # EVALUATE PREDICTIONS
 # --------------------
@@ -41,3 +47,4 @@ cat("Mean squared error in test examples:\n")
 cat(sprintf(" - ridge:       %0.4f\n",mse(dat$test$y,y.ridge)))
 cat(sprintf(" - lasso:       %0.4f\n",mse(dat$test$y,y.lasso)))
 cat(sprintf(" - elastic net: %0.4f\n",mse(dat$test$y,y.en)))
+cat(sprintf(" - varbvs:      %0.4f\n",mse(dat$test$y,y.varbvs)))

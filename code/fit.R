@@ -60,3 +60,6 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   return(list(fit = fit,cv = out.cv,alpha = alpha.min))
 }
 
+# TO DO: Explain here what this function does, and how to use it.
+fit_varbvs <- function (X, y)
+  varbvs::varbvs(X,NULL,y,verbose = FALSE)

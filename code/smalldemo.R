@@ -11,35 +11,30 @@ set.seed(1)
 # GENERATE DATA
 # -------------
 cat("Generating data set.\n")
-dat <- simulate_toy_data(scenario = 1)
+dat <- simulate_toy_data(scenario = 4)
 
-# RUN RIDGE REGRESSION
-# --------------------
-cat("Fitting ridge regression model to training data.\n")
+# FITMODELS
+# ----------
+cat("Fitting models:\n")
+cat(" - ridge\n")
 ridge <- with(dat$train,fit_ridge(X,y))
-
-# RUN LASSO METHOD
-# ----------------
-cat("Fitting Lasso model to training data.\n")
+cat(" - Lasso\n")
 lasso <- with(dat$train,fit_lasso(X,y))
-
-# RUN ELASTIC NET METHOD
-# ----------------------
-cat("Fitting Elastic Net model to training data.\n")
+cat(" - Elastic Net\n")
 en <- with(dat$train,fit_elastic_net(X,y))
-
-# RUN VARBVS METHOD
-# -----------------
-cat("Fitting varbvs model to training data.\n")
+cat(" - varbvs\n")
 varbvs <- with(dat$train,fit_varbvs(X,y))
+cat(" - susie\n")
+susie <- with(dat$train,fit_susie(X,y))
 
 # PREDICT TEST OUTCOMES
 # ---------------------
 cat("Predicting outcomes in test examples using fitted models.\n")
-y.ridge  <- with(dat$test,predict_ridge(ridge,X))
-y.lasso  <- with(dat$test,predict_lasso(lasso,X))
-y.en     <- with(dat$test,predict_elastic_net(en,X))
-y.varbvs <- with(dat$test,predict_varbvs(varbvs,X))
+y.ridge  <- predict_ridge(ridge,dat$test$X)
+y.lasso  <- predict_lasso(lasso,dat$test$X)
+y.en     <- predict_elastic_net(en,dat$test$X)
+y.varbvs <- predict_varbvs(varbvs,dat$test$X)
+y.susie  <- predict_susie(susie,dat$test$X)
 
 # EVALUATE PREDICTIONS
 # --------------------
@@ -48,3 +43,4 @@ cat(sprintf(" - ridge:       %0.4f\n",mse(dat$test$y,y.ridge)))
 cat(sprintf(" - lasso:       %0.4f\n",mse(dat$test$y,y.lasso)))
 cat(sprintf(" - elastic net: %0.4f\n",mse(dat$test$y,y.en)))
 cat(sprintf(" - varbvs:      %0.4f\n",mse(dat$test$y,y.varbvs)))
+cat(sprintf(" - susie:       %0.4f\n",mse(dat$test$y,y.susie)))

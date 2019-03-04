@@ -63,5 +63,14 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p
 # numeric matrix, and input y should be a numeric vector of length n.
-fit_varbvs <- function (X, y)
-  varbvs::varbvs(X,NULL,y,verbose = FALSE)
+fit_varbvs <- function (X, y) {
+  p       <- ncol(X)
+  logodds <- seq(-log10(p),1,length.out = 20)
+  return(varbvs::varbvs(X,NULL,y,logodds = logodds,update.sa = TRUE,
+                        update.sigma = TRUE,verbose = FALSE))
+}
+
+# TO DO: Explain here what this function does, and how to use it.
+fit_susie <- function (X, y)
+  susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
+                estimate_prior_variance = TRUE)

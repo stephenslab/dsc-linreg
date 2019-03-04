@@ -13,6 +13,19 @@ fit_lasso <- function (X, y, nfolds = 10) {
 }
 
 # TO DO: Explain here what this function does, and how to use it.
-fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.1)) {
-
+fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
+  rows       <- sample(nrow(X))
+  out.cv     <- NULL
+  lambda.min <- Inf
+  alpha.min  <- 1
+  for (i in alpha) {
+    out <- glmnet::cv.glmnet(X,y,nfolds = nfolds,foldid = rows,alpha = i)
+    if (out$lambda.min < lambda.min) {
+      lambda.min <- out$lambda.min
+      alpha.min  <- i
+      out.cv     <- out
+    }
+  }
+  fit <- glmnet::glmnet(X,y,standardize = FALSE,)
+  return(list(fit = fit,cv = out.cv))
 }

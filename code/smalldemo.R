@@ -19,7 +19,7 @@ lasso <- with(dat$train,fit_lasso(X,y))
 # RUN ELASTIC NET METHOD
 # ----------------------
 cat("Fitting Elastic Net model to training data.\n")
-# TO DO.
+en <- with(dat$train,fit_elastic_net(X,y))
 
 # PREDICT TEST OUTCOMES
 # ---------------------

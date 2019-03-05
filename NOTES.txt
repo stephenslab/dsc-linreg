@@ -1,7 +1,0 @@
-notes
-=====
-
-+ Packages used:
-
-    MASS
-    glmnet

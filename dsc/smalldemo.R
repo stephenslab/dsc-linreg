@@ -1,9 +1,10 @@
-# TO DO: Explain here what this script does, and how to use it.
+# This short script demonstrates the model fitting methods on a small
+# data set.
 library(MASS)
-source("toydata.R")
-source("fit.R")
-source("predict.R")
-source("score.R")
+source("functions/toydata.R")
+source("functions/fit.R")
+source("functions/predict.R")
+source("functions/score.R")
 
 # Initialize the sequence of pseudorandom numbers.
 set.seed(1)
@@ -11,16 +12,16 @@ set.seed(1)
 # GENERATE DATA
 # -------------
 cat("Generating data set.\n")
-dat <- simulate_toy_data(scenario = 4)
+dat <- simulate_toy_data(scenario = 1)
 
 # FITMODELS
 # ----------
 cat("Fitting models:\n")
 cat(" - ridge\n")
 ridge <- with(dat$train,fit_ridge(X,y))
-cat(" - Lasso\n")
+cat(" - lasso\n")
 lasso <- with(dat$train,fit_lasso(X,y))
-cat(" - Elastic Net\n")
+cat(" - elastic net\n")
 en <- with(dat$train,fit_elastic_net(X,y))
 cat(" - varbvs\n")
 varbvs <- with(dat$train,fit_varbvs(X,y))

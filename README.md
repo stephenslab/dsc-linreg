@@ -4,17 +4,11 @@ DSC for comparing regression methods.
 
 ## Run benchmark
 
-For 20 replicates,
+First install the R packages used by the DSC. The run:
 
-```
-./benchmark.dsc --replicate 20
-```
-
-For 200 replicate running a cluster system, with 40 maximum submitted
-jobs in the queue:
-
-```
-./benchmark.dsc --host midway.yml --replicate 200 -c 40
+```bash
+cd dsc
+dsc -c 4 linreg.dsc
 ```
 
 Notice that you need to configure `midway.yml` accordingly with your

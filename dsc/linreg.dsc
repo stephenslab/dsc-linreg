@@ -15,16 +15,22 @@ toydata: toydata.R
 
 # fit modules
 # -----------
+# TO DO: Give overview of fit modules here.
+
 # TO DO: Add comments here describing what this module does.
 ridge: ridge.R
   X: $X
   y: $y
   
+# predict modules
+# ---------------
+# TO DO: Give overview of predict modules here.
+
 # score modules
 # -------------
-  
+# TO DO: Give overview of score modules here.  
+
 DSC:
   define:
     simulate: toydata
-    fit: 
   run: simulate

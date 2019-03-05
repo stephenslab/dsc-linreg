@@ -1,8 +1,8 @@
-# This file contains functions that simulate "toy" data sets for
-# evaluating methods for linear regression. The data simulations are
-# drawn from Zou & Hastie (2005), "Regularization and variable
-# selection via the elastic net", Journal of the Royal Statistical
-# Society, Series B, 67(2): 301–320.
+# This file contains functions that simulate data sets for evaluating
+# methods for linear regression. The data simulations are drawn from
+# Zou & Hastie (2005), "Regularization and variable selection via the
+# elastic net", Journal of the Royal Statistical Society, Series B,
+# 67(2): 301–320.
 
 # Return a matrix of samples drawn from the multivariate normal
 # distribution with zero mean and covariance S, where S is defined

@@ -1,10 +1,9 @@
 # This short script demonstrates the model fitting methods on a small
 # data set.
-library(MASS)
-source("functions/toydata.R")
-source("functions/fit.R")
-source("functions/predict.R")
-source("functions/score.R")
+source("simulate.R")
+source("fit.R")
+source("predict.R")
+source("score.R")
 
 # Initialize the sequence of pseudorandom numbers.
 set.seed(1)

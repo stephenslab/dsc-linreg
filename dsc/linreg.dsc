@@ -16,7 +16,7 @@ toydata: toydata.R
   $se:      dat$se
 
 # fit modules
-# -----------
+# ===========
 # TO DO: Give overview of fit modules here.
 
 # TO DO: Add comments here explaining what this module does.
@@ -38,7 +38,7 @@ elastic_net: elastic_net.R
   $model: out
   
 # predict modules
-# ---------------
+# ===============
 # TO DO: Give overview of predict modules here.
 
 # TO DO: Add comments here explaining what this module does.
@@ -60,13 +60,13 @@ predict_elastic_net: predict_elastic_net.R
   $yest: y
 
 # score modules
-# -------------
+# =============
 # TO DO: Give overview of score modules here.  
 
 # TO DO: Add comments here explaining what this module does.
 mse: mse.R
   y:    $ytest
-  yest: $ypred
+  yest: $yest
   $err: err
 
 DSC:
@@ -76,6 +76,6 @@ DSC:
     predict:  predict_ridge, predict_lasso, predict_elastic_net
     analyze:  ridge * predict_ridge, 
               lasso * predict_lasso, 
-              elasticnet * fit_elastic_net
+              elastic_net * predict_elastic_net
     score:    mse
   run: simulate * analyze * score

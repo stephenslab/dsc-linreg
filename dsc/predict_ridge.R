@@ -1,4 +1,5 @@
 # TO DO: Add comments explaining what this code does, and how it is
 # used in the DSC.
-source("fit.R")
-out <- fit_ridge(X,y)
+source("predict.R")
+y <- predict_ridge(model$fit,X)
+

@@ -4,11 +4,18 @@ DSC for comparing regression methods.
 
 ## Run benchmark
 
-First install the R packages used by the DSC. The run:
+First install the R packages used by the DSC. Then change your working
+directory to the "dsc" subdirectory, and run:
 
 ```bash
 cd dsc
 dsc -c 4 linreg.dsc
+```
+
+Then go into R to summarize the results:
+
+```R
+source("summarize_results.R")
 ```
 
 Notice that you need to configure `midway.yml` accordingly with your

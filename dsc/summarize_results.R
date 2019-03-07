@@ -3,3 +3,5 @@ library(dscrutils)
 
 # Extract the results.
 out <- dscquery("linreg",c("fit","mse"))
+out <- transform(out,fit = factor(fit))
+summary(out)

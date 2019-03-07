@@ -6,7 +6,7 @@
 
 # TO DO: Add comments here describing what this module does.
 toydata: toydata.R
-  seed:     R{1:20}
+  seed:     R{1:5}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -36,6 +36,18 @@ elastic_net: elastic_net.R
   X:      $X
   y:      $y
   $model: out
+
+# TO DO: Add comments here explaining what this module does.
+varbvs: varbvs.R
+  X:      $X
+  y:      $y
+  $model: out
+
+# TO DO: Add comments here explaining what this module does.
+susie: susie.R
+  X:      $X
+  y:      $y
+  $model: out
   
 # predict modules
 # ===============
@@ -59,6 +71,12 @@ predict_elastic_net: predict_elastic_net.R
   model: $model
   $yest: y
 
+# TO DO: Add comments here explaining what this module does.
+predict_varbvs: predict_varbvs.R
+
+# TO DO: Add comments here explaining what this module does.
+predict_susie: predict_susie.R
+
 # score modules
 # =============
 # TO DO: Give overview of score modules here.  
@@ -72,10 +90,12 @@ mse: mse.R
 DSC:
   define:
     simulate: toydata
-    fit:      ridge, lasso, elastic_net
+    fit:      ridge, lasso, elastic_net, varbvs, susie
     predict:  predict_ridge, predict_lasso, predict_elastic_net
-    analyze:  ridge * predict_ridge, 
-              lasso * predict_lasso, 
-              elastic_net * predict_elastic_net
+    analyze:  ridge * predict_ridge,
+              lasso * predict_lasso,
+              elastic_net * predict_elastic_net,
+              varbvs * predict_varbvs,
+              susie * predict_susie
     score:    mse
   run: simulate * analyze * score

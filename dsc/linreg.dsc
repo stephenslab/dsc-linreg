@@ -73,9 +73,15 @@ predict_elastic_net: predict_elastic_net.R
 
 # TO DO: Add comments here explaining what this module does.
 predict_varbvs: predict_varbvs.R
+  X:     $Xtest
+  model: $model
+  $yest: y
 
 # TO DO: Add comments here explaining what this module does.
 predict_susie: predict_susie.R
+  X:     $Xtest
+  model: $model
+  $yest: y
 
 # score modules
 # =============

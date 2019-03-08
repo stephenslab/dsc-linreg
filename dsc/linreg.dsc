@@ -6,7 +6,7 @@
 
 # TO DO: Add comments here describing what this module does.
 toydata: toydata.R
-  seed:     R{1:5}
+  seed:     R{1}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -97,7 +97,8 @@ DSC:
   define:
     simulate: toydata
     fit:      ridge, lasso, elastic_net, varbvs, susie
-    predict:  predict_ridge, predict_lasso, predict_elastic_net
+    predict:  predict_ridge, predict_lasso, predict_elastic_net,
+              predict_varbvs, predict_susie
     analyze:  ridge * predict_ridge,
               lasso * predict_lasso,
               elastic_net * predict_elastic_net,

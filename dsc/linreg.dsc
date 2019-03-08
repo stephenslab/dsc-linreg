@@ -96,12 +96,8 @@ mse: mse.R
 DSC:
   define:
     simulate: toydata
-    fit:      ridge, lasso, elastic_net, varbvs, susie
-    predict:  predict_ridge, predict_lasso, predict_elastic_net
+    fit:      ridge, lasso
     analyze:  ridge * predict_ridge,
-              lasso * predict_lasso,
-              elastic_net * predict_elastic_net,
-              varbvs * predict_varbvs,
-              susie * predict_susie
+              lasso * predict_lasso
     score:    mse
   run: simulate * analyze * score

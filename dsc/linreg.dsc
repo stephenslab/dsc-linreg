@@ -97,9 +97,7 @@ DSC:
   define:
     simulate: toydata
     fit:      ridge, lasso, elastic_net, varbvs, susie
-    predict:  predict_ridge, predict_lasso, predict_elastic_net,
-              predict_varbvs, predict_susie
-    predict_incomplete:  predict_ridge, predict_lasso, predict_elastic_net
+    predict:  predict_ridge, predict_lasso, predict_elastic_net
     analyze:  ridge * predict_ridge,
               lasso * predict_lasso,
               elastic_net * predict_elastic_net,

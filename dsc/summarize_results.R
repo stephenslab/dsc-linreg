@@ -3,7 +3,7 @@ library(dscrutils)
 
 # Extract the results.
 out <- dscquery("linreg",
-                c("simulate.seed","simulate.scenario","fit","predict","mse"))
+                c("simulate.seed","simulate.scenario","fit","mse"))
 out <- transform(out,
                  fit               = factor(fit),
                  predict           = factor(predict),

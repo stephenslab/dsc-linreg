@@ -2,5 +2,4 @@
 library(dscrutils)
 
 # Extract the results.
-out <- dscquery("linreg",
-                c("simulate.seed","simulate.scenario","fit","mse"))
+out <- dscquery("linreg",c("simulate.seed","fit","mse"))

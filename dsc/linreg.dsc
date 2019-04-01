@@ -38,17 +38,23 @@ elastic_net: elastic_net.R
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
+susie: susie.R
+  X:      $X
+  y:      $y
+  $model: out
+
+# TO DO: Add comments here explaining what this module does.
 varbvs: varbvs.R
   X:      $X
   y:      $y
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-susie: susie.R
+varbvsmix: varbvsmix.R
   X:      $X
   y:      $y
   $model: out
-  
+
 # predict modules
 # ===============
 # TO DO: Give overview of predict modules here.
@@ -96,13 +102,14 @@ mse: mse.R
 DSC:
   define:
     simulate: toydata
-    fit:      ridge, lasso, elastic_net, varbvs, susie
+    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
     predict:  predict_ridge, predict_lasso, predict_elastic_net,
-              predict_varbvs, predict_susie
+              predict_susie, predict_varbvs, predict_varbvsmix
     analyze:  ridge * predict_ridge,
               lasso * predict_lasso,
               elastic_net * predict_elastic_net,
+              susie * predict_susie,
               varbvs * predict_varbvs,
-              susie * predict_susie
+              varbvsmix * predict_varbvsmix
     score:    mse
   run: simulate * analyze * score

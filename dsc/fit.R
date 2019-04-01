@@ -60,6 +60,17 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   return(list(fit = fit,cv = out.cv,alpha = alpha.min))
 }
 
+# Fit a "sum of single effects" (SuSiE) regression model to the
+# provided data. The data are specified by inputs X and y; X should be
+# an n x p numeric matrix, and y should be a numeric vector of length n.
+#
+# We found that it is important to use the "estimate_prior_variance"
+# option in susie to allow the model with a large number of components
+# (L) to better adapt to the data.
+fit_susie <- function (X, y)
+  susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
+                estimate_prior_variance = TRUE)
+
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p
 # numeric matrix, and input y should be a numeric vector of length n.
@@ -73,13 +84,9 @@ fit_varbvs <- function (X, y) {
   return(varbvs::varbvs(X,NULL,y,logodds = logodds,verbose = FALSE))
 }
 
-# Fit a "sum of single effects" (SuSiE) regression model to the
-# provided data. The data are specified by inputs X and y; X should be
-# an n x p numeric matrix, and y should be a numeric vector of length n.
-#
-# We found that it is important to use the "estimate_prior_variance"
-# option in susie to allow the model with a large number of components
-# (L) to better adapt to the data.
-fit_susie <- function (X, y)
-  susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
-                estimate_prior_variance = TRUE)
+# TO DO: Explain here what this function does, and how to use it.
+fit_varbvsmix <- function (X, y, k = 20) {
+  b <- simplelr(X,y)
+  s <- autoselect.mixsd(b,k)
+  return(varbvs::varbvsmix(X,NULL,y,s^2,verbose = FALSE))
+}

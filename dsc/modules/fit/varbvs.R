@@ -1,4 +1,3 @@
-# TO DO: Add comments explaining what this code does, and how it is
-# used in the DSC.
+# This R script implements the "varbvs" module in the linreg DSC.
 source("functions/fit.R")
 out <- fit_varbvs(X,y)

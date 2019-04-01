@@ -1,8 +1,61 @@
-# This file contains functions that simulate data sets for evaluating
+# This file contains functions that simulate data sets to evaluate
 # methods for linear regression. The data simulations are drawn from
 # Zou & Hastie (2005), "Regularization and variable selection via the
 # elastic net", Journal of the Royal Statistical Society, Series B,
 # 67(2): 301–320.
+
+# Return training and test data simulated according one of the four
+# scenarios described in Zou & Hastie (2005). The return value is a
+# list object containing two elements, "train" and "test", containing
+# the training and test data, respectively. Each of these list
+# elements is in turn a list containing an n x p matrix of simulated
+# predictors, X, and a vector of outcomes, y, of length n (n
+# represents the number of samples and p represents the number of
+# predictors).
+simulate_toy_data <- function (scenario) {
+  if (scenario == 1) {
+      
+    # Example 1 from Zou & Hastie (2005).
+    se     <- 3
+    b      <- c(3,1.5,0,0,2,0,0,0)
+    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
+  } else if (scenario == 2) {
+
+    # Example 2 from Zou & Hastie (2005).
+    se     <- 3
+    b      <- rep(0.85,8)
+    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
+  } else if (scenario == 3) {
+
+    # Example 3 from rom Zou & Hastie (2005).
+    se     <- 15
+    b      <- rep(c(rep(0,10),rep(2,10)),2)
+    Xtrain <- simulate_predictors_corr(200,40,0.5)
+    Xtest  <- simulate_predictors_decaying_corr(400,40,0.5)
+  } else if (scenario == 4) {
+
+    # Example 4 from Zou & Hastie (2005).
+    se     <- 15
+    b      <- c(rep(3,15),rep(0,25))
+    Xtrain <- simulate_predictors_grouped(100,5,0.1)
+    Xtest  <- simulate_predictors_grouped(400,5,0.1)
+  } else
+    stop("Input argument \"scenario\" should be a number between 1 and 4")
+
+  # Simulate the training and test outcomes.
+  ytrain <- simulate_outcomes(Xtrain,b,se)
+  ytest  <- simulate_outcomes(Xtest,b,se)
+
+  # Output the training ("train") and test ("test") sets, as well as
+  # the coefficients ("b") and residual standard deviation ("se") used
+  # to simulate the training and test data.
+  return(list(train = list(X = Xtrain,y = ytrain),
+              test  = list(X = Xtest,y = ytest),
+              b     = b,
+              se    = se))
+}
 
 # Return a matrix of samples drawn from the multivariate normal
 # distribution with zero mean and covariance S, where S is defined
@@ -56,57 +109,4 @@ simulate_predictors_grouped <- function (n, p, s = 0.1) {
 simulate_outcomes <- function (X, b, se) {
   n <- nrow(X)
   return(drop(X %*% b + rnorm(n,sd = se)))
-}
-
-# Return training and test data simulated according one of the four
-# scenarios described in Zou & Hastie (2005). The return value is a
-# list object containing two elements, "train" and "test", containing
-# the training and test data, respectively. Each of these list
-# elements is in turn a list containing an n x p matrix of simulated
-# predictors, X, and a vector of outcomes, y, of length n (n
-# represents the number of samples and p represents the number of
-# predictors).
-simulate_toy_data <- function (scenario) {
-  if (scenario == 1) {
-      
-    # Example 1 from Zou & Hastie (2005).
-    se     <- 3
-    b      <- c(3,1.5,0,0,2,0,0,0)
-    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
-    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
-  } else if (scenario == 2) {
-
-    # Example 2 from Zou & Hastie (2005).
-    se     <- 3
-    b      <- rep(0.85,8)
-    Xtrain <- simulate_predictors_decaying_corr(40,8,0.5)
-    Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
-  } else if (scenario == 3) {
-
-    # Example 3 from rom Zou & Hastie (2005).
-    se     <- 15
-    b      <- rep(c(rep(0,10),rep(2,10)),2)
-    Xtrain <- simulate_predictors_corr(200,40,0.5)
-    Xtest  <- simulate_predictors_decaying_corr(400,40,0.5)
-  } else if (scenario == 4) {
-
-    # Example 4 from Zou & Hastie (2005).
-    se     <- 15
-    b      <- c(rep(3,15),rep(0,25))
-    Xtrain <- simulate_predictors_grouped(100,5,0.1)
-    Xtest  <- simulate_predictors_grouped(400,5,0.1)
-  } else
-    stop("Input argument \"scenario\" should be a number between 1 and 4")
-
-  # Simulate the training and test outcomes.
-  ytrain <- simulate_outcomes(Xtrain,b,se)
-  ytest  <- simulate_outcomes(Xtest,b,se)
-
-  # Output the training and test sets, as well as the coefficients (b)
-  # and residual standard deviation (se) used to simulate the training
-  # and test data.
-  return(list(train = list(X = Xtrain,y = ytrain),
-              test  = list(X = Xtest,y = ytest),
-              b     = b,
-              se    = se))
 }

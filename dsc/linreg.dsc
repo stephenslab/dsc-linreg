@@ -2,10 +2,11 @@
 
 # simulate modules
 # ================
-# These modules generate the training and test data used to evaluate
-# the linear regression models. Each training and test data set should
-# include an n x p matrix X and a vector y of length n, where n is the
-# number of samples, and p is the number of candidate predictors.
+# A "simulate" module generates a training and test data set used to
+# evaluate the linear regression models. Each training and test data
+# set should include an n x p matrix X and a vector y of length n,
+# where n is the number of samples, and p is the number of candidate
+# predictors.
 
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005).
@@ -21,21 +22,26 @@ toydata: modules/simulate/toydata.R
 
 # fit modules
 # ===========
-# TO DO: Give overview of fit modules here.
+# A "fit" module fits a linear regression model to the provided
+# training data, X and y.
 
-# TO DO: Add comments here explaining what this module does.
+# Fit a ridge regression model using glmnet. The penalty strength
+# (i.e., the normal prior on the coefficients) is estimated using
+# cross-validation.
 ridge: modules/fit/ridge.R
   X:      $X
   y:      $y
   $model: out
 
-# TO DO: Add comments here explaining what this module does.
+# Fit a Lasso model using glmnet. The penalty strength ("lambda") is
+# estimated via cross-validation.
 lasso: modules/fit/lasso.R
   X:      $X
   y:      $y
   $model: out
 
-# TO DO: Add comments here explaining what this module does.
+# Fit an Elastic Net model using glmnet. The model parameters, lambda
+# and alpha, are estimated using cross-validation.
 elastic_net: modules/fit/elastic_net.R
   X:      $X
   y:      $y

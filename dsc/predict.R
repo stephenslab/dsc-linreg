@@ -20,14 +20,21 @@ predict_elastic_net <- function (en, X) {
   drop(glmnet::predict.glmnet(en$fit,X,en$cv$lambda.min))
 }
 
+# Use the fitted susie model to predict n continuous outcomes given
+# an n x p matrix of observations X. The return value is a vector of
+# length n.
+predict_susie <- function (fit, X)
+  susieR::predict.susie(fit,X)
+
 # Use the fitted varbvs model to predict n continuous outcomes given
 # an n x p matrix of observations X. The return value is a vector of
 # length n.
 predict_varbvs <- function (fit, X)
   varbvs::predict.varbvs(fit,X)
 
-# Use the fitted susie model to predict n continuous outcomes given
-# an n x p matrix of observations X. The return value is a vector of
-# length n.
-predict_susie <- function (fit, X)
-  susieR::predict.susie(fit,X)
+# Function used to predict outcomes given an observed X, and a
+# fitted varbvsmix model.
+predict_varbvsmix <- function (fit, X) {
+  b <- rowSums(fit$alpha * fit$mu)
+  return(drop(X %*% b))
+}

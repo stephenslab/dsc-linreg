@@ -30,8 +30,6 @@ varbvs <- with(dat$train,fit_varbvs(X,y))
 cat(" - varbvsmix\n")
 varbvsmix <- with(dat$train,fit_varbvsmix(X,y))
 
-stop()
-
 # PREDICT TEST OUTCOMES
 # ---------------------
 cat("Predicting outcomes in test examples using fitted models.\n")

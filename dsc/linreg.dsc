@@ -47,19 +47,22 @@ elastic_net: modules/fit/elastic_net.R
   y:      $y
   $model: out
 
-# TO DO: Add comments here explaining what this module does.
+# Fit a "sum of single effects" (SuSiE) regression model.
 susie: modules/fit/susie.R
   X:      $X
   y:      $y
   $model: out
 
-# TO DO: Add comments here explaining what this module does.
+# Compute a fully-factorized variational approximation for Bayesian
+# variable selection in linear regression (varbvs).
 varbvs: modules/fit/varbvs.R
   X:      $X
   y:      $y
   $model: out
 
-# TO DO: Add comments here explaining what this module does.
+# This is a variant on the varbvs method in which the "spike-and-slab"
+# prior on the regression coefficients is replaced with a
+# mixture-of-normals prior.
 varbvsmix: modules/fit/varbvsmix.R
   X:      $X
   y:      $y

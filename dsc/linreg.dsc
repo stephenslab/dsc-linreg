@@ -6,7 +6,7 @@
 
 # TO DO: Add comments here describing what this module does.
 toydata: modules/simulate/toydata.R
-  seed:     R{1:2}
+  seed:     R{1:20}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -38,19 +38,19 @@ elastic_net: modules/fit/elastic_net.R
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-susie: susie.R
+susie: modules/fit/susie.R
   X:      $X
   y:      $y
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-varbvs: varbvs.R
+varbvs: modules/fit/varbvs.R
   X:      $X
   y:      $y
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-varbvsmix: varbvsmix.R
+varbvsmix: modules/fit/varbvsmix.R
   X:      $X
   y:      $y
   $model: out
@@ -60,37 +60,37 @@ varbvsmix: varbvsmix.R
 # TO DO: Give overview of predict modules here.
 
 # TO DO: Add comments here explaining what this module does.
-predict_ridge: predict_ridge.R
+predict_ridge: modules/predict/predict_ridge.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # TO DO: Add comments here explaining what this module does.
-predict_lasso: predict_lasso.R
+predict_lasso: modules/predict/predict_lasso.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # TO DO: Add comments here explaining what this module does.
-predict_elastic_net: predict_elastic_net.R
+predict_elastic_net: modules/predict/predict_elastic_net.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # TO DO: Add comments here explaining what this module does.
-predict_susie: predict_susie.R
+predict_susie: modules/predict/predict_susie.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # TO DO: Add comments here explaining what this module does.
-predict_varbvs: predict_varbvs.R
+predict_varbvs: modules/predict/predict_varbvs.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # TO DO: Add comments here explaining what this module does.
-predict_varbvsmix: predict_varbvsmix.R
+predict_varbvsmix: modules/predict/predict_varbvsmix.R
   X:     $Xtest
   model: $model
   $yest: y
@@ -100,7 +100,7 @@ predict_varbvsmix: predict_varbvsmix.R
 # TO DO: Give overview of score modules here.  
 
 # TO DO: Add comments here explaining what this module does.
-mse: mse.R
+mse: modules/score/mse.R
   y:    $ytest
   yest: $yest
   $err: err
@@ -111,11 +111,11 @@ DSC:
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
     predict:  predict_ridge, predict_lasso, predict_elastic_net,
               predict_susie, predict_varbvs, predict_varbvsmix
-    analyze:  ridge * predict_ridge,
-              lasso * predict_lasso,
+    analyze:  ridge       * predict_ridge,
+              lasso       * predict_lasso,
               elastic_net * predict_elastic_net,
-              susie * predict_susie,
-              varbvs * predict_varbvs,
-              varbvsmix * predict_varbvsmix
+              susie       * predict_susie,
+              varbvs      * predict_varbvs,
+              varbvsmix   * predict_varbvsmix
     score:    mse
   run: simulate * analyze * score

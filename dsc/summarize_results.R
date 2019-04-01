@@ -8,7 +8,7 @@ out <- dscquery("linreg",targets = c("simulate.scenario","fit","mse.err"))
 out <- transform(out,
                  simulate.scenario = factor(simulate.scenario,1:4),
                  fit = factor(fit,c("ridge","lasso","elastic_net",
-                                    "susie","varbvs")))
+                                    "susie","varbvs","varbvsmix")))
 
 # Create boxplots summarizing the results.
 p <- vector("list",4)
@@ -17,7 +17,8 @@ for (i in 1:4) {
    p[[i]] <- ggplot(pdat,aes(x = fit,y = mse.err,fill = fit)) +
              geom_boxplot(color = "black") +
              scale_fill_manual(
-               values = c("coral","skyblue","dodgerblue","greenyellow","gold"),
+                 values = c("coral","skyblue","dodgerblue","greenyellow",
+                            "gold","orange"),
                  guide = "none") +
              labs(x = "",y = "mean squared error",
                   title = paste("scenario",i)) +

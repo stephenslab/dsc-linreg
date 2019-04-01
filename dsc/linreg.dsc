@@ -2,9 +2,13 @@
 
 # simulate modules
 # ================
-# TO DO: Give overview of simulate modules here.
+# These modules generate the training and test data used to evaluate
+# the linear regression models. Each training and test data set should
+# include an n x p matrix X and a vector y of length n, where n is the
+# number of samples, and p is the number of candidate predictors.
 
-# TO DO: Add comments here describing what this module does.
+# Generate training and test data sets using one of the four scenarios
+# described in Zou & Hastie (2005).
 toydata: modules/simulate/toydata.R
   seed:     R{1:20}
   scenario: 1, 2, 3, 4

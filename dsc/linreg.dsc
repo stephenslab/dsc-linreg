@@ -5,8 +5,8 @@
 # TO DO: Give overview of simulate modules here.
 
 # TO DO: Add comments here describing what this module does.
-toydata: toydata.R
-  seed:     R{1:20}
+toydata: modules/simulate/toydata.R
+  seed:     R{1:2}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -20,19 +20,19 @@ toydata: toydata.R
 # TO DO: Give overview of fit modules here.
 
 # TO DO: Add comments here explaining what this module does.
-ridge: ridge.R
+ridge: modules/fit/ridge.R
   X:      $X
   y:      $y
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-lasso: lasso.R
+lasso: modules/fit/lasso.R
   X:      $X
   y:      $y
   $model: out
 
 # TO DO: Add comments here explaining what this module does.
-elastic_net: elastic_net.R
+elastic_net: modules/fit/elastic_net.R
   X:      $X
   y:      $y
   $model: out

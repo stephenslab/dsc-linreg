@@ -15,7 +15,7 @@ p <- vector("list",4)
 for (i in 1:4) {
    pdat   <- subset(out,simulate.scenario == i)
    p[[i]] <- ggplot(pdat,aes(x = fit,y = mse.err,fill = fit)) +
-             geom_boxplot(color = "black") +
+             geom_boxplot(color = "black",outlier.size = 1,outlier.shape = 4) +
              scale_fill_manual(
                  values = c("coral","skyblue","dodgerblue","greenyellow",
                             "gold","orange"),

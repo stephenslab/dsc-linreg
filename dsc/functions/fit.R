@@ -87,6 +87,6 @@ fit_varbvs <- function (X, y) {
 # TO DO: Explain here what this function does, and how to use it.
 fit_varbvsmix <- function (X, y, k = 20) {
   b <- simplelr(X,y)
-  s <- autoselect.mixsd(b,k)
+  s <- selectmixsd(b,k)
   return(varbvs::varbvsmix(X,NULL,y,s^2,verbose = FALSE))
 }

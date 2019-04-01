@@ -17,7 +17,7 @@ simplelr <- function (X, y) {
 # code is based on the autoselect.mixsd function from the ashr
 # package.
 #
-autoselect.mixsd <- function (x, k) {
+selectmixsd <- function (x, k) {
   smin <- 1/10
   if (all(x^2 < 1))
     smax <- 1

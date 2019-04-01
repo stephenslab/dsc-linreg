@@ -7,4 +7,22 @@ library(cowplot)
 out <- dscquery("linreg",targets = c("simulate.scenario","fit","mse.err"))
 out <- transform(out,
                  simulate.scenario = factor(simulate.scenario,1:4),
-                 fit               = factor(fit))
+                 fit = factor(fit,c("ridge","lasso","elastic_net",
+                                    "susie","varbvs")))
+
+# Create boxplots summarizing the results.
+p <- vector("list",4)
+for (i in 1:4) {
+   pdat   <- subset(out,simulate.scenario == i)
+   p[[i]] <- ggplot(pdat,aes(x = fit,y = mse.err,fill = fit)) +
+             geom_boxplot(color = "black") +
+             scale_fill_manual(
+               values = c("coral","skyblue","dodgerblue","greenyellow","gold"),
+                 guide = "none") +
+             labs(x = "",y = "mean squared error",
+                  title = paste("scenario",i)) +
+             theme_cowplot(font_size = 12) +
+             theme(axis.line   = element_blank(),
+                   axis.text.x = element_text(angle = 45,hjust = 1))
+}
+p <- do.call(plot_grid,p)

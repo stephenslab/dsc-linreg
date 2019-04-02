@@ -1,0 +1,40 @@
+---
+title: "Evaluating linear regression methods in four scenarios from Zou & Hastie (2005)"
+author: "Peter Carbonetto and Gao Wang"
+date: April 2, 2019
+output:
+  html_document:
+    theme: readable
+    include:
+      before_body: include/header.html
+      after_body: include/footer.html
+---
+
+In this short analysis, we compare the prediction accuracy of several
+linear regression in the four simulation examples described in [Zou &
+Hastie (2005)][zou-hastie-2005]. The methods compared are:
+
++ ridge regression;
+
++ the Lasso;
+
++ the Elastic Net;
+
++ Sum of Single Effects regression (SuSiE), described [here][susie];
+
++ variational inference for Bayesian variable selection, or "varbvs",
+described [here][varbvs]; and
+
++ "varbvsmix", an elaboration of varbvs that replaces the single normal
+  prior with a mixture-of-normals.
+
+
+
+```{r knitr, echo=FALSE}
+knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,
+                      fig.align = "center")
+```
+
+[susie]: https://doi.org/10.1101/501114
+[varbvs]: https://projecteuclid.org/euclid.ba/1339616726 
+[zou-hastie-2005]: https://doi.org/10.1111/j.1467-9868.2005.00503.x

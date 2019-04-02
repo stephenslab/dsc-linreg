@@ -1,6 +1,6 @@
 ---
 title: "Evaluating linear regression methods in four scenarios from Zou & Hastie (2005)"
-author: "Peter Carbonetto and Gao Wang"
+author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
 date: April 2, 2019
 output:
   html_document:
@@ -11,8 +11,8 @@ output:
 ---
 
 In this short analysis, we compare the prediction accuracy of several
-linear regression in the four simulation examples described in [Zou &
-Hastie (2005)][zou-hastie-2005]. The methods compared are:
+linear regression in the four simulation examples of
+[Zou & Hastie (2005)][zou-hastie-2005]. The six methods compared are:
 
 + ridge regression;
 
@@ -23,7 +23,7 @@ Hastie (2005)][zou-hastie-2005]. The methods compared are:
 + Sum of Single Effects regression (SuSiE), described [here][susie];
 
 + variational inference for Bayesian variable selection, or "varbvs",
-described [here][varbvs]; and
+  described [here][varbvs]; and
 
 + "varbvsmix", an elaboration of varbvs that replaces the single normal
   prior with a mixture-of-normals.
@@ -51,10 +51,11 @@ Import DSC results
 ------------------
 
 Here we use function "dscquery" from the dscrutils package to extract
-the results of the DSC we are interested in---the mean squared error
-in the predictions from each method and in each simulation scenario.
-The "dsc" data frame should contain results for 480 pipelines---6
-methods times 4 scenarios times 20 data sets simulated in each scenario.
+the DSC results we are interested in---the mean squared error in the
+predictions from each method and in each simulation scenario. After
+this call, the "dsc" data frame should contain results for 480
+pipelines---6 methods times 4 scenarios times 20 data sets simulated
+in each scenario.
 
 ```{r import-dsc-results}
 library(dscrutils)
@@ -65,30 +66,51 @@ dsc <- transform(dsc,fit = factor(fit,methods))
 nrow(dsc)
 ```
 
-If you did not run the DSC, you can replace the dscquery call above by
-this line:
+If you did not run the DSC to generate these results, you can replace
+the dscquery call above by this line to load the pre-extracted results
+stored in a CSV file:
 
 ```{r import-results-from-csv, eval=FALSE}
 dsc <- read.csv("../output/linreg_mse.csv")
 ```
 
-Let's save this table to a CSV file in case it is useful later.
+This is how the CSV file was created:
 
-```{r write-dsc-results}
+```{r write-dsc-results, eval=FALSE}
 write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 ```
 
 ## Summarize and discuss simulation results
 
-*Add text here.*
+The boxplots summarize the prediction errors in each of the simulations.
 
 ```{r create-boxplots, fig.height=8, fig.width=6.5}
-p1 <- mse.boxplot(subset(out,simulate.scenario == 1))
-p2 <- mse.boxplot(subset(out,simulate.scenario == 2))
-p3 <- mse.boxplot(subset(out,simulate.scenario == 3))
-p4 <- mse.boxplot(subset(out,simulate.scenario == 4))
-plot_grid(p1,p2,p3,p4,labels = paste("Simulation",1:4),vjust = 0)
+p1 <- mse.boxplot(subset(out,simulate.scenario == 1)) + ggtitle("Scenario 1")
+p2 <- mse.boxplot(subset(out,simulate.scenario == 2)) + ggtitle("Scenario 2")
+p3 <- mse.boxplot(subset(out,simulate.scenario == 3)) + ggtitle("Scenario 3")
+p4 <- mse.boxplot(subset(out,simulate.scenario == 4)) + ggtitle("Scenario 4")
+plot_grid(p1,p2,p3,p4)
 ```
+
+Here are a few initial (*i.e.,* imprecise) impressions from these plots.
+
+In most cases, the Elastic Net does at least as well, or better than
+the Lasso, which is what we would expect.
+
+Ridge regression actually achieves excellent accuracy in all cases
+except Scenario 4. Ridge regression is expected to do less well in
+Scenario 4 because the majority of the true coefficients are zero, so
+a sparse model would be favoured.
+
+SuSiE, at least with the factory settings, seems to do worse in
+settings where the true model contains many effects, particularly in
+Scenario 2, where *all* predictors have an effect.
+
+In Scenario 4 where the predictors are correlated in a structured way,
+and the effects are sparse, SuSiE and varbvs(mix) do much better than
+the other methods.
+
+varbvsmix yields competitive predictions in all four scenarios.
 
 ## Session information
 

@@ -28,11 +28,69 @@ described [here][varbvs]; and
 + "varbvsmix", an elaboration of varbvs that replaces the single normal
   prior with a mixture-of-normals.
 
-
+*Add a bit more text here.*
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,
                       fig.align = "center")
+```
+
+Load packages
+-------------
+
+Load a few packages and custom functions used in the analysis below.
+
+```{r load-pkgs}
+library(dscrutils)
+library(ggplot2)
+library(cowplot)
+source("../code/plots.R")
+```
+
+Import DSC results
+------------------
+
+Here we use function "dscquery" from the dscrutils package to extract
+the results of the DSC we are interested in---the mean squared error
+in the predictions from each method and in each simulation scenario.
+The "dsc" data frame should contain results for 480 pipelines---6
+methods times 4 scenarios times 20 data sets simulated in each scenario.
+
+```{r import-dsc-results}
+library(dscrutils)
+methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
+dsc <- dscquery("../dsc/linreg",c("simulate.scenario","fit","mse.err"),
+                 verbose = FALSE)
+dsc <- transform(dsc,fit = factor(fit,methods))
+nrow(dsc)
+```
+
+If you did not run the DSC, you can replace the dscquery call above by
+this line:
+
+```{r import-results-from-csv, eval=FALSE}
+dsc <- read.csv("../output/linreg_mse.csv")
+```
+
+Let's save this table to a CSV file in case it is useful later.
+
+```{r write-dsc-results}
+write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
+```
+
+## Summarize results of simulations
+
+```{r create-boxplots}
+
+```
+
+## Session information
+
+This is the version of R and the packages that were used to generate
+these results.
+
+```{r session-info}
+sessionInfo()
 ```
 
 [susie]: https://doi.org/10.1101/501114

@@ -13,6 +13,8 @@ packages can be installed from CRAN:
 ```R
 install.packages("devtools")
 install.packages("glmnet")
+install.packages("ggplot2")
+install.packages("cowplot")
 ```
 
 The susieR, varbvs and dscrutils packages can be installed from GitHub
@@ -25,12 +27,12 @@ install_github("stephenslab/susieR")
 install_github("pcarbo/varbvs",subdir = "varbvs-R")
 ```
 
-Clone or download this repository.
+Clone or download this git repository.
 
 Now you should have everything you need to run the DSC. Navigate to
-the `dsc` directory inside your local copy of the repository, and run
-it with this command (here we have chosen 4 threads, but you may want
-to adjust the number of threads to better suit your computer):
+the `dsc` directory inside your local copy of the git repository, and
+run it with this command (here we have chosen 4 threads, but you may
+want to adjust the number of threads to better suit your computer):
 
 ```bash
 dsc -c 4 linreg.dsc
@@ -39,26 +41,13 @@ dsc -c 4 linreg.dsc
 Go grab a coffee while you wait for the DSC to run. It will take some
 time, perhaps as long as, for all the DSC pipelines to complete.
 
-Once the DSC has finished running, you work through [this short
-vignette] to explore the results of the DSC in R.
+Once the DSC has finished running, you work through
+[this short analysis](https://stephenslab.github.io/dsc-linreg/index.html)
+to explore the results of the DSC in R. When running the code in R,
+make sure your working directory is set to the `analysis` directory in
+the git repository.
 
-Revise or expand on the DSC as you see fit.
-
-## Run benchmark
-
-First install the R packages used by the DSC. Then change your working
-directory to the "dsc" subdirectory, and run:
-
-```bash
-cd dsc
-dsc -c 4 linreg.dsc
-```
-
-Then go into R to summarize the results:
-
-```R
-source("summarize_results.R")
-```
+Please revise or expand on our DSC as you see fit.
 
 [dsc]: https://github.com/stephenslab/dsc
 [R]: www.r-project.org

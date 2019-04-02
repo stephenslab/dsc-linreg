@@ -1,4 +1,4 @@
-# dsc-linreg
+# DSC for evaluating linear regression methods
 
 A DSC for evaluating prediction accuracy of linear regression methods
 in different scenarios.
@@ -7,8 +7,9 @@ in different scenarios.
 
 First, install [DSC][dsc].
 
-Next, install [R][R], and the R packages used. The devtools and glmnet
-packages can be installed from CRAN:
+Next, install [R][R], and the R packages used in the DSC, and in the
+analyses of the DSC results. The devtools and glmnet packages can be
+installed from CRAN:
 
 ```R
 install.packages("devtools")
@@ -22,9 +23,9 @@ using [devtools][devtools]:
 
 ```R
 library(devtools)
-install_github("stephenslab/dsc",subdir = "dscrutils")
 install_github("stephenslab/susieR")
 install_github("pcarbo/varbvs",subdir = "varbvs-R")
+install_github("stephenslab/dsc",subdir = "dscrutils")
 ```
 
 Clone or download this git repository.
@@ -38,17 +39,19 @@ want to adjust the number of threads to better suit your computer):
 dsc -c 4 linreg.dsc
 ```
 
-Go grab a coffee while you wait for the DSC to run. It will take some
-time, perhaps as long as 10--20 minutes, for all the DSC pipelines
+Go grab a coffee while you wait for the DSC to run. It may take some
+time, perhaps as long as 10 to 20 minutes, for all the DSC pipelines
 to complete.
 
-Once the DSC has finished running, you work through
+Once the DSC has finished running, you may work through
 [this short analysis](https://stephenslab.github.io/dsc-linreg/index.html)
-to explore the results of the DSC in R. When running the code in R,
-make sure your working directory is set to the "analysis" directory in
-the git repository.
+to explore the results of the DSC in R or RStudio. When running the R
+code, make sure your working directory is set to the "analysis"
+directory in the git repository.
 
-Please revise or expand on our DSC as you see fit.
+*DSC is designed to be easily extended*---please make improvements to
+this DSC by modifying our experiments, or by adding new methods,
+scenarios or evaluation metrics as you see fit.
 
 [dsc]: https://github.com/stephenslab/dsc
 [R]: www.r-project.org

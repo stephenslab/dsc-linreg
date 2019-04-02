@@ -78,7 +78,7 @@ dsc <- read.csv("../output/linreg_mse.csv")
 
 This is how the CSV file was created:
 
-```{r write-dsc-results, eval=FALSE}
+```{r write-dsc-results}
 write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 ```
 

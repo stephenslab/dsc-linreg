@@ -143,7 +143,7 @@ div.section {
 <li><p>variational inference for Bayesian variable selection, or “varbvs”, described <a href="https://projecteuclid.org/euclid.ba/1339616726">here</a>; and</p></li>
 <li><p>“varbvsmix”, an elaboration of varbvs that replaces the single normal prior with a mixture-of-normals.</p></li>
 </ul>
-<p><em>Add a bit more text here.</em></p>
+<p>See <a href="https://github.com/stephenslab/dsc-linreg">here</a> for setup instructions.</p>
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
 <p>Load a few packages and custom functions used in the analysis below.</p>
@@ -162,7 +162,7 @@ dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;simulate.scenario&quot;,&qu
 dsc &lt;- transform(dsc,fit = factor(fit,methods))
 nrow(dsc)
 # [1] 480</code></pre>
-<p>If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
+<p>Note that you will need to run the DSC before querying the results; see <a href="https://github.com/stephenslab/dsc-linreg">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
 <pre class="r"><code>dsc &lt;- read.csv(&quot;../output/linreg_mse.csv&quot;)</code></pre>
 <p>This is how the CSV file was created:</p>
 <pre class="r"><code>write.csv(dsc,&quot;../output/linreg_mse.csv&quot;,row.names = FALSE,quote = FALSE)</code></pre>

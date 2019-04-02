@@ -28,7 +28,7 @@ linear regression in the four simulation examples of
 + "varbvsmix", an elaboration of varbvs that replaces the single normal
   prior with a mixture-of-normals.
 
-*Add a bit more text here.*
+See [here][github-repo] for setup instructions.
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,
@@ -66,8 +66,10 @@ dsc <- transform(dsc,fit = factor(fit,methods))
 nrow(dsc)
 ```
 
-If you did not run the DSC to generate these results, you can replace
-the dscquery call above by this line to load the pre-extracted results
+Note that you will need to run the DSC before querying the results;
+see [here][github-repo] for instructions on running the DSC. If you
+did not run the DSC to generate these results, you can replace the
+dscquery call above by this line to load the pre-extracted results
 stored in a CSV file:
 
 ```{r import-results-from-csv, eval=FALSE}
@@ -121,6 +123,7 @@ these results.
 sessionInfo()
 ```
 
+[github-repo]: https://github.com/stephenslab/dsc-linreg
 [susie]: https://doi.org/10.1101/501114
 [varbvs]: https://projecteuclid.org/euclid.ba/1339616726 
 [zou-hastie-2005]: https://doi.org/10.1111/j.1467-9868.2005.00503.x

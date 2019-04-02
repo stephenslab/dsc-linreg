@@ -6,7 +6,7 @@
 # evaluate the linear regression models. Each training and test data
 # set should include an n x p matrix X and a vector y of length n,
 # where n is the number of samples, and p is the number of candidate
-# predictors.
+# predictors. 
 
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005).
@@ -112,9 +112,12 @@ predict_varbvsmix: modules/predict/predict_varbvsmix.R
 
 # score modules
 # =============
-# TO DO: Give overview of score modules here.  
+# A "score" module takes as input a vector of predicted outcomes and a
+# vector of true outcomes, and outputs a summary statistic that can be
+# used to evaluate accuracy of the predictions.
 
-# TO DO: Add comments here explaining what this module does.
+# Compute the mean squared error summarizing the differences between
+# the predicted outcomes and the ground-truth outcomes.
 mse: modules/score/mse.R
   y:    $ytest
   yest: $yest

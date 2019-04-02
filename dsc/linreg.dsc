@@ -1,4 +1,5 @@
-# TO DO: Give overview of DSC here.
+# A DSC for evaluating prediction accuracy of linear regression
+# methods in different scenarios.
 
 # simulate modules
 # ================

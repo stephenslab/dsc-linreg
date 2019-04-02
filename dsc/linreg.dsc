@@ -70,39 +70,41 @@ varbvsmix: modules/fit/varbvsmix.R
 
 # predict modules
 # ===============
-# TO DO: Give overview of predict modules here.
+# "predict" module takes as input a fitted model and an n x p matrix
+# of observations, X, and returns a vector of length n containing the
+# outcomes predicted by the fitted model.
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted ridge regression model.
 predict_ridge: modules/predict/predict_ridge.R
   X:     $Xtest
   model: $model
   $yest: y
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted Lasso model.
 predict_lasso: modules/predict/predict_lasso.R
   X:     $Xtest
   model: $model
   $yest: y
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted Elastic Net model.
 predict_elastic_net: modules/predict/predict_elastic_net.R
   X:     $Xtest
   model: $model
   $yest: y
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted SuSiE model.
 predict_susie: modules/predict/predict_susie.R
   X:     $Xtest
   model: $model
   $yest: y
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted varbvs model.
 predict_varbvs: modules/predict/predict_varbvs.R
   X:     $Xtest
   model: $model
   $yest: y
 
-# TO DO: Add comments here explaining what this module does.
+# Predict outcomes using a fitted varbvsmix model.
 predict_varbvsmix: modules/predict/predict_varbvsmix.R
   X:     $Xtest
   model: $model

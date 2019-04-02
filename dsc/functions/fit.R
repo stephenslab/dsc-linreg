@@ -83,6 +83,10 @@ fit_varbvs <- function (X, y) {
   return(varbvs::varbvs(X,NULL,y,logodds = logodds,verbose = FALSE))
 }
 
-# TO DO: Explain here what this function does, and how to use it.
+# Compute a fully-factorized variational approximation for the
+# Bayesian variable selection model with mixture-of-normals priors on
+# the regression coefficients. The variances of the mixture components
+# are chosen automatically based on the data. Input argument k
+# controls the number of mixture components.
 fit_varbvsmix <- function (X, y, k = 20)
   return(varbvs::varbvsmix(X,NULL,y,k,verbose = FALSE))

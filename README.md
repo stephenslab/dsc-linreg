@@ -49,7 +49,7 @@ to explore the results of the DSC in R or RStudio. When running the R
 code, make sure your working directory is set to the "analysis"
 directory in the git repository.
 
-*DSC is designed to be easily extended*---please make improvements to
+*DSC is designed to be easily extended*—please make improvements to
 this DSC by modifying our experiments, or by adding new methods,
 scenarios or evaluation metrics as you see fit.
 

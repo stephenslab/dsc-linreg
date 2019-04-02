@@ -34,7 +34,5 @@ predict_varbvs <- function (fit, X)
 
 # Function used to predict outcomes given an observed X, and a
 # fitted varbvsmix model.
-predict_varbvsmix <- function (fit, X) {
-  b <- rowSums(fit$alpha * fit$mu)
-  return(drop(X %*% b))
-}
+predict_varbvsmix <- function (fit, X)
+  varbvs::predict.varbvsmix(fit,X)

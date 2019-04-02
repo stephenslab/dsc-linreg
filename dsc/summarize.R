@@ -18,7 +18,7 @@ for (i in 1:4) {
              geom_boxplot(color = "black",outlier.size = 1,outlier.shape = 4,
                           width = 0.6) +
              scale_fill_manual(
-                 values = c("coral","skyblue","dodgerblue","greenyellow",
+                 values = c("orchid","skyblue","dodgerblue","limegreen",
                             "gold","orange"),
                  guide = "none") +
              labs(x = "",y = "mean squared error",

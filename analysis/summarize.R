@@ -11,6 +11,8 @@ out <- transform(out,
                                     "susie","varbvs","varbvsmix")))
 
 # Create boxplots summarizing the results.
+p1 <- mse.boxplot(subset(out,simulate.scenario == 1))
+
 p <- vector("list",4)
 for (i in 1:4) {
    pdat   <- subset(out,simulate.scenario == i)

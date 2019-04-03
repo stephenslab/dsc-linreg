@@ -11,8 +11,8 @@
 
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005).
-toydata: modules/simulate/toydata.R
-  seed:     R{1:20}
+toydata: toydata.R
+  seed:     R{1:2}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -29,34 +29,34 @@ toydata: modules/simulate/toydata.R
 # Fit a ridge regression model using glmnet. The penalty strength
 # (i.e., the normal prior on the coefficients) is estimated using
 # cross-validation.
-ridge: modules/fit/ridge.R
+ridge: ridge.R
   X:      $X
   y:      $y
   $model: out
 
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
-lasso: modules/fit/lasso.R
+lasso: lasso.R
   X:      $X
   y:      $y
   $model: out
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
-elastic_net: modules/fit/elastic_net.R
+elastic_net: elastic_net.R
   X:      $X
   y:      $y
   $model: out
 
 # Fit a "sum of single effects" (SuSiE) regression model.
-susie: modules/fit/susie.R
+susie: susie.R
   X:      $X
   y:      $y
   $model: out
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
-varbvs: modules/fit/varbvs.R
+varbvs: varbvs.R
   X:      $X
   y:      $y
   $model: out
@@ -64,7 +64,7 @@ varbvs: modules/fit/varbvs.R
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
-varbvsmix: modules/fit/varbvsmix.R
+varbvsmix: varbvsmix.R
   X:      $X
   y:      $y
   $model: out
@@ -76,37 +76,37 @@ varbvsmix: modules/fit/varbvsmix.R
 # outcomes predicted by the fitted model.
 
 # Predict outcomes using a fitted ridge regression model.
-predict_ridge: modules/predict/predict_ridge.R
+predict_ridge: predict_ridge.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # Predict outcomes using a fitted Lasso model.
-predict_lasso: modules/predict/predict_lasso.R
+predict_lasso: predict_lasso.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # Predict outcomes using a fitted Elastic Net model.
-predict_elastic_net: modules/predict/predict_elastic_net.R
+predict_elastic_net: predict_elastic_net.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # Predict outcomes using a fitted SuSiE model.
-predict_susie: modules/predict/predict_susie.R
+predict_susie: predict_susie.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # Predict outcomes using a fitted varbvs model.
-predict_varbvs: modules/predict/predict_varbvs.R
+predict_varbvs: predict_varbvs.R
   X:     $Xtest
   model: $model
   $yest: y
 
 # Predict outcomes using a fitted varbvsmix model.
-predict_varbvsmix: modules/predict/predict_varbvsmix.R
+predict_varbvsmix: predict_varbvsmix.R
   X:     $Xtest
   model: $model
   $yest: y
@@ -119,12 +119,18 @@ predict_varbvsmix: modules/predict/predict_varbvsmix.R
 
 # Compute the mean squared error summarizing the differences between
 # the predicted outcomes and the ground-truth outcomes.
-mse: modules/score/mse.R
+mse: mse.R
   y:    $ytest
   yest: $yest
   $err: err
 
 DSC:
+  R_libs: MASS, glmnet, susieR, varbvs >= 2.6-1
+  exec_path: modules/simulate,
+             modules/fit,
+             modules/predict,
+             modules/score
+  lib_path: functions
   define:
     simulate: toydata
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix

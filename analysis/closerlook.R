@@ -7,7 +7,8 @@ library(cowplot)
 
 # Load the DSC results we are interested in exploring in greater detail.
 dsc.dir <- "../dsc/linreg"
-targets <- c("simulate.scenario","simulate.beta","fit","fit.model","mse.err")
+targets <- c("simulate.scenario","simulate.beta","simulate.X","simulate.y",
+             "fit","fit.model","mse.err")
 out1 <- dscquery(dsc.dir,targets,
                  conditions = c("$(simulate.scenario) == 2",
                                 "$(fit) == 'susie'"))
@@ -32,3 +33,15 @@ p1 <- qplot(beta1,beta2,
 # Compare the prior variances in second model against the coefficients.
 s0 <- susie_get_prior_variance(fit2)
 p2 <- qplot(beta2,s0,xlab = "coef",ylab = "prior variance")
+
+# Let's try to fit a susie model again, with estimate_prior_variance =
+# TRUE, but this time by initializing with fit1.
+X    <- out2$simulate.X[[i]]
+y    <- out2$simulate.y[[i]]
+fit3 <- susie(X,y,L = 8,estimate_prior_variance = TRUE,s_init = fit1)
+
+# Compare the coefficients after this re-fitting.
+beta3 <- coef(fit3)[-1]
+p3 <- qplot(beta1,beta3,
+            xlab = "coef (don't fit prior var)",
+            ylab = "coef (re-fitted)")

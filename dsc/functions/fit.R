@@ -65,10 +65,11 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
 # an n x p numeric matrix, and y should be a numeric vector of length
 # n. Note that we found that the prediction performance was more
 # robust when setting estimate_prior_variance = FALSE.
-fit_susie <- function (X, y, scaled_prior_variance = 0.2)
+fit_susie <- function (X, y, estimate_prior_variance = FALSE,
+                       scaled_prior_variance = 0.2)
   susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
-                scaled_prior_variance = scaled_prior_variance,
-                estimate_prior_variance = FALSE)
+                estimate_prior_variance = estimate_prior_variance,
+                scaled_prior_variance = scaled_prior_variance)
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p

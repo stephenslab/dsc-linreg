@@ -54,6 +54,14 @@ susie: modules/fit/susie.R
   y:      $y
   $model: out
 
+# Fit a "sum of single effects" (SuSiE) regression model, in which the
+# prior variance of the regression coefficient is estimated separately
+# for each component.
+susie_est_s0: modules/fit/susie_est_s0.R
+  X:      $X
+  y:      $y
+  $model: out
+  
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs: modules/fit/varbvs.R
@@ -127,14 +135,15 @@ mse: modules/score/mse.R
 DSC:
   define:
     simulate: toydata
-    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
+    fit:      ridge, lasso, elastic_net, susie, susie_est_s0, varbvs, varbvsmix
     predict:  predict_ridge, predict_lasso, predict_elastic_net,
               predict_susie, predict_varbvs, predict_varbvsmix
-    analyze:  ridge       * predict_ridge,
-              lasso       * predict_lasso,
-              elastic_net * predict_elastic_net,
-              susie       * predict_susie,
-              varbvs      * predict_varbvs,
-              varbvsmix   * predict_varbvsmix
+    analyze:  ridge        * predict_ridge,
+              lasso        * predict_lasso,
+              elastic_net  * predict_elastic_net,
+              susie        * predict_susie,
+              susie_est_s0 * predict_susie,
+              varbvs       * predict_varbvs,
+              varbvsmix    * predict_varbvsmix
     score:    mse
   run: simulate * analyze * score

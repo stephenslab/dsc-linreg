@@ -93,7 +93,8 @@ p1 <- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle("Scenario 1")
 p2 <- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle("Scenario 2")
 p3 <- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle("Scenario 3")
 p4 <- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle("Scenario 4")
-plot_grid(p1,p2,p3,p4)
+p  <- plot_grid(p1,p2,p3,p4)
+print(p)
 ```
 
 Here are a few initial (*i.e.,* imprecise) impressions from these plots.

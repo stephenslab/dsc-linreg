@@ -28,7 +28,9 @@ linear regression in the four simulation examples of
 + "varbvsmix", an elaboration of varbvs that replaces the single normal
   prior with a mixture-of-normals.
 
-See [here][github-repo] for setup instructions.
+See [here][github-repo] for setup instructions. A webpage was
+generated from this source code by running
+`rmarkdown::render("linreg.Rmd")` in the "analysis" directory.
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,
@@ -40,7 +42,7 @@ Load packages
 
 Load a few packages and custom functions used in the analysis below.
 
-```{r load-pkgs}
+```{r load-pkgs, warning=FALSE, message=FALSE}
 library(dscrutils)
 library(ggplot2)
 library(cowplot)
@@ -104,12 +106,8 @@ except Scenario 4. Ridge regression is expected to do less well in
 Scenario 4 because the majority of the true coefficients are zero, so
 a sparse model would be favoured.
 
-SuSiE, at least with the factory settings, seems to do worse in
-settings where the true model contains many effects, particularly in
-Scenario 2, where *all* predictors have an effect.
-
 In Scenario 4 where the predictors are correlated in a structured way,
-and the effects are sparse, SuSiE and varbvs(mix) do much better than
+and the effects are sparse, varbvs and varbvsmix perform better than
 the other methods.
 
 varbvsmix yields competitive predictions in all four scenarios.

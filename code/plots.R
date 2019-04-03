@@ -2,7 +2,7 @@
 mse.boxplot <- function (dat) {
   colors <- c("orchid","skyblue","dodgerblue","limegreen","gold","orange")
   return(ggplot(dat,aes_string(x = "fit",y = "mse.err",fill = "fit")) +
-         geom_boxplot(color = "black",outlier.size = 1,width = 0.6) +
+         geom_boxplot(color = "black",outlier.size = 1,width = 0.35) +
          scale_fill_manual(values = colors,guide = "none") +
          labs(x = "",y = "mean squared error") +
          theme_cowplot(font_size = 12) +

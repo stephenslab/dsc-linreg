@@ -66,9 +66,10 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
 #
 # We found that it is important to use the "estimate_prior_variance"
 # option in susie to allow the model to better adapt to the data.
-fit_susie <- function (X, y)
+fit_susie <- function (X, y, scaled_prior_variance = 0.2)
   susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
-                estimate_prior_variance = TRUE)
+                scaled_prior_variance = scaled_prior_variance,
+                estimate_prior_variance = FALSE)
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p

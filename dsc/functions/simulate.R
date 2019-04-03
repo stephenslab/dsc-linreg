@@ -29,11 +29,11 @@ simulate_toy_data <- function (scenario) {
     Xtest  <- simulate_predictors_decaying_corr(200,8,0.5)
   } else if (scenario == 3) {
 
-    # Example 3 from rom Zou & Hastie (2005).
+    # Example 3 from from Zou & Hastie (2005).
     se     <- 15
     b      <- rep(c(rep(0,10),rep(2,10)),2)
     Xtrain <- simulate_predictors_corr(200,40,0.5)
-    Xtest  <- simulate_predictors_decaying_corr(400,40,0.5)
+    Xtest  <- simulate_predictors_corr(400,40,0.5)
   } else if (scenario == 4) {
 
     # Example 4 from Zou & Hastie (2005).
@@ -81,7 +81,7 @@ simulate_predictors_corr <- function (n, p, s = 0.5) {
 # Setting s = 0.5 reproduces the simulation of the predictors used in
 # Examples 1 and 2 of Zou & Hastie (2005).
 simulate_predictors_decaying_corr <- function (n, p, s = 0.5) {
-  S <- s^abs(outer(1:p, 1:p,"-"))
+  S <- s^abs(outer(1:p,1:p,"-"))
   return(MASS::mvrnorm(n,rep(0,p),S))
 }
 

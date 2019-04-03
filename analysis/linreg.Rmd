@@ -87,10 +87,10 @@ write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 The boxplots summarize the prediction errors in each of the simulations.
 
 ```{r create-boxplots, fig.height=8, fig.width=6.5}
-p1 <- mse.boxplot(subset(out,simulate.scenario == 1)) + ggtitle("Scenario 1")
-p2 <- mse.boxplot(subset(out,simulate.scenario == 2)) + ggtitle("Scenario 2")
-p3 <- mse.boxplot(subset(out,simulate.scenario == 3)) + ggtitle("Scenario 3")
-p4 <- mse.boxplot(subset(out,simulate.scenario == 4)) + ggtitle("Scenario 4")
+p1 <- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle("Scenario 1")
+p2 <- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle("Scenario 2")
+p3 <- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle("Scenario 3")
+p4 <- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle("Scenario 4")
 plot_grid(p1,p2,p3,p4)
 ```
 

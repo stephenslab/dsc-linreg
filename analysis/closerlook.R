@@ -45,3 +45,8 @@ beta3 <- coef(fit3)[-1]
 p3 <- qplot(beta1,beta3,
             xlab = "coef (don't fit prior var)",
             ylab = "coef (re-fitted)")
+
+# Assess the prediction accuracy in the training set.
+print(mean((y - predict(fit1,X))^2),digits = 6)
+print(mean((y - predict(fit2,X))^2),digits = 6)
+print(mean((y - predict(fit3,X))^2),digits = 6)

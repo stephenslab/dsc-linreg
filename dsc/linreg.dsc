@@ -12,7 +12,7 @@
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005).
 toydata: toydata.R
-  seed:     R{1:2}
+  seed:     R{1:20}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
@@ -125,12 +125,12 @@ mse: mse.R
   $err: err
 
 DSC:
-  R_libs: MASS, glmnet, susieR, varbvs >= 2.6-1
+  R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-1
+  lib_path:  functions
   exec_path: modules/simulate,
              modules/fit,
              modules/predict,
              modules/score
-  lib_path: functions
   define:
     simulate: toydata
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix

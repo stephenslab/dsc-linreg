@@ -1,12 +1,21 @@
 name: DSC for linear regression
 output_dir: ../docs
+exclude: include
 navbar:
   title: DSC for linear regression
   left:
   - text: Home
     href: index.html
+  right:
+    - text: source
+      href: https://github.com/stephenslab/dsc-linreg
 output:
   workflowr::wflow_html:
     toc: false
-    theme: cosmo
+    theme: readable
     highlight: textmate
+    code_folding: none
+    self_contained: no
+    include:
+      before_body: include/header.html
+      after_body: include/footer.html

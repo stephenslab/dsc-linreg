@@ -1,7 +1,7 @@
-x---
+---
 title: "Home"
 site: workflowr::wflow_site
-output: workflowr::wflow_html:
+output: workflowr::wflow_html
 ---
 
 Welcome to my research website.

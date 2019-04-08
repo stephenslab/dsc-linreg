@@ -118,12 +118,19 @@ predict_varbvsmix: predict_varbvsmix.R
 # used to evaluate accuracy of the predictions.
 
 # Compute the mean squared error summarizing the differences between
-# the predicted outcomes and the ground-truth outcomes.
+# the predicted outcomes and the true outcomes.
 mse: mse.R
   y:    $ytest
   yest: $yest
   $err: err
 
+# Compute the mean absolute error summarizing the differences between
+# the predicted outcomes and the true outcomes.
+mae: mae.R
+  y:    $ytest
+  yest: $yest
+  $err: err
+  
 DSC:
   R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-1
   lib_path:  functions
@@ -142,5 +149,5 @@ DSC:
               susie       * predict_susie,
               varbvs      * predict_varbvs,
               varbvsmix   * predict_varbvsmix
-    score:    mse
+    score:    mse, mae
   run: simulate * analyze * score

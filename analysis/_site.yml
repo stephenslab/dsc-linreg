@@ -1,0 +1,12 @@
+name: DSC for linear regression
+output_dir: ../docs
+navbar:
+  title: DSC for linear regression
+  left:
+  - text: Home
+    href: index.html
+output:
+  workflowr::wflow_html:
+    toc: false
+    theme: cosmo
+    highlight: textmate

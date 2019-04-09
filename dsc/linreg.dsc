@@ -9,17 +9,25 @@
 # where n is the number of samples, and p is the number of candidate
 # predictors. 
 
-# Generate training and test data sets using one of the four scenarios
-# described in Zou & Hastie (2005).
-zh: zh.R
+# TO DO: Explain here what this module does.
+null: null.R
   seed:     R{1:20}
-  scenario: 1, 2, 3, 4
   $X:       dat$train$X
   $y:       dat$train$y
   $Xtest:   dat$test$X
   $ytest:   dat$test$y
   $beta:    dat$b
   $se:      dat$se
+
+# TO DO: Explain here what this module does. The inputs, outputs and
+# module parameters are the same as the "null" simulate module.
+one_effect(null): one_effect.R
+  
+# Generate training and test data sets using one of the four scenarios
+# described in Zou & Hastie (2005). This module inherits the inputs,
+# outputs and module parameters from the "null" simulate module.
+zh(null): zh.R
+  scenario: 1, 2, 3, 4
 
 # fit modules
 # ===========
@@ -150,4 +158,4 @@ DSC:
               varbvs      * predict_varbvs,
               varbvsmix   * predict_varbvsmix
     score:    mse, mae
-  run: simulate * analyze * score
+  run: simulate

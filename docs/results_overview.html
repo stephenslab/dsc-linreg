@@ -12,7 +12,7 @@
 <meta name="author" content="Peter Carbonetto, Gao Wang and Matthew Stephens" />
 
 
-<title>Evaluating linear regression methods in four scenarios from Zou &amp; Hastie (2005)</title>
+<title>Comparison of linear regression methods in the four scenarios from Zou &amp; Hastie (2005)</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -181,9 +181,7 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -211,7 +209,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">Evaluating linear regression methods in four scenarios from Zou &amp; Hastie (2005)</h1>
+<h1 class="title toc-ignore">Comparison of linear regression methods in the four scenarios from Zou &amp; Hastie (2005)</h1>
 <h4 class="author"><em>Peter Carbonetto, Gao Wang and Matthew Stephens</em></h4>
 <h4 class="date"><em>April 2, 2019</em></h4>
 
@@ -238,7 +236,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-04-08
+<strong>Last updated:</strong> 2019-04-09
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -317,10 +315,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreee6111d3df66beb30e5f89a770780cf4f04d2cce4targetblanke6111d3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/e6111d3df66beb30e5f89a770780cf4f04d2cce4" target="_blank">e6111d3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2a86b0157002763311cd579f3753100c67e8ea90targetblank2a86b01a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/2a86b0157002763311cd579f3753100c67e8ea90" target="_blank">2a86b01</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreee6111d3df66beb30e5f89a770780cf4f04d2cce4targetblanke6111d3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2a86b0157002763311cd579f3753100c67e8ea90targetblank2a86b01a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -329,8 +327,12 @@ Great! You are using Git for version control. Tracking code development and conn
 Ignored files:
     Ignored:    .sos/
     Ignored:    analysis/.sos/
+    Ignored:    docs/figure/
     Ignored:    dsc/.sos/
     Ignored:    dsc/linreg/
+
+Unstaged changes:
+    Modified:   output/linreg_mse.csv
 
 </code></pre>
 <p>
@@ -371,19 +373,104 @@ Message
 <tbody>
 <tr>
 <td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/2a86b0157002763311cd579f3753100c67e8ea90/analysis/results_overview.Rmd" target="_blank">2a86b01</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/ada904ccbb598614abb9e7a7f1071d1370aeb340/analysis/results_overview.Rmd" target="_blank">ada904c</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Fixed a couple more bugs in the fit modules.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/ba71a22c7217bda560ec47e0c29943d309dc2619/analysis/results_overview.Rmd" target="_blank">ba71a22</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Added score modules to pipeline.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/5004487e53923a172b2b17af3cd0fed8276b4688/analysis/results_overview.Rmd" target="_blank">5004487</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Edited preamble in results_overview.Rmd.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/093d5e6cf8b3031b5ca3e1e3c33ee7e12b5ffd67/analysis/results_overview.Rmd" target="_blank">093d5e6</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Some revisions to the text in the README and home page.
+</td>
+</tr>
+<tr>
+<td>
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/e6111d3df66beb30e5f89a770780cf4f04d2cce4/docs/linreg.html" target="_blank">e6111d3</a>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/58540be8d1870b7f551d0deed04f0dd0712be403/docs/results_overview.html" target="_blank">58540be</a>
 </td>
 <td>
 Peter Carbonetto
 </td>
 <td>
-2019-04-08
+2019-04-09
 </td>
 <td>
-Re-built linreg.Rmd analysis using workflowr.
+Added links and other content to home page.
 </td>
 </tr>
 <tr>
@@ -391,152 +478,16 @@ Re-built linreg.Rmd analysis using workflowr.
 Rmd
 </td>
 <td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/73147f307e2c44773c69011981d285435a28e6c4/analysis/linreg.Rmd" target="_blank">73147f3</a>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/d4d0415b6e04b48bad23316e91b51e8513abfbc1/analysis/results_overview.Rmd" target="_blank">d4d0415</a>
 </td>
 <td>
 Peter Carbonetto
 </td>
 <td>
-2019-04-03
+2019-04-09
 </td>
 <td>
-Revised susie fit module.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/b8faa5ec540eb90bcac3667cb94f5d4d342c1b66/analysis/linreg.Rmd" target="_blank">b8faa5e</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-03
-</td>
-<td>
-Revised susie fit module to use a fixed prior variance instead of estimating it.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/f3a0cf44dfad3725e944fe6d9f6c861bae5846b3/analysis/linreg.Rmd" target="_blank">f3a0cf4</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-03
-</td>
-<td>
-Fixed a mistake in the data simulation step.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/0ce76cdfdf1473308cc9a20fb7ad13b01c12ea61/analysis/linreg.Rmd" target="_blank">0ce76cd</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-Added more usage instructions to README.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/30ed25c7eb2fb6cb812186537dedb716515d7bba/analysis/linreg.Rmd" target="_blank">30ed25c</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-Added more details to linreg.Rmd; removed some old code.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/8ce994e20d710ece3085eb129f182360b0ab7c45/analysis/linreg.Rmd" target="_blank">8ce994e</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-Added some impressions to linreg.Rmd; re-rendered analysis.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/bc325c0e5bcbf16c74e7ec9b2ec26e10b88096c4/analysis/linreg.Rmd" target="_blank">bc325c0</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-Added boxplots to linreg analysis.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/261e2c1c5523ab41f3f9fc14b65971f877ef5e96/analysis/linreg.Rmd" target="_blank">261e2c1</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-More progress on linreg.Rmd analysis.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/6b533b30782f23db346ce9734b1fe83db8a87148/analysis/linreg.Rmd" target="_blank">6b533b3</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-02
-</td>
-<td>
-Started working on linreg.Rmd analysis, and rendered result into docs/index.html.
+Re-organized some files, and moved usage instructions to workflowr page.
 </td>
 </tr>
 </tbody>
@@ -555,7 +506,6 @@ Started working on linreg.Rmd analysis, and rendered result into docs/index.html
 <li><p>variational inference for Bayesian variable selection, or “varbvs”, described <a href="https://projecteuclid.org/euclid.ba/1339616726">here</a>; and</p></li>
 <li><p>“varbvsmix”, an elaboration of varbvs that replaces the single normal prior with a mixture-of-normals.</p></li>
 </ul>
-<p>See <a href="https://github.com/stephenslab/dsc-linreg">here</a> for setup instructions. A webpage was generated from this source code by running <code>rmarkdown::render(&quot;linreg.Rmd&quot;)</code> in the “analysis” directory.</p>
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
 <p>Load a few packages and custom functions used in the analysis below.</p>
@@ -566,15 +516,20 @@ source(&quot;../code/plots.R&quot;)</code></pre>
 </div>
 <div id="import-dsc-results" class="section level2">
 <h2>Import DSC results</h2>
-<p>Here we use function “dscquery” from the dscrutils package to extract the DSC results we are interested in—the mean squared error in the predictions from each method and in each simulation scenario. After this call, the “dsc” data frame should contain results for 480 pipelines—6 methods times 4 scenarios times 20 data sets simulated in each scenario.</p>
+<p>Here we use function “dscquery” from the dscrutils package to extract the DSC results we are interested in—the mean squared error in the predictions from each method and in each simulation scenario. After this call, the “dsc” data frame should contain results for 720 pipelines—6 methods times 6 scenarios times 20 data sets simulated in each scenario.</p>
 <pre class="r"><code>library(dscrutils)
 methods &lt;- c(&quot;ridge&quot;,&quot;lasso&quot;,&quot;elastic_net&quot;,&quot;susie&quot;,&quot;varbvs&quot;,&quot;varbvsmix&quot;)
-dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;simulate.scenario&quot;,&quot;fit&quot;,&quot;mse.err&quot;),
-                 verbose = FALSE)
-dsc &lt;- transform(dsc,fit = factor(fit,methods))
+dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;fit&quot;,&quot;mse.err&quot;),&quot;simulate.scenario&quot;,
+                verbose = TRUE)
+dsc &lt;- transform(dsc,
+                 simulate = factor(simulate),
+                 fit = factor(fit,methods))
 nrow(dsc)
-# [1] 480</code></pre>
-<p>Note that you will need to run the DSC before querying the results; see <a href="https://github.com/stephenslab/dsc-linreg">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
+# Calling dsc-query.
+# Importing dsc-query output.
+# Reading DSC outputs.
+# [1] 720</code></pre>
+<p>Note that you will need to run the DSC before querying the results; see <a href="usage_instructions.html">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
 <pre class="r"><code>dsc &lt;- read.csv(&quot;../output/linreg_mse.csv&quot;)</code></pre>
 <p>This is how the CSV file was created:</p>
 <pre class="r"><code>write.csv(dsc,&quot;../output/linreg_mse.csv&quot;,row.names = FALSE,quote = FALSE)</code></pre>
@@ -588,44 +543,7 @@ p3 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle(&quot;Scenari
 p4 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle(&quot;Scenario 4&quot;)
 p  &lt;- plot_grid(p1,p2,p3,p4)
 print(p)</code></pre>
-<p><img src="figure/linreg.Rmd/create-boxplots-1.png" width="624" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-create-boxplots-1">
-Past versions of create-boxplots-1.png
-</button>
-</p>
-<div id="fig-create-boxplots-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/stephenslab/dsc-linreg/blob/e6111d3df66beb30e5f89a770780cf4f04d2cce4/docs/figure/linreg.Rmd/create-boxplots-1.png" target="_blank">e6111d3</a>
-</td>
-<td>
-Peter Carbonetto
-</td>
-<td>
-2019-04-08
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/results_overview.Rmd/create-boxplots-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>Here are a few initial (<em>i.e.,</em> imprecise) impressions from these plots.</p>
 <p>In most cases, the Elastic Net does at least as well, or better than the Lasso, which is what we would expect.</p>
 <p>Ridge regression actually achieves excellent accuracy in all cases except Scenario 4. Ridge regression is expected to do less well in Scenario 4 because the majority of the true coefficients are zero, so a sparse model would be favoured.</p>

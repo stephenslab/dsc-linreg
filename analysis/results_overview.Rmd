@@ -2,12 +2,8 @@
 title: "Comparison of linear regression methods in the four scenarios from Zou & Hastie (2005)"
 author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
 date: April 2, 2019
-output:
-  html_document:
-    theme: readable
-    include:
-      before_body: include/header.html
-      after_body: include/footer.html
+site: workflowr::wflow_site
+output: workflowr::wflow_html
 ---
 
 In this short analysis, we compare the prediction accuracy of several

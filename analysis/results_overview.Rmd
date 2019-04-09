@@ -47,23 +47,26 @@ Import DSC results
 Here we use function "dscquery" from the dscrutils package to extract
 the DSC results we are interested in---the mean squared error in the
 predictions from each method and in each simulation scenario. After
-this call, the "dsc" data frame should contain results for 480
-pipelines---6 methods times 4 scenarios times 20 data sets simulated
+this call, the "dsc" data frame should contain results for 720
+pipelines---6 methods times 6 scenarios times 20 data sets simulated
 in each scenario.
 
 ```{r import-dsc-results}
 library(dscrutils)
-methods <- c("ridge","lasso","elastic_net")
-dsc <- dscquery("../dsc/linreg","simulate")
-dsc <- transform(dsc,fit = factor(fit,methods))
+methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
+dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
+                verbose = TRUE)
+dsc <- transform(dsc,
+                 simulate = factor(simulate),
+                 fit = factor(fit,methods))
 nrow(dsc)
 ```
 
 Note that you will need to run the DSC before querying the results;
-see [here][github-repo] for instructions on running the DSC. If you
-did not run the DSC to generate these results, you can replace the
-dscquery call above by this line to load the pre-extracted results
-stored in a CSV file:
+see [here](usage_instructions.html) for instructions on running the
+DSC. If you did not run the DSC to generate these results, you can
+replace the dscquery call above by this line to load the pre-extracted
+results stored in a CSV file:
 
 ```{r import-results-from-csv, eval=FALSE}
 dsc <- read.csv("../output/linreg_mse.csv")

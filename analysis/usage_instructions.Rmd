@@ -1,4 +1,12 @@
-## Instructions for use
+---
+title: "DSC for linear regression: usage instructions"
+author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
+date: April 9, 2019
+site: workflowr::wflow_site
+output: workflowr::wflow_html
+---
+
+Please follow these steps to start using the linear regression DSC.
 
 First, install [DSC][dsc].
 

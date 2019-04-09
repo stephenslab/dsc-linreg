@@ -153,4 +153,4 @@ DSC:
     simulate: null, one_effect, zh
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
     score:    mse, mae
-  run: simulate, fit
+  run: simulate * fit

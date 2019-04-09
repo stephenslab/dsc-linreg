@@ -42,8 +42,8 @@ dsc -c 4 linreg.dsc
 ```
 
 Go grab a coffee while you wait for the DSC to run. It may take some
-time, perhaps as long as 10 to 20 minutes, for all the DSC pipelines
-to complete.
+time, perhaps as long as 30 minutes, for all the DSC pipelines to
+complete.
 
 Once the DSC has finished running, you may want to work through [this
 short analysis](results_overview.html) to explore the results of the
@@ -54,6 +54,6 @@ directory is set to the "analysis" directory in the git repository.
 to this DSC by modifying our experiments, or by adding new methods,
 data scenarios or evaluation metrics.
 
-[dsc]: https://github.com/stephenslab/dsc
-[R]: www.r-project.org
+[dsc]:      https://github.com/stephenslab/dsc
+[R]:        https://www.r-project.org
 [devtools]: https://github.com/r-lib/devtools

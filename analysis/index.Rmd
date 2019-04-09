@@ -32,8 +32,8 @@ This repository was developed by [Gao Wang][gao], [Peter
 Carbonetto][peter] and [Matthew Stephens][matthew] at the University
 of Chicago.
 
-[dsc]: https://github.com/stephenslab/dsc
-[gao]: https://github.com/gaow
-[peter]: http://pcarbo.github.io
-[matthew]: https://stephenslab.uchicago.edu
+[dsc]:         https://github.com/stephenslab/dsc
+[gao]:         https://github.com/gaow
+[peter]:       https://pcarbo.github.io
+[matthew]:     https://stephenslab.uchicago.edu
 [mit-license]: https://opensource.org/licenses/mit-license.html

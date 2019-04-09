@@ -12,7 +12,7 @@
 # Simulate data in the same way as Example 1 of Zou & Hastie (2005),
 # except that all the regression coefficients are zero.
 null: null.R
-  seed:   R{1:20}
+  seed:   R{1:2}
   $X:     dat$train$X
   $y:     dat$train$y
   $Xtest: dat$test$X
@@ -117,4 +117,4 @@ DSC:
     fit:      ridge, lasso, elastic_net
     predict:  predict_linear
     score:    mse, mae
-  run: simulate * fit * predict
+  run: simulate * fit * predict * score

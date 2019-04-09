@@ -53,9 +53,8 @@ in each scenario.
 
 ```{r import-dsc-results}
 library(dscrutils)
-methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
-dsc <- dscquery("../dsc/linreg",c("simulate.scenario","fit","mse.err"),
-                 verbose = FALSE)
+methods <- c("ridge","lasso","elastic_net")
+dsc <- dscquery("../dsc/linreg","simulate")
 dsc <- transform(dsc,fit = factor(fit,methods))
 nrow(dsc)
 ```

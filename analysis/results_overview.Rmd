@@ -118,8 +118,16 @@ varbvsmix yields competitive predictions in all four scenarios.
 
 ## Session information
 
-This is the version of R and the packages that were used to generate
-these results.
+```{r load-more-pkgs}
+library(MASS)
+library(glmnet)
+library(susieR)
+library(varbvs)
+```
+
+Here we give the version of R and the packages that were used to
+generate these results. This listing includes the R packages that were
+also used in the DSC.
 
 ```{r session-info}
 sessionInfo()

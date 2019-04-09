@@ -152,13 +152,5 @@ DSC:
   define:
     simulate: null, one_effect, zh
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
-    predict:  predict_ridge, predict_lasso, predict_elastic_net,
-              predict_susie, predict_varbvs, predict_varbvsmix
-    analyze:  ridge       * predict_ridge,
-              lasso       * predict_lasso,
-              elastic_net * predict_elastic_net,
-              susie       * predict_susie,
-              varbvs      * predict_varbvs,
-              varbvsmix   * predict_varbvsmix
     score:    mse, mae
-  run: simulate
+  run: simulate, fit

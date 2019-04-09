@@ -10,7 +10,7 @@
 # predictors. All simulate modules should inherit the inputs outputs,
 # and module parameters of the "generic" fit module.
 simulate_generic: R(NULL)
-  seed:   R{1:2}
+  seed:   R{1:20}
   $X:     X
   $y:     y
   $Xtest: Xtest
@@ -117,7 +117,7 @@ mae: mae.R
   $err: err
   
 DSC:
-  R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-1
+  R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-3
   lib_path:  functions
   exec_path: modules/simulate,
              modules/fit,

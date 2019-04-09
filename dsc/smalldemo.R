@@ -35,9 +35,9 @@ cat("Predicting outcomes in test examples using fitted models.\n")
 y.ridge     <- with(ridge,predict_linear(dat$test$X,mu,beta))
 y.lasso     <- with(lasso,predict_linear(dat$test$X,mu,beta))
 y.en        <- with(en,predict_linear(dat$test$X,mu,beta))
-y.susie     <- predict_susie(susie,dat$test$X)
-y.varbvs    <- predict_varbvs(varbvs,dat$test$X)
-y.varbvsmix <- predict_varbvsmix(varbvsmix,dat$test$X)
+y.susie     <- with(susie,predict_linear(dat$test$X,mu,beta))
+y.varbvs    <- with(varbvs,predict_linear(dat$test$X,mu,beta))
+y.varbvsmix <- with(varbvsmix,predict_linear(dat$test$X,mu,beta))
 
 # EVALUATE PREDICTIONS
 # --------------------

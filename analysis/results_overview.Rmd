@@ -8,7 +8,13 @@ output: workflowr::wflow_html
 
 In this short analysis, we compare the prediction accuracy of several
 linear regression in the four simulation examples of
-[Zou & Hastie (2005)][zou-hastie-2005]. The six methods compared are:
+[Zou & Hastie (2005)][zou-hastie-2005]. We also include two additional
+scenarios, similar to Examples 1 and 2 from Zou & Hastie (2005): a
+"null" scenario, in which the predictors have no effect on the
+outcome; and a "one effect" scenario, in which only one of the
+predictors affects the outcome.
+
+The six methods compared are:
 
 + ridge regression;
 
@@ -16,7 +22,7 @@ linear regression in the four simulation examples of
 
 + the Elastic Net;
 
-+ Sum of Single Effects regression (SuSiE), described [here][susie];
++ "Sum of Single Effects" (SuSiE) regression, described [here][susie];
 
 + variational inference for Bayesian variable selection, or "varbvs",
   described [here][varbvs]; and
@@ -55,7 +61,7 @@ in each scenario.
 library(dscrutils)
 methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
 dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
-                verbose = TRUE)
+                verbose = FALSE)
 dsc <- transform(dsc,
                  simulate = factor(simulate),
                  fit = factor(fit,methods))
@@ -80,14 +86,17 @@ write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 
 ## Summarize and discuss simulation results
 
-The boxplots summarize the prediction errors in each of the simulations.
+The boxplots below summarize the prediction errors in each of the
+simulations.
 
-```{r create-boxplots, fig.height=8, fig.width=6.5}
-p1 <- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle("Scenario 1")
-p2 <- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle("Scenario 2")
-p3 <- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle("Scenario 3")
-p4 <- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle("Scenario 4")
-p  <- plot_grid(p1,p2,p3,p4)
+```{r create-boxplots, fig.height=8, fig.width=7.5}
+p1 <- mse.boxplot(subset(dsc,simulate == "null_effects")) + ggtitle("null")
+p2 <- mse.boxplot(subset(dsc,simulate == "one_effect")) + ggtitle("one effect")
+p3 <- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle("scenario 1")
+p4 <- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle("scenario 2")
+p5 <- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle("scenario 3")
+p6 <- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle("scenario 4")
+p  <- plot_grid(p1,p2,p3,p4,p5,p6)
 print(p)
 ```
 

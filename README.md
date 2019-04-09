@@ -1,8 +1,7 @@
 # DSC for evaluating linear regression methods
 
-A DSC for evaluating prediction accuracy of linear regression methods
-in different scenarios. Please visit the
-[workflowr site][github-website] for usage instructions, and overview
-of the results, and more.
+A DSC to evaluate prediction accuracy of linear regression methods in
+different scenarios. Please visit the [website][github-website] for
+an overview of the results, and for instructions on how to use the DSC.
 
 [github-website]: https://stephenslab.github.io/dsc-linreg

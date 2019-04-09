@@ -1,5 +1,5 @@
 ---
-title: "Evaluating linear regression methods in four scenarios from Zou & Hastie (2005)"
+title: "Comparison of linear regression methods in the four scenarios from Zou & Hastie (2005)"
 author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
 date: April 2, 2019
 output:
@@ -27,10 +27,6 @@ linear regression in the four simulation examples of
 
 + "varbvsmix", an elaboration of varbvs that replaces the single normal
   prior with a mixture-of-normals.
-
-See [here][github-repo] for setup instructions. A webpage was
-generated from this source code by running
-`rmarkdown::render("linreg.Rmd")` in the "analysis" directory.
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,

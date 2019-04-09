@@ -4,17 +4,17 @@ site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---
 
-This repository implements a Dynamic Statistical Comparison (DSC) for
-evaluating prediction accuracy of linear regression methods in
-different scenarios.
+This repository implements a [Dynamic Statistical Comparison][dsc]
+(DSC) to evaluate prediction accuracy of linear regression methods
+in different scenarios.
 
-Follow the links below for instructions on how to use the DSC, and to
-get an overview of the results.
+Follow the links below for an overview of the results, and for
+instructions on how to run the DSC on your own computer.
 
-+ [Usage instructions](usage_instructions.html)
++ [Usage instructions.](usage_instructions.html)
 
 + [Comparison of linear regression methods in the four scenarios from
-  Zou & Hastie (2005)](results_overview.html)
+  Zou & Hastie (2005).](results_overview.html)
 
 ## License
 
@@ -30,6 +30,7 @@ This repository was developed by [Gao Wang][gao], [Peter
 Carbonetto][peter] and [Matthew Stephens][matthew] at the University
 of Chicago.
 
+[dsc]: https://github.com/stephenslab/dsc
 [gao]: https://github.com/gaow
 [peter]: http://pcarbo.github.io
 [matthew]: https://stephenslab.uchicago.edu

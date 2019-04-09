@@ -7,30 +7,38 @@
 # evaluate the linear regression models. Each training and test data
 # set should include an n x p matrix X and a vector y of length n,
 # where n is the number of samples, and p is the number of candidate
-# predictors. 
+# predictors. All simulate modules should inherit the inputs outputs,
+# and module parameters of the "generic" fit module.
+simulate_generic: R(NULL)
+  seed:   R{1:2}
+  $X:     X
+  $y:     y
+  $Xtest: Xtest
+  $ytest: ytest
+  $beta:  b
 
 # Simulate data in the same way as Example 1 of Zou & Hastie (2005),
 # except that all the regression coefficients are zero.
-null: null.R
-  seed:   R{1:2}
-  $X:     dat$train$X
-  $y:     dat$train$y
-  $Xtest: dat$test$X
-  $ytest: dat$test$y
-  $beta:  dat$b
-  $se:    dat$se
+null_effects(simulate_generic): null_effects.R
+  $se: se
 
 # Simulate data in the same way as Example 1 of Zou & Hastie (2005),
 # except that all the regression coefficients except one are zero.
 # The inputs, outputs and module parameters are the same as the "null"
 # simulate module.
-one_effect(null): one_effect.R
+one_effect(simulate_generic): one_effect.R
+  $se: se
   
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005). This module inherits the inputs,
 # outputs and module parameters from the "null" simulate module.
-zh(null): zh.R
+zh(simulate_generic): zh.R
   scenario: 1, 2, 3, 4
+  $X:     out$train$X
+  $y:     out$train$y
+  $Xtest: out$test$X
+  $ytest: out$test$y
+  $beta:  out$b
 
 # fit modules
 # ===========
@@ -61,15 +69,18 @@ elastic_net(fit_generic): elastic_net.R
 
 # Fit a "sum of single effects" (SuSiE) regression model.
 susie: susie.R
+  $model: out
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs: varbvs.R
+  $model: out
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
 varbvsmix: varbvsmix.R
+  $model: out
 
 # predict modules
 # ===============
@@ -113,7 +124,7 @@ DSC:
              modules/predict,
              modules/score
   define:
-    simulate: null, one_effect, zh
+    simulate: null_effects, one_effect, zh
     fit:      ridge, lasso, elastic_net
     predict:  predict_linear
     score:    mse, mae

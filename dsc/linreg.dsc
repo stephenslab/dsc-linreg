@@ -35,50 +35,41 @@ zh(null): zh.R
 # fit modules
 # ===========
 # A "fit" module fits a linear regression model to the provided
-# training data, X and y.
+# training data, X and y. All fit modules should inherit the inputs
+# and outputs of the "generic" fit module.
+fit_generic:
+  X:          $X
+  y:          $y
+  $intercept: mu
+  $beta:      b
 
 # Fit a ridge regression model using glmnet. The penalty strength
 # (i.e., the normal prior on the coefficients) is estimated using
 # cross-validation.
-ridge: ridge.R
-  X:      $X
-  y:      $y
+ridge(fit_generic): ridge.R
   $model: out
 
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
-lasso: lasso.R
-  X:      $X
-  y:      $y
+lasso(fit_generic): lasso.R
   $model: out
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
-elastic_net: elastic_net.R
-  X:      $X
-  y:      $y
+elastic_net(fit_generic): elastic_net.R
   $model: out
 
 # Fit a "sum of single effects" (SuSiE) regression model.
 susie: susie.R
-  X:      $X
-  y:      $y
-  $model: out
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs: varbvs.R
-  X:      $X
-  y:      $y
-  $model: out
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
 varbvsmix: varbvsmix.R
-  X:      $X
-  y:      $y
-  $model: out
 
 # predict modules
 # ===============
@@ -86,38 +77,8 @@ varbvsmix: varbvsmix.R
 # of observations, X, and returns a vector of length n containing the
 # outcomes predicted by the fitted model.
 
-# Predict outcomes using a fitted ridge regression model.
-predict_ridge: predict_ridge.R
-  X:     $Xtest
-  model: $model
-  $yest: y
-
-# Predict outcomes using a fitted Lasso model.
-predict_lasso: predict_lasso.R
-  X:     $Xtest
-  model: $model
-  $yest: y
-
-# Predict outcomes using a fitted Elastic Net model.
-predict_elastic_net: predict_elastic_net.R
-  X:     $Xtest
-  model: $model
-  $yest: y
-
-# Predict outcomes using a fitted SuSiE model.
-predict_susie: predict_susie.R
-  X:     $Xtest
-  model: $model
-  $yest: y
-
-# Predict outcomes using a fitted varbvs model.
-predict_varbvs: predict_varbvs.R
-  X:     $Xtest
-  model: $model
-  $yest: y
-
-# Predict outcomes using a fitted varbvsmix model.
-predict_varbvsmix: predict_varbvsmix.R
+# Predict outcomes from a fitted linear regression model.
+predict_linear: predict_ridge.R
   X:     $Xtest
   model: $model
   $yest: y
@@ -151,6 +112,7 @@ DSC:
              modules/score
   define:
     simulate: null, one_effect, zh
-    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
+    fit:      ridge, lasso, elastic_net
+    predict:  predict_linear
     score:    mse, mae
-  run: simulate * fit
+  run: simulate * fit * predict

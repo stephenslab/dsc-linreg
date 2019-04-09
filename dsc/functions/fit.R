@@ -8,24 +8,26 @@
 # using cross-validation. Input X should be an n x p numeric matrix,
 # and input y should be a numeric vector of length n. Input "nfolds"
 # is the number of folds used in the cross-validation. The return
-# value is a list with two elements: (1) the fitted glmnet object, and
-# (2) the output of cv.glmnet.
-fit_ridge <- function (X, y, nfolds = 10) {
-  out.cv <- glmnet::cv.glmnet(X,y,alpha = 0,nfolds = nfolds)
-  fit    <- glmnet::glmnet(X,y,alpha = 0,standardize = FALSE)
-  return(list(fit = fit,cv = out.cv))
-}
+# value is a list with four elements: (1) the fitted glmnet object,
+# (2) the output of cv.glmnet, (3) the intercept at the penalty
+# strength ("lambda") chosen by cross-validation, and (4) the
+# regression coefficients at this value of lambda.
+fit_ridge <- function (X, y, nfolds = 10)
+  fit_lasso(X,y,nfolds,0)
 
 # Fit a Lasso model to the data, and estimate the penalty strength
 # (lambda) using cross-validation. Input X should be an n x p numeric
 # matrix, and input y should be a numeric vector of length n. Input
-# "nfolds" is the number of folds used in the cross-validation. The
-# return value is a list with two elements: (1) the fitted glmnet
-# object, (2) the output of cv.glmnet.
-fit_lasso <- function (X, y, nfolds = 10) {
-  out.cv <- glmnet::cv.glmnet(X,y,nfolds = nfolds)
-  fit    <- glmnet::glmnet(X,y,standardize = FALSE)
-  return(list(fit = fit,cv = out.cv))
+# "nfolds" is the number of folds used in the cross-validation. four
+# elements: (1) the fitted glmnet object, (2) the output of cv.glmnet,
+# (3) the intercept at the penalty strength ("lambda") chosen by
+# cross-validation, and (4) the regression coefficients at this value
+# of lambda.
+fit_lasso <- function (X, y, nfolds = 10, alpha = 1) {
+  out.cv <- glmnet::cv.glmnet(X,y,alpha = alpha,nfolds = nfolds)
+  fit    <- glmnet::glmnet(X,y,alpha = alpha,standardize = FALSE)
+  beta   <- as.vector(coef(fit,s = out.cv$lambda.min))
+  return(list(fit = fit,cv = out.cv,mu = beta[1],beta = beta[-1]))
 }
 
 # Fit an Elastic Net model to the data, and estimate the Elastic Net
@@ -34,9 +36,12 @@ fit_lasso <- function (X, y, nfolds = 10) {
 # matrix, and input y should be a numeric vector of length n. Input
 # "nfolds" is the number of folds used in the cross-validation, and
 # input "alpha" is the vector of candidate values of the Elastic Net
-# mixing parameter. The return value is a list with three elements:
-# (1) the fitted glmnet object, (2) the output of cv.glmnet, and (3)
-# the setting of alpha minimizing the mean cross-validation error.
+# mixing parameter. The return value is a list with five elements: (1)
+# the fitted glmnet object, (2) the output of cv.glmnet, (3) the
+# setting of alpha minimizing the mean cross-validation error, (4) the
+# intercept at the penalty strength ("lambda") chosen by
+# cross-validation, and (3) the regression coefficients at this value
+# of lambda.
 fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   n          <- nrow(X)
   foldid     <- rep_len(1:nfolds,n)
@@ -56,8 +61,10 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
   }
 
   # Fit the Elastic Net model using the chosen value of alpha.
-  fit <- glmnet::glmnet(X,y,standardize = FALSE,alpha = alpha.min)
-  return(list(fit = fit,cv = out.cv,alpha = alpha.min))
+  fit  <- glmnet::glmnet(X,y,standardize = FALSE,alpha = alpha.min)
+  beta <- as.vector(coef(fit,s = out.cv$lambda.min))
+  return(list(fit = fit,cv = out.cv,alpha = alpha.min,mu = beta[1],
+              beta = beta[-1]))
 }
 
 # Fit a "sum of single effects" (SuSiE) regression model to the
@@ -65,10 +72,13 @@ fit_elastic_net <- function (X, y, nfolds = 10, alpha = seq(0,1,0.05)) {
 # an n x p numeric matrix, and y should be a numeric vector of length
 # n. Note that we found that the prediction performance was more
 # robust when setting estimate_prior_variance = FALSE.
-fit_susie <- function (X, y, scaled_prior_variance = 0.2)
-  susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
-                scaled_prior_variance = scaled_prior_variance,
-                estimate_prior_variance = FALSE)
+fit_susie <- function (X, y, scaled_prior_variance = 0.2) {
+  fit <- susieR::susie(X,y,L = ncol(X),max_iter = 1000,standardize = FALSE,
+                       scaled_prior_variance = scaled_prior_variance,
+                       estimate_prior_variance = FALSE)
+  beta <- coef(fit)
+  return(list(fit = fit,
+}
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression. Input X should be an n x p

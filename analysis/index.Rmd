@@ -1,5 +1,7 @@
 ---
 title: "DSC for evaluating linear regression methods"
+author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
+date: April 9, 2019
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---

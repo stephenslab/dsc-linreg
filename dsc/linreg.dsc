@@ -125,7 +125,7 @@ DSC:
              modules/score
   define:
     simulate: null_effects, one_effect, zh
-    fit:      ridge, lasso, elastic_net
+    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
     predict:  predict_linear
     score:    mse, mae
   run: simulate * fit * predict * score

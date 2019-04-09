@@ -315,10 +315,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreeb2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fdtargetblankb2c80eba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/b2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fd" target="_blank">b2c80eb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree0e22a159888fd101cff3c0af05be68e99e682231targetblank0e22a15a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/0e22a159888fd101cff3c0af05be68e99e682231" target="_blank">0e22a15</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreeb2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fdtargetblankb2c80eba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree0e22a159888fd101cff3c0af05be68e99e682231targetblank0e22a15a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -367,6 +367,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/0e22a159888fd101cff3c0af05be68e99e682231/analysis/results_overview.Rmd" target="_blank">0e22a15</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/a7d093a15184e81e41e109c3897ff5534214f35a/analysis/results_overview.Rmd" target="_blank">a7d093a</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Changed indentation in results_overview.Rmd.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -554,7 +588,7 @@ dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;fit&quot;,&quot;mse.err&quo
                 verbose = FALSE)
 dsc &lt;- transform(dsc,
                  simulate = factor(simulate),
-                 fit = factor(fit,methods))
+                 fit      = factor(fit,methods))
 nrow(dsc)
 # [1] 720</code></pre>
 <p>Note that you will need to run the DSC before querying the results; see <a href="usage_instructions.html">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
@@ -619,7 +653,15 @@ Peter Carbonetto
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
-<p>This is the version of R and the packages that were used to generate these results.</p>
+<pre class="r"><code>library(MASS)
+library(glmnet)
+# Warning: package &#39;glmnet&#39; was built under R version 3.4.4
+# Loading required package: Matrix
+# Loading required package: foreach
+# Loaded glmnet 2.0-16
+library(susieR)
+library(varbvs)</code></pre>
+<p>Here we give the version of R and the packages that were used to generate these results. This listing includes the R packages that were also used in the DSC.</p>
 <pre class="r"><code>sessionInfo()
 # R version 3.4.3 (2017-11-30)
 # Platform: x86_64-apple-darwin15.6.0 (64-bit)
@@ -636,22 +678,26 @@ Peter Carbonetto
 # [1] stats     graphics  grDevices utils     datasets  methods   base     
 # 
 # other attached packages:
-# [1] cowplot_0.9.4   ggplot2_3.1.0   dscrutils_0.3.5
+# [1] varbvs_2.6-3      susieR_0.7.1.0488 glmnet_2.0-16     foreach_1.4.4    
+# [5] Matrix_1.2-12     MASS_7.3-48       cowplot_0.9.4     ggplot2_3.1.0    
+# [9] dscrutils_0.3.5  
 # 
 # loaded via a namespace (and not attached):
-#  [1] Rcpp_1.0.0           knitr_1.20           whisker_0.3-2       
-#  [4] magrittr_1.5         workflowr_1.2.0.9000 tidyselect_0.2.5    
-#  [7] munsell_0.4.3        colorspace_1.4-0     R6_2.2.2            
-# [10] rlang_0.3.1          dplyr_0.8.0.1        stringr_1.3.1       
-# [13] plyr_1.8.4           tools_3.4.3          grid_3.4.3          
-# [16] gtable_0.2.0         withr_2.1.2          git2r_0.23.3        
-# [19] htmltools_0.3.6      assertthat_0.2.0     yaml_2.2.0          
-# [22] lazyeval_0.2.1       rprojroot_1.3-2      digest_0.6.17       
-# [25] tibble_2.1.1         crayon_1.3.4         purrr_0.2.5         
-# [28] fs_1.2.6             glue_1.3.0           evaluate_0.11       
-# [31] rmarkdown_1.10       labeling_0.3         stringi_1.2.4       
-# [34] pillar_1.3.1         compiler_3.4.3       scales_0.5.0        
-# [37] backports_1.1.2      pkgconfig_2.0.2</code></pre>
+#  [1] Rcpp_1.0.0           RColorBrewer_1.1-2   compiler_3.4.3      
+#  [4] pillar_1.3.1         git2r_0.23.3         plyr_1.8.4          
+#  [7] workflowr_1.2.0.9000 iterators_1.0.9      tools_3.4.3         
+# [10] digest_0.6.17        lattice_0.20-35      evaluate_0.11       
+# [13] tibble_2.1.1         gtable_0.2.0         pkgconfig_2.0.2     
+# [16] rlang_0.3.1          yaml_2.2.0           withr_2.1.2         
+# [19] stringr_1.3.1        dplyr_0.8.0.1        knitr_1.20          
+# [22] fs_1.2.6             rprojroot_1.3-2      grid_3.4.3          
+# [25] tidyselect_0.2.5     glue_1.3.0           R6_2.2.2            
+# [28] rmarkdown_1.10       latticeExtra_0.6-28  purrr_0.2.5         
+# [31] magrittr_1.5         whisker_0.3-2        codetools_0.2-15    
+# [34] backports_1.1.2      scales_0.5.0         htmltools_0.3.6     
+# [37] assertthat_0.2.0     colorspace_1.4-0     labeling_0.3        
+# [40] nor1mix_1.2-3        stringi_1.2.4        lazyeval_0.2.1      
+# [43] munsell_0.4.3        crayon_1.3.4</code></pre>
 <br> <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -675,22 +721,26 @@ Peter Carbonetto
 # [1] stats     graphics  grDevices utils     datasets  methods   base     
 # 
 # other attached packages:
-# [1] cowplot_0.9.4   ggplot2_3.1.0   dscrutils_0.3.5
+# [1] varbvs_2.6-3      susieR_0.7.1.0488 glmnet_2.0-16     foreach_1.4.4    
+# [5] Matrix_1.2-12     MASS_7.3-48       cowplot_0.9.4     ggplot2_3.1.0    
+# [9] dscrutils_0.3.5  
 # 
 # loaded via a namespace (and not attached):
-#  [1] Rcpp_1.0.0           knitr_1.20           whisker_0.3-2       
-#  [4] magrittr_1.5         workflowr_1.2.0.9000 tidyselect_0.2.5    
-#  [7] munsell_0.4.3        colorspace_1.4-0     R6_2.2.2            
-# [10] rlang_0.3.1          dplyr_0.8.0.1        stringr_1.3.1       
-# [13] plyr_1.8.4           tools_3.4.3          grid_3.4.3          
-# [16] gtable_0.2.0         withr_2.1.2          git2r_0.23.3        
-# [19] htmltools_0.3.6      assertthat_0.2.0     yaml_2.2.0          
-# [22] lazyeval_0.2.1       rprojroot_1.3-2      digest_0.6.17       
-# [25] tibble_2.1.1         crayon_1.3.4         purrr_0.2.5         
-# [28] fs_1.2.6             glue_1.3.0           evaluate_0.11       
-# [31] rmarkdown_1.10       labeling_0.3         stringi_1.2.4       
-# [34] pillar_1.3.1         compiler_3.4.3       scales_0.5.0        
-# [37] backports_1.1.2      pkgconfig_2.0.2</code></pre>
+#  [1] Rcpp_1.0.0           RColorBrewer_1.1-2   compiler_3.4.3      
+#  [4] pillar_1.3.1         git2r_0.23.3         plyr_1.8.4          
+#  [7] workflowr_1.2.0.9000 iterators_1.0.9      tools_3.4.3         
+# [10] digest_0.6.17        lattice_0.20-35      evaluate_0.11       
+# [13] tibble_2.1.1         gtable_0.2.0         pkgconfig_2.0.2     
+# [16] rlang_0.3.1          yaml_2.2.0           withr_2.1.2         
+# [19] stringr_1.3.1        dplyr_0.8.0.1        knitr_1.20          
+# [22] fs_1.2.6             rprojroot_1.3-2      grid_3.4.3          
+# [25] tidyselect_0.2.5     glue_1.3.0           R6_2.2.2            
+# [28] rmarkdown_1.10       latticeExtra_0.6-28  purrr_0.2.5         
+# [31] magrittr_1.5         whisker_0.3-2        codetools_0.2-15    
+# [34] backports_1.1.2      scales_0.5.0         htmltools_0.3.6     
+# [37] assertthat_0.2.0     colorspace_1.4-0     labeling_0.3        
+# [40] nor1mix_1.2-3        stringi_1.2.4        lazyeval_0.2.1      
+# [43] munsell_0.4.3        crayon_1.3.4</code></pre>
 </div>
 </div>
 

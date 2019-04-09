@@ -55,32 +55,44 @@ fit_generic: R(NULL)
 # (i.e., the normal prior on the coefficients) is estimated using
 # cross-validation.
 ridge(fit_generic): ridge.R
-  $model: out
-
+  $model:     out
+  $intercept: out$mu
+  $beta:      out$beta
+  
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
 lasso(fit_generic): lasso.R
-  $model: out
+  $model:     out
+  $intercept: out$mu
+  $beta:      out$beta
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
 elastic_net(fit_generic): elastic_net.R
-  $model: out
+  $model:     out
+  $intercept: out$mu
+  $beta:      out$beta
 
 # Fit a "sum of single effects" (SuSiE) regression model.
 susie(fit_generic): susie.R
-  $model: out
+  $model:     out$fit
+  $intercept: out$mu
+  $beta:      out$beta
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs(fit_generic): varbvs.R
-  $model: out
+  $model:     out$fit
+  $intercept: out$mu
+  $beta:      out$beta
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
 varbvsmix(fit_generic): varbvsmix.R
-  $model: out
+  $model:     out$fit
+  $intercept: out$mu
+  $beta:      out$beta
 
 # predict modules
 # ===============

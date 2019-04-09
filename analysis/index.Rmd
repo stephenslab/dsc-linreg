@@ -1,7 +1,36 @@
 ---
-title: "Home"
+title: "DSC for evaluating linear regression methods"
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---
 
-Welcome to my research website.
+This repository implements a Dynamic Statistical Comparison (DSC) for
+evaluating prediction accuracy of linear regression methods in
+different scenarios.
+
+Follow the links below for instructions on how to use the DSC, and to
+get an overview of the results.
+
++ [Usage instructions](usage_instructions.html)
+
++ [Comparison of linear regression methods in the four scenarios from
+  Zou & Hastie (2005)](results_overview.html)
+
+## License
+
+Copyright (c) 2018-2019, Gao Wang, Peter Carbonetto and Matthew
+Stephens.
+
+All source code and software in this repository are made available
+under the terms of the [MIT license][mit-license].
+
+## Contributors
+
+This repository was developed by [Gao Wang][gao], [Peter
+Carbonetto][peter] and [Matthew Stephens][matthew] at the University
+of Chicago.
+
+[gao]: https://github.com/gaow
+[peter]: http://pcarbo.github.io
+[matthew]: https://stephenslab.uchicago.edu
+[mit-license]: https://opensource.org/licenses/mit-license.html

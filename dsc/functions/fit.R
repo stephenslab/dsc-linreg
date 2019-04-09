@@ -77,7 +77,7 @@ fit_susie <- function (X, y, scaled_prior_variance = 0.2) {
                        scaled_prior_variance = scaled_prior_variance,
                        estimate_prior_variance = FALSE)
   beta <- coef(fit)
-  return(list(fit = fit,
+  return(fit)
 }
 
 # Compute a fully-factorized variational approximation for Bayesian

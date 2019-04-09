@@ -41,7 +41,7 @@ fit_generic:
   X:          $X
   y:          $y
   $intercept: mu
-  $beta:      b
+  $beta:      beta
 
 # Fit a ridge regression model using glmnet. The penalty strength
 # (i.e., the normal prior on the coefficients) is estimated using
@@ -73,15 +73,17 @@ varbvsmix: varbvsmix.R
 
 # predict modules
 # ===============
-# "predict" module takes as input a fitted model and an n x p matrix
-# of observations, X, and returns a vector of length n containing the
-# outcomes predicted by the fitted model.
+# A "predict" module takes as input a fitted model (or the parameters
+# of this fitted model) and an n x p matrix of observations, X, and
+# returns a vector of length n containing the outcomes predicted by
+# the fitted model.
 
 # Predict outcomes from a fitted linear regression model.
 predict_linear: predict_ridge.R
-  X:     $Xtest
-  model: $model
-  $yest: y
+  X:         $Xtest
+  intercept: $intercept
+  beta:      $beta
+  $yest:     y
 
 # score modules
 # =============

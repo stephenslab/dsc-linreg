@@ -37,7 +37,7 @@ zh(null): zh.R
 # A "fit" module fits a linear regression model to the provided
 # training data, X and y. All fit modules should inherit the inputs
 # and outputs of the "generic" fit module.
-fit_generic:
+fit_generic: R(NULL)
   X:          $X
   y:          $y
   $intercept: mu
@@ -79,7 +79,7 @@ varbvsmix: varbvsmix.R
 # the fitted model.
 
 # Predict outcomes from a fitted linear regression model.
-predict_linear: predict_ridge.R
+predict_linear: predict_linear.R
   X:         $Xtest
   intercept: $intercept
   beta:      $beta

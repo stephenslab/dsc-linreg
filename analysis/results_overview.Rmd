@@ -64,7 +64,7 @@ dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
                 verbose = FALSE)
 dsc <- transform(dsc,
                  simulate = factor(simulate),
-                 fit = factor(fit,methods))
+                 fit      = factor(fit,methods))
 nrow(dsc)
 ```
 

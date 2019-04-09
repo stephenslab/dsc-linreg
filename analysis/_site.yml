@@ -3,9 +3,6 @@ output_dir: ../docs
 exclude: include
 navbar:
   title: DSC for linear regression
-  left:
-  - text: Home
-    href: index.html
   right:
     - text: source
       href: https://github.com/stephenslab/dsc-linreg

@@ -11,7 +11,7 @@
 
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005).
-toydata: toydata.R
+zh: zh.R
   seed:     R{1:20}
   scenario: 1, 2, 3, 4
   $X:       dat$train$X

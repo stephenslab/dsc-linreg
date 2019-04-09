@@ -1,8 +1,8 @@
 # This file contains functions that simulate data sets to evaluate
-# methods for linear regression. The data simulations are drawn from
-# Zou & Hastie (2005), "Regularization and variable selection via the
-# elastic net", Journal of the Royal Statistical Society, Series B,
-# 67(2): 301–320.
+# methods for linear regression. Currently, all the data simulations
+# borrow ideas from Zou & Hastie (2005), "Regularization and variable
+# selection via the elastic net", Journal of the Royal Statistical
+# Society, Series B, 67(2): 301–320.
 
 # Return training and test data simulated according one of the four
 # scenarios described in Zou & Hastie (2005). The return value is a
@@ -12,7 +12,7 @@
 # predictors, X, and a vector of outcomes, y, of length n (n
 # represents the number of samples and p represents the number of
 # predictors).
-simulate_toy_data <- function (scenario) {
+simulate_zh_data <- function (scenario) {
   if (scenario == 1) {
       
     # Example 1 from Zou & Hastie (2005).

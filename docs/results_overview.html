@@ -315,10 +315,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2a86b0157002763311cd579f3753100c67e8ea90targetblank2a86b01a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/2a86b0157002763311cd579f3753100c67e8ea90" target="_blank">2a86b01</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreeb2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fdtargetblankb2c80eba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/b2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fd" target="_blank">b2c80eb</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2a86b0157002763311cd579f3753100c67e8ea90targetblank2a86b01a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreeb2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fdtargetblankb2c80eba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -327,12 +327,8 @@ Great! You are using Git for version control. Tracking code development and conn
 Ignored files:
     Ignored:    .sos/
     Ignored:    analysis/.sos/
-    Ignored:    docs/figure/
     Ignored:    dsc/.sos/
     Ignored:    dsc/linreg/
-
-Unstaged changes:
-    Modified:   output/linreg_mse.csv
 
 </code></pre>
 <p>
@@ -371,6 +367,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/b2c80eb5dbc3e431b22dd20ad2f7c80517b5d0fd/analysis/results_overview.Rmd" target="_blank">b2c80eb</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/5a34c5e9da6dc06ae4a6147a09da0da73dd8ad0b/docs/results_overview.html" target="_blank">5a34c5e</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Re-built results_overview with new design of DSC; new results
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -497,12 +527,13 @@ Re-organized some files, and moved usage instructions to workflowr page.
 </div>
 </div>
 </div>
-<p>In this short analysis, we compare the prediction accuracy of several linear regression in the four simulation examples of <a href="https://doi.org/10.1111/j.1467-9868.2005.00503.x">Zou &amp; Hastie (2005)</a>. The six methods compared are:</p>
+<p>In this short analysis, we compare the prediction accuracy of several linear regression in the four simulation examples of <a href="https://doi.org/10.1111/j.1467-9868.2005.00503.x">Zou &amp; Hastie (2005)</a>. We also include two additional scenarios, similar to Examples 1 and 2 from Zou &amp; Hastie (2005): a “null” scenario, in which the predictors have no effect on the outcome; and a “one effect” scenario, in which only one of the predictors affects the outcome.</p>
+<p>The six methods compared are:</p>
 <ul>
 <li><p>ridge regression;</p></li>
 <li><p>the Lasso;</p></li>
 <li><p>the Elastic Net;</p></li>
-<li><p>Sum of Single Effects regression (SuSiE), described <a href="https://doi.org/10.1101/501114">here</a>;</p></li>
+<li><p>“Sum of Single Effects” (SuSiE) regression, described <a href="https://doi.org/10.1101/501114">here</a>;</p></li>
 <li><p>variational inference for Bayesian variable selection, or “varbvs”, described <a href="https://projecteuclid.org/euclid.ba/1339616726">here</a>; and</p></li>
 <li><p>“varbvsmix”, an elaboration of varbvs that replaces the single normal prior with a mixture-of-normals.</p></li>
 </ul>
@@ -520,14 +551,11 @@ source(&quot;../code/plots.R&quot;)</code></pre>
 <pre class="r"><code>library(dscrutils)
 methods &lt;- c(&quot;ridge&quot;,&quot;lasso&quot;,&quot;elastic_net&quot;,&quot;susie&quot;,&quot;varbvs&quot;,&quot;varbvsmix&quot;)
 dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;fit&quot;,&quot;mse.err&quot;),&quot;simulate.scenario&quot;,
-                verbose = TRUE)
+                verbose = FALSE)
 dsc &lt;- transform(dsc,
                  simulate = factor(simulate),
                  fit = factor(fit,methods))
 nrow(dsc)
-# Calling dsc-query.
-# Importing dsc-query output.
-# Reading DSC outputs.
 # [1] 720</code></pre>
 <p>Note that you will need to run the DSC before querying the results; see <a href="usage_instructions.html">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
 <pre class="r"><code>dsc &lt;- read.csv(&quot;../output/linreg_mse.csv&quot;)</code></pre>
@@ -536,14 +564,53 @@ nrow(dsc)
 </div>
 <div id="summarize-and-discuss-simulation-results" class="section level2">
 <h2>Summarize and discuss simulation results</h2>
-<p>The boxplots summarize the prediction errors in each of the simulations.</p>
-<pre class="r"><code>p1 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle(&quot;Scenario 1&quot;)
-p2 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle(&quot;Scenario 2&quot;)
-p3 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle(&quot;Scenario 3&quot;)
-p4 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle(&quot;Scenario 4&quot;)
-p  &lt;- plot_grid(p1,p2,p3,p4)
+<p>The boxplots below summarize the prediction errors in each of the simulations.</p>
+<pre class="r"><code>p1 &lt;- mse.boxplot(subset(dsc,simulate == &quot;null_effects&quot;)) + ggtitle(&quot;null&quot;)
+p2 &lt;- mse.boxplot(subset(dsc,simulate == &quot;one_effect&quot;)) + ggtitle(&quot;one effect&quot;)
+p3 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle(&quot;scenario 1&quot;)
+p4 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle(&quot;scenario 2&quot;)
+p5 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle(&quot;scenario 3&quot;)
+p6 &lt;- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle(&quot;scenario 4&quot;)
+p  &lt;- plot_grid(p1,p2,p3,p4,p5,p6)
 print(p)</code></pre>
-<p><img src="figure/results_overview.Rmd/create-boxplots-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="figure/results_overview.Rmd/create-boxplots-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-create-boxplots-1">
+Past versions of create-boxplots-1.png
+</button>
+</p>
+<div id="fig-create-boxplots-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/5a34c5e9da6dc06ae4a6147a09da0da73dd8ad0b/docs/figure/results_overview.Rmd/create-boxplots-1.png" target="_blank">5a34c5e</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Here are a few initial (<em>i.e.,</em> imprecise) impressions from these plots.</p>
 <p>In most cases, the Elastic Net does at least as well, or better than the Lasso, which is what we would expect.</p>
 <p>Ridge regression actually achieves excellent accuracy in all cases except Scenario 4. Ridge regression is expected to do less well in Scenario 4 because the majority of the true coefficients are zero, so a sparse model would be favoured.</p>

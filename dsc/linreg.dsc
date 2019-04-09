@@ -9,18 +9,21 @@
 # where n is the number of samples, and p is the number of candidate
 # predictors. 
 
-# TO DO: Explain here what this module does.
+# Simulate data in the same way as Example 1 of Zou & Hastie (2005),
+# except that all the regression coefficients are zero.
 null: null.R
-  seed:     R{1:20}
-  $X:       dat$train$X
-  $y:       dat$train$y
-  $Xtest:   dat$test$X
-  $ytest:   dat$test$y
-  $beta:    dat$b
-  $se:      dat$se
+  seed:   R{1:20}
+  $X:     dat$train$X
+  $y:     dat$train$y
+  $Xtest: dat$test$X
+  $ytest: dat$test$y
+  $beta:  dat$b
+  $se:    dat$se
 
-# TO DO: Explain here what this module does. The inputs, outputs and
-# module parameters are the same as the "null" simulate module.
+# Simulate data in the same way as Example 1 of Zou & Hastie (2005),
+# except that all the regression coefficients except one are zero.
+# The inputs, outputs and module parameters are the same as the "null"
+# simulate module.
 one_effect(null): one_effect.R
   
 # Generate training and test data sets using one of the four scenarios

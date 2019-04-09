@@ -64,14 +64,14 @@ ridge(fit_generic): ridge.R
 lasso(fit_generic): lasso.R
   $model:     out
   $intercept: out$mu
-  $bet_est:   out$beta
+  $beta_est:  out$beta
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
 elastic_net(fit_generic): elastic_net.R
   $model:     out
   $intercept: out$mu
-  $beta:      out$beta
+  $beta_est:  out$beta
 
 # Fit a "sum of single effects" (SuSiE) regression model.
 susie(fit_generic): susie.R

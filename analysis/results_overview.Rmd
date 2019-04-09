@@ -113,7 +113,7 @@ these results.
 sessionInfo()
 ```
 
-[github-repo]: https://github.com/stephenslab/dsc-linreg
-[susie]: https://doi.org/10.1101/501114
-[varbvs]: https://projecteuclid.org/euclid.ba/1339616726 
+[github-repo]:     https://github.com/stephenslab/dsc-linreg
+[susie]:           https://doi.org/10.1101/501114
+[varbvs]:          https://projecteuclid.org/euclid.ba/1339616726 
 [zou-hastie-2005]: https://doi.org/10.1111/j.1467-9868.2005.00503.x

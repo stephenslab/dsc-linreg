@@ -267,10 +267,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree070f004d6e23b6f47781ac9a5aedc5d120141c30targetblank070f004a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/070f004d6e23b6f47781ac9a5aedc5d120141c30" target="_blank">070f004</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef8959f468b916407cf1fd97356616c1109f3e980targetblankf8959f4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/f8959f468b916407cf1fd97356616c1109f3e980" target="_blank">f8959f4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree070f004d6e23b6f47781ac9a5aedc5d120141c30targetblank070f004a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef8959f468b916407cf1fd97356616c1109f3e980targetblankf8959f4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -280,6 +280,10 @@ Ignored files:
     Ignored:    .sos/
     Ignored:    analysis/.sos/
     Ignored:    dsc/.sos/
+    Ignored:    dsc/linreg/
+
+Unstaged changes:
+    Modified:   analysis/results_overview.Rmd
 
 </code></pre>
 <p>
@@ -323,6 +327,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/f8959f468b916407cf1fd97356616c1109f3e980/analysis/usage_instructions.Rmd" target="_blank">f8959f4</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+wflow_publish(c(“index.Rmd”, “usage_instructions.Rmd”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/e54452c0418f8807b42a0db8cc00368e9d5f1ccf/docs/usage_instructions.html" target="_blank">e54452c</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Made a few small revisions to the usage instructions.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/stephenslab/dsc-linreg/blob/070f004d6e23b6f47781ac9a5aedc5d120141c30/analysis/usage_instructions.Rmd" target="_blank">070f004</a>
 </td>
 <td>
@@ -361,7 +399,7 @@ Re-organized some files, and moved usage instructions to workflowr page.
 </div>
 <p>Please follow these steps to start using the linear regression DSC.</p>
 <p>First, install <a href="https://github.com/stephenslab/dsc">DSC</a>.</p>
-<p>Next, install <a href="www.r-project.org">R</a>, as well as the R packages used. The devtools and glmnet packages can be installed from CRAN:</p>
+<p>Next, install <a href="https://www.r-project.org">R</a>, as well as the R packages used. The devtools and glmnet packages can be installed from CRAN:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;)
 install.packages(&quot;glmnet&quot;)
 install.packages(&quot;ggplot2&quot;)
@@ -374,7 +412,7 @@ install_github(&quot;stephenslab/dsc&quot;,subdir = &quot;dscrutils&quot;)</code
 <p>Clone or download this git repository.</p>
 <p>Now you should have everything you need to run the DSC. Navigate to the “dsc” directory inside your local copy of the git repository, and run it with this command (here we have chosen 4 threads, but you may want to adjust the number of threads to better suit your computer):</p>
 <pre class="bash"><code>dsc -c 4 linreg.dsc</code></pre>
-<p>Go grab a coffee while you wait for the DSC to run. It may take some time, perhaps as long as 10 to 20 minutes, for all the DSC pipelines to complete.</p>
+<p>Go grab a coffee while you wait for the DSC to run. It may take some time, perhaps as long as 30 minutes, for all the DSC pipelines to complete.</p>
 <p>Once the DSC has finished running, you may want to work through <a href="results_overview.html">this short analysis</a> to explore the results of the DSC in R or RStudio. When running the R code, make sure your working directory is set to the “analysis” directory in the git repository.</p>
 <p><em>DSC is specifically designed to be extended</em>—please make improvements to this DSC by modifying our experiments, or by adding new methods, data scenarios or evaluation metrics.</p>
 

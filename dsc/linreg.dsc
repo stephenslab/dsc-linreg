@@ -10,7 +10,7 @@
 # predictors. All simulate modules should inherit the inputs outputs,
 # and module parameters of the "generic" fit module.
 simulate_generic: R(NULL)
-  seed:   R{1:2}
+  seed:   R{1:20}
   $X:     X
   $y:     y
   $Xtest: Xtest
@@ -49,7 +49,7 @@ fit_generic: R(NULL)
   X:          $X
   y:          $y
   $intercept: mu
-  $beta:      beta
+  $beta_est:  beta
 
 # Fit a ridge regression model using glmnet. The penalty strength
 # (i.e., the normal prior on the coefficients) is estimated using
@@ -57,14 +57,14 @@ fit_generic: R(NULL)
 ridge(fit_generic): ridge.R
   $model:     out
   $intercept: out$mu
-  $beta:      out$beta
+  $beta_est:  out$beta
   
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
 lasso(fit_generic): lasso.R
   $model:     out
   $intercept: out$mu
-  $beta:      out$beta
+  $bet_est:   out$beta
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
@@ -77,14 +77,14 @@ elastic_net(fit_generic): elastic_net.R
 susie(fit_generic): susie.R
   $model:     out$fit
   $intercept: out$mu
-  $beta:      out$beta
+  $beta_est:  out$beta
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs(fit_generic): varbvs.R
   $model:     out$fit
   $intercept: out$mu
-  $beta:      out$beta
+  $beta_est:  out$beta
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
@@ -92,7 +92,7 @@ varbvs(fit_generic): varbvs.R
 varbvsmix(fit_generic): varbvsmix.R
   $model:     out$fit
   $intercept: out$mu
-  $beta:      out$beta
+  $beta_est:  out$beta
 
 # predict modules
 # ===============
@@ -105,7 +105,7 @@ varbvsmix(fit_generic): varbvsmix.R
 predict_linear: predict_linear.R
   X:         $Xtest
   intercept: $intercept
-  beta:      $beta
+  beta:      $beta_est
   $yest:     y
 
 # score modules

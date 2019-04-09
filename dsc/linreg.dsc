@@ -147,7 +147,7 @@ DSC:
              modules/predict,
              modules/score
   define:
-    simulate: toydata
+    simulate: null. one_effect, zh
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
     predict:  predict_ridge, predict_lasso, predict_elastic_net,
               predict_susie, predict_varbvs, predict_varbvsmix

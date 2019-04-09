@@ -10,7 +10,7 @@
 # predictors. All simulate modules should inherit the inputs outputs,
 # and module parameters of the "generic" fit module.
 simulate_generic: R(NULL)
-  seed:   R{1:20}
+  seed:   R{1:2}
   $X:     X
   $y:     y
   $Xtest: Xtest
@@ -68,18 +68,18 @@ elastic_net(fit_generic): elastic_net.R
   $model: out
 
 # Fit a "sum of single effects" (SuSiE) regression model.
-susie: susie.R
+susie(fit_generic): susie.R
   $model: out
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
-varbvs: varbvs.R
+varbvs(fit_generic): varbvs.R
   $model: out
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
-varbvsmix: varbvsmix.R
+varbvsmix(fit_generic): varbvsmix.R
   $model: out
 
 # predict modules

@@ -233,7 +233,7 @@ div.section {
 <strong>Last updated:</strong> 2019-04-10
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>dsc-linreg/analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -261,10 +261,58 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreee6d35b2ce8cf4cccda96a29cb1dd075d798cac4ctargetblanke6d35b2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/e6d35b2ce8cf4cccda96a29cb1dd075d798cac4c" target="_blank">e6d35b2</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreee6d35b2ce8cf4cccda96a29cb1dd075d798cac4ctargetblanke6d35b2a" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed1code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(1)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed1code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(1)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef809da994ebdbe96ddc67264cbefdb2d43184a7dtargetblankf809da9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/f809da994ebdbe96ddc67264cbefdb2d43184a7d" target="_blank">f809da9</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef809da994ebdbe96ddc67264cbefdb2d43184a7dtargetblankf809da9a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -277,7 +325,7 @@ Ignored files:
     Ignored:    dsc/linreg/
 
 Unstaged changes:
-    Modified:   analysis/_site.yml
+    Modified:   analysis/results_overview.Rmd
 
 </code></pre>
 <p>
@@ -316,6 +364,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/f809da994ebdbe96ddc67264cbefdb2d43184a7d/analysis/usage_instructions.Rmd" target="_blank">f809da9</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-10
+</td>
+<td>
+wflow_publish(“usage_instructions.Rmd”)
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -409,6 +474,8 @@ Re-organized some files, and moved usage instructions to workflowr page.
 </div>
 </div>
 <p>Please follow these steps to start using the linear regression DSC.</p>
+<div id="installing-the-software-and-r-packages" class="section level2">
+<h2>Installing the software and R packages</h2>
 <p>First, install <a href="https://github.com/stephenslab/dsc">DSC</a>.</p>
 <p>Next, install <a href="https://www.r-project.org">R</a>, as well as the R packages used. The devtools and glmnet packages can be installed from CRAN:</p>
 <pre class="r"><code>install.packages(&quot;devtools&quot;)
@@ -420,12 +487,62 @@ install.packages(&quot;cowplot&quot;)</code></pre>
 install_github(&quot;stephenslab/susieR&quot;)
 install_github(&quot;pcarbo/varbvs&quot;,subdir = &quot;varbvs-R&quot;)
 install_github(&quot;stephenslab/dsc&quot;,subdir = &quot;dscrutils&quot;)</code></pre>
-<p>Clone or download this git repository.</p>
+<p>Finally, clone or download this git repository.</p>
+</div>
+<div id="running-the-dsc" class="section level2">
+<h2>Running the DSC</h2>
 <p>Now you should have everything you need to run the DSC. Navigate to the “dsc” directory inside your local copy of the git repository, and run it with this command (here we have chosen 4 threads, but you may want to adjust the number of threads to better suit your computer):</p>
 <pre class="bash"><code>dsc -c 4 linreg.dsc</code></pre>
 <p>Go grab a coffee while you wait for the DSC to run. It may take some time, perhaps as long as 30 minutes, for all the DSC pipelines to complete.</p>
+</div>
+<div id="exploring-the-dsc-results" class="section level2">
+<h2>Exploring the DSC results</h2>
 <p>Once the DSC has finished running, you may want to work through <a href="results_overview.html">this short analysis</a> to explore the results of the DSC in R or RStudio. When running the R code, make sure your working directory is set to the “analysis” directory in the git repository.</p>
+</div>
+<div id="creating-the-workflowr-site" class="section level2">
+<h2>Creating the workflowr site</h2>
+<p>To recreate and commit the website from the R Markdown files, this can be done using the “wflow_publish” function from the <a href="https://github.com/jdblischak/workflowr">workflowr</a> package, after setting your working directory to the “analysis” directory:</p>
+<pre class="r"><code>library(workflowr)
+wflow_publish(&quot;index.Rmd&quot;)
+wflow_publish(&quot;usage_instructions.Rmd&quot;)
+wflow_publish(&quot;results_overview.Rmd&quot;)</code></pre>
+<p>These lines of R code will populate the “docs” directory with the newly rendered webpages, and commit the changes to the git repository.</p>
+</div>
+<div id="note" class="section level2">
+<h2>Note</h2>
 <p><em>DSC is specifically designed to be extended</em>—please make improvements to this DSC by modifying our experiments, or by adding new methods, data scenarios or evaluation metrics.</p>
+<br> <br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.4.3 (2017-11-30)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.6
+
+Matrix products: default
+BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] workflowr_1.2.0.9000 Rcpp_1.0.0           digest_0.6.17       
+ [4] rprojroot_1.3-2      backports_1.1.2      git2r_0.23.3        
+ [7] magrittr_1.5         evaluate_0.11        stringi_1.2.4       
+[10] fs_1.2.6             whisker_0.3-2        rmarkdown_1.10      
+[13] tools_3.4.3          stringr_1.3.1        glue_1.3.0          
+[16] yaml_2.2.0           compiler_3.4.3       htmltools_0.3.6     
+[19] knitr_1.20          </code></pre>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using

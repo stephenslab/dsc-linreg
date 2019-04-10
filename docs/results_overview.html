@@ -218,7 +218,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -227,7 +227,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#report"> Report <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#report"> Report <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -239,7 +239,7 @@ div.section {
 <strong>Last updated:</strong> 2019-04-09
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>dsc-linreg/analysis/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -255,12 +255,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -315,10 +315,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree5757c9352a70dfa2071ee3ef56d238c1ca64cf75targetblank5757c93a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/5757c9352a70dfa2071ee3ef56d238c1ca64cf75" target="_blank">5757c93</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef47cacb2fe17b81e5052eec4d36ba589e4e4ac72targetblankf47cacba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/f47cacb2fe17b81e5052eec4d36ba589e4e4ac72" target="_blank">f47cacb</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree5757c9352a70dfa2071ee3ef56d238c1ca64cf75targetblank5757c93a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef47cacb2fe17b81e5052eec4d36ba589e4e4ac72targetblankf47cacba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -329,10 +329,6 @@ Ignored files:
     Ignored:    analysis/.sos/
     Ignored:    dsc/.sos/
     Ignored:    dsc/linreg/
-
-Unstaged changes:
-    Modified:   analysis/results_overview.Rmd
-    Modified:   code/plots.R
 
 </code></pre>
 <p>
@@ -371,6 +367,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/f47cacb2fe17b81e5052eec4d36ba589e4e4ac72/analysis/results_overview.Rmd" target="_blank">f47cacb</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Added comments to functions in plots.R.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/54f1ae773ab717aaf711605c41cfb7e4c2452ba1/analysis/results_overview.Rmd" target="_blank">54f1ae7</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Implemented functions to compute and plot relative MSE.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/54f1ae773ab717aaf711605c41cfb7e4c2452ba1/docs/results_overview.html" target="_blank">54f1ae7</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Implemented functions to compute and plot relative MSE.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -616,7 +663,7 @@ nrow(dsc)
 <p>Compute the mean squared error (MSE) in the predictions relative to ridge regression, so that larger numbers mean greater error relative to predictions from ridge regressions.</p>
 <pre class="r"><code>rmse &lt;- compute.relative.mse(dsc)
 dsc  &lt;- cbind(dsc,rmse)</code></pre>
-<p>The boxplots below summarize the prediction errors in each of the simulations.</p>
+<p>The boxplots below summarize the prediction errors in each of the simulations. Ridge regression will always have a relative MSE of 1, so the results for ridge regression are not shown.</p>
 <pre class="r"><code>p1 &lt;- rmse.boxplot(subset(dsc,simulate == &quot;null_effects&quot;),&quot;null&quot;)
 p2 &lt;- rmse.boxplot(subset(dsc,simulate == &quot;one_effect&quot;),&quot;one effect&quot;)
 p3 &lt;- rmse.boxplot(subset(dsc,simulate.scenario == 1),&quot;scenario 1&quot;)
@@ -650,6 +697,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/54f1ae773ab717aaf711605c41cfb7e4c2452ba1/docs/figure/results_overview.Rmd/create-boxplots-1.png" target="_blank">54f1ae7</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/stephenslab/dsc-linreg/blob/5a34c5e9da6dc06ae4a6147a09da0da73dd8ad0b/docs/figure/results_overview.Rmd/create-boxplots-1.png" target="_blank">5a34c5e</a>
 </td>
 <td>
@@ -663,7 +721,7 @@ Peter Carbonetto
 </table>
 </div>
 </div>
-<p>Here are a few initial (imprecise) impressions from these plots.</p>
+<p>Here are a few initial impressions from these plots.</p>
 <p>In most cases, the Elastic Net does at least as well, or better than the Lasso, which is what we would expect.</p>
 <p>Ridge regression actually achieves good accuracy in all cases except Scenario 4. Ridge regression is expected to do less well in Scenario 4 because the majority of the true coefficients are zero, so a sparse model would be favoured.</p>
 <p>In Scenario 4 where the predictors are correlated in a structured way, and the effects are sparse, varbvs and varbvsmix perform better than the other methods.</p>

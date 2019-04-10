@@ -83,4 +83,3 @@ newly rendered webpages, and commit the changes to the git repository.
 *DSC is specifically designed to be extended*—please make improvements
 to this DSC by modifying our experiments, or by adding new methods,
 data scenarios or evaluation metrics.
-

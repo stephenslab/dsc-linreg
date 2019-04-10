@@ -81,7 +81,7 @@ write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 
 Compute the mean squared error (MSE) in the predictions relative to
 ridge regression, so that larger numbers mean greater error relative
-to predictions from ridge regressions.
+to predictions from ridge regressions. 
 
 ```{r compute-relative-mse}
 rmse <- compute.relative.mse(dsc)
@@ -89,7 +89,8 @@ dsc  <- cbind(dsc,rmse)
 ```
 
 The boxplots below summarize the prediction errors in each of the
-simulations.
+simulations. Ridge regression will always have a relative MSE of 1, so
+the results for ridge regression are not shown.
 
 ```{r create-boxplots, fig.height=8, fig.width=7.5}
 p1 <- rmse.boxplot(subset(dsc,simulate == "null_effects"),"null")

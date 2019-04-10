@@ -1,20 +1,24 @@
-# Compute the mean squared error (MSE)
+# This funtion is used in results_overview.Rmd to compute the mean
+# squared error (MSE) for each method in each experiment relative to
+# the ridge regression MSE.
 compute.relative.mse <- function (dat) {
 
-  # Initialize storage for the result.
+  # Initialize the return value.
   n    <- nrow(dat)
   rmse <- rep(0,n)
     
   # Create a new column, "experiment", combining the simulate module,
   # scenario and seed.
-  dat <- transform(dat,experiment = paste(simulate,simulate.scenario,
-                                          simulate.seed,sep = "-"))
+  dat <- transform(dat,
+                   experiment = paste(simulate,simulate.scenario,
+                                      simulate.seed,sep = "-"))
   
   # Compute the relative mean squared error; repeat for each
-  # combination of simulate module, scenario and seed ("experiment").
+  # combination of simulate module, scenario and seed (an
+  # "experiment").
   for (i in dat$experiment) {
     rows       <- which(dat$experiment == i)
-    mse.ridge  <- subset(dat,experiment == i & fit == "ridge")$mse.err
+    mse.ridge  <- subset(dat[rows,],fit == "ridge")$mse.err
     rmse[rows] <- dat[rows,"mse.err"] / mse.ridge
   }
 
@@ -22,7 +26,7 @@ compute.relative.mse <- function (dat) {
 }
 
 # This function is used in linreg.Rmd to create a boxplot comparing
-# mean squared error (MSE) relative to ridge regression.
+# the relative mean squared error (MSE).
 rmse.boxplot <- function (dat, plot.title = "") {
   colors <- c("skyblue","dodgerblue","limegreen","gold","orange")
   dat    <- subset(dat,fit != "ridge")

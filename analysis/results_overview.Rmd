@@ -7,12 +7,12 @@ output: workflowr::wflow_html
 ---
 
 In this short analysis, we compare the prediction accuracy of several
-linear regression in the four simulation examples of
-[Zou & Hastie (2005)][zou-hastie-2005]. We also include two additional
-scenarios, similar to Examples 1 and 2 from Zou & Hastie (2005): a
-"null" scenario, in which the predictors have no effect on the
-outcome; and a "one effect" scenario, in which only one of the
-predictors affects the outcome.
+linear regression in the four simulation examples of [Zou & Hastie
+(2005)][zou-hastie-2005]. We also include two additional scenarios,
+similar to Examples 1 and 2 from Zou & Hastie (2005): a "null"
+scenario, in which the predictors have no effect on the outcome; and a
+"one effect" scenario, in which only one of the predictors affects the
+outcome.
 
 The six methods compared are: (1) ridge regression; (2) the Lasso; (3)
 the Elastic Net; (4) "Sum of Single Effects" (SuSiE) regression,
@@ -109,7 +109,7 @@ print(p)
 Here are a few initial impressions from these plots.
 
 In most cases, the Elastic Net does at least as well, or better, than
-the Lasso, which is what we would expect.
+the Lasso. This is what we would expect.
 
 Ridge regression actually achieves good accuracy in all cases except
 Scenario 4 and the "one effect" setting. Ridge regression is expected

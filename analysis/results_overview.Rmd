@@ -89,8 +89,11 @@ dsc  <- cbind(dsc,rmse)
 ```
 
 The boxplots below summarize the prediction errors in each of the
-simulations. Ridge regression will always have a relative MSE of 1, so
-the results for ridge regression are not shown.
+simulations. A relative MSE less than 1 indicates an improvement in
+accuracy over ridge regression, whereas a relative MSE greater than 1
+indicates a decrease in accuracy compared to ridge regression. Ridge
+regression will always have a relative MSE of 1, so the results for
+ridge regression are not shown.
 
 ```{r create-boxplots, fig.height=8, fig.width=7.5}
 p1 <- rmse.boxplot(subset(dsc,simulate == "null_effects"),"null")
@@ -105,19 +108,21 @@ print(p)
 
 Here are a few initial impressions from these plots.
 
-In most cases, the Elastic Net does at least as well, or better than
+In most cases, the Elastic Net does at least as well, or better, than
 the Lasso, which is what we would expect.
 
-Ridge regression actually achieves good accuracy in all cases
-except Scenario 4. Ridge regression is expected to do less well in
-Scenario 4 because the majority of the true coefficients are zero, so
-a sparse model would be favoured.
+Ridge regression actually achieves good accuracy in all cases except
+Scenario 4 and the "one effect" setting. Ridge regression is expected
+to do less well in Scenario 4 because the majority of the true
+coefficients are zero, so a sparse model would be favoured. Similarly,
+a sparse model should better fit data simulated in the "one effect"
+scenario.
 
-In Scenario 4 where the predictors are correlated in a structured way,
-and the effects are sparse, varbvs and varbvsmix perform better than
-the other methods.
+In Scenario 4, where the predictors are correlated in a structured
+way, and the effects are sparse, varbvs and varbvsmix perform
+considerably better than the other methods.
 
-varbvsmix yields competitive predictions in all four scenarios.
+The "varbvsmix" method yields competitive predictions in all scenarios.
 
 ## Session information
 

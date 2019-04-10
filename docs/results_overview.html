@@ -315,10 +315,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef47cacb2fe17b81e5052eec4d36ba589e4e4ac72targetblankf47cacba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/f47cacb2fe17b81e5052eec4d36ba589e4e4ac72" target="_blank">f47cacb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea77053ec60c1f205a5dd9dfa726b16ed865fd3dctargetblanka77053ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/a77053ec60c1f205a5dd9dfa726b16ed865fd3dc" target="_blank">a77053e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreef47cacb2fe17b81e5052eec4d36ba589e4e4ac72targetblankf47cacba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea77053ec60c1f205a5dd9dfa726b16ed865fd3dctargetblanka77053ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -367,6 +367,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/a77053ec60c1f205a5dd9dfa726b16ed865fd3dc/analysis/results_overview.Rmd" target="_blank">a77053e</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/5662c9aa260f4ec56522936bf43cfaca0b4dc1de/docs/results_overview.html" target="_blank">5662c9a</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+<td>
+Re-built results_overview after revising plots.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -663,7 +697,7 @@ nrow(dsc)
 <p>Compute the mean squared error (MSE) in the predictions relative to ridge regression, so that larger numbers mean greater error relative to predictions from ridge regressions.</p>
 <pre class="r"><code>rmse &lt;- compute.relative.mse(dsc)
 dsc  &lt;- cbind(dsc,rmse)</code></pre>
-<p>The boxplots below summarize the prediction errors in each of the simulations. Ridge regression will always have a relative MSE of 1, so the results for ridge regression are not shown.</p>
+<p>The boxplots below summarize the prediction errors in each of the simulations. A relative MSE less than 1 indicates an improvement in accuracy over ridge regression, whereas a relative MSE greater than 1 indicates a decrease in accuracy compared to ridge regression. Ridge regression will always have a relative MSE of 1, so the results for ridge regression are not shown.</p>
 <pre class="r"><code>p1 &lt;- rmse.boxplot(subset(dsc,simulate == &quot;null_effects&quot;),&quot;null&quot;)
 p2 &lt;- rmse.boxplot(subset(dsc,simulate == &quot;one_effect&quot;),&quot;one effect&quot;)
 p3 &lt;- rmse.boxplot(subset(dsc,simulate.scenario == 1),&quot;scenario 1&quot;)
@@ -697,6 +731,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/5662c9aa260f4ec56522936bf43cfaca0b4dc1de/docs/figure/results_overview.Rmd/create-boxplots-1.png" target="_blank">5662c9a</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-09
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/stephenslab/dsc-linreg/blob/54f1ae773ab717aaf711605c41cfb7e4c2452ba1/docs/figure/results_overview.Rmd/create-boxplots-1.png" target="_blank">54f1ae7</a>
 </td>
 <td>
@@ -722,10 +767,10 @@ Peter Carbonetto
 </div>
 </div>
 <p>Here are a few initial impressions from these plots.</p>
-<p>In most cases, the Elastic Net does at least as well, or better than the Lasso, which is what we would expect.</p>
-<p>Ridge regression actually achieves good accuracy in all cases except Scenario 4. Ridge regression is expected to do less well in Scenario 4 because the majority of the true coefficients are zero, so a sparse model would be favoured.</p>
-<p>In Scenario 4 where the predictors are correlated in a structured way, and the effects are sparse, varbvs and varbvsmix perform better than the other methods.</p>
-<p>varbvsmix yields competitive predictions in all four scenarios.</p>
+<p>In most cases, the Elastic Net does at least as well, or better, than the Lasso, which is what we would expect.</p>
+<p>Ridge regression actually achieves good accuracy in all cases except Scenario 4 and the “one effect” setting. Ridge regression is expected to do less well in Scenario 4 because the majority of the true coefficients are zero, so a sparse model would be favoured. Similarly, a sparse model should better fit data simulated in the “one effect” scenario.</p>
+<p>In Scenario 4, where the predictors are correlated in a structured way, and the effects are sparse, varbvs and varbvsmix perform considerably better than the other methods.</p>
+<p>The “varbvsmix” method yields competitive predictions in all scenarios.</p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>

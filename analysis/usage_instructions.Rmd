@@ -8,12 +8,14 @@ output: workflowr::wflow_html
 
 Please follow these steps to start using the linear regression DSC.
 
+## Installing the software and R packages
+
 First, install [DSC][dsc].
 
 Next, install [R][R], as well as the R packages used. The devtools and
 glmnet packages can be installed from CRAN:
 
-```R
+```{r, eval=FALSE}
 install.packages("devtools")
 install.packages("glmnet")
 install.packages("ggplot2")
@@ -23,14 +25,16 @@ install.packages("cowplot")
 The susieR, varbvs and dscrutils packages can be installed from GitHub
 using [devtools][devtools]:
 
-```R
+```{r, eval=FALSE}
 library(devtools)
 install_github("stephenslab/susieR")
 install_github("pcarbo/varbvs",subdir = "varbvs-R")
 install_github("stephenslab/dsc",subdir = "dscrutils")
 ```
 
-Clone or download this git repository.
+Finally, clone or download this git repository.
+
+## Running the DSC
 
 Now you should have everything you need to run the DSC. Navigate to
 the "dsc" directory inside your local copy of the git repository, and
@@ -45,15 +49,37 @@ Go grab a coffee while you wait for the DSC to run. It may take some
 time, perhaps as long as 30 minutes, for all the DSC pipelines to
 complete.
 
+## Exploring the DSC results
+
 Once the DSC has finished running, you may want to work through [this
 short analysis](results_overview.html) to explore the results of the
 DSC in R or RStudio. When running the R code, make sure your working
 directory is set to the "analysis" directory in the git repository.
 
+## Creating the workflowr site
+
+To recreate and commit the website from the R Markdown files, this can
+be done using the "wflow_publish" function from the
+[workflowr][workflowr] package, after setting your working directory
+to the "analysis" directory:
+
+```{r, eval=FALSE}
+library(workflowr)
+wflow_publish("index.Rmd")
+wflow_publish("usage_instructions.Rmd")
+wflow_publish("results_overview.Rmd")
+```
+
+These lines of R code will populate the "docs" directory with the
+newly rendered webpages, and commit the changes to the git repository.
+
+## Note
+
 *DSC is specifically designed to be extended*—please make improvements
 to this DSC by modifying our experiments, or by adding new methods,
 data scenarios or evaluation metrics.
 
-[dsc]:      https://github.com/stephenslab/dsc
-[R]:        https://www.r-project.org
-[devtools]: https://github.com/r-lib/devtools
+[dsc]:       https://github.com/stephenslab/dsc
+[R]:         https://www.r-project.org
+[devtools]:  https://github.com/r-lib/devtools
+[workflowr]: https://github.com/jdblischak/workflowr

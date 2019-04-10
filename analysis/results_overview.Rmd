@@ -125,6 +125,11 @@ considerably better than the other methods.
 The "varbvsmix" method yields competitive predictions in all
 scenarios.
 
+[github-repo]:     https://github.com/stephenslab/dsc-linreg
+[susie]:           https://doi.org/10.1101/501114
+[varbvs]:          https://projecteuclid.org/euclid.ba/1339616726 
+[zou-hastie-2005]: https://doi.org/10.1111/j.1467-9868.2005.00503.x
+
 ## Session information
 
 ```{r load-more-pkgs, include=FALSE}
@@ -137,8 +142,3 @@ library(varbvs)
 The "Session information" button below gives the version of R and the
 packages that were used to generate these results. This listing
 includes the R packages that were also used to run the DSC.
-
-[github-repo]:     https://github.com/stephenslab/dsc-linreg
-[susie]:           https://doi.org/10.1101/501114
-[varbvs]:          https://projecteuclid.org/euclid.ba/1339616726 
-[zou-hastie-2005]: https://doi.org/10.1111/j.1467-9868.2005.00503.x

@@ -9,7 +9,7 @@
 # where n is the number of samples, and p is the number of candidate
 # predictors. All simulate modules should inherit the inputs outputs,
 # and module parameters of the "generic" fit module.
-simulate_generic: R(NULL)
+simulate_generic:
   seed:   R{1:20}
   $X:     X
   $y:     y
@@ -45,7 +45,7 @@ zh(simulate_generic): zh.R
 # A "fit" module fits a linear regression model to the provided
 # training data, X and y. All fit modules should inherit the inputs
 # and outputs of the "generic" fit module.
-fit_generic: R(NULL)
+fit_generic:
   X:          $X
   y:          $y
   $intercept: mu

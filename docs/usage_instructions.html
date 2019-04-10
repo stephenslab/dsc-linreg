@@ -309,10 +309,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2e73b96e902917cdcaaabdad20b08fc74faa559ftargetblank2e73b96a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/2e73b96e902917cdcaaabdad20b08fc74faa559f" target="_blank">2e73b96</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree1abb0e4d2d87da8fe9513463af869811eb8343f1targetblank1abb0e4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/1abb0e4d2d87da8fe9513463af869811eb8343f1" target="_blank">1abb0e4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree2e73b96e902917cdcaaabdad20b08fc74faa559ftargetblank2e73b96a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree1abb0e4d2d87da8fe9513463af869811eb8343f1targetblank1abb0e4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -322,10 +322,9 @@ Ignored files:
     Ignored:    .sos/
     Ignored:    analysis/.sos/
     Ignored:    dsc/.sos/
-    Ignored:    dsc/linreg/
 
 Unstaged changes:
-    Modified:   analysis/results_overview.Rmd
+    Modified:   dsc/linreg.dsc
 
 </code></pre>
 <p>
@@ -364,6 +363,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/1abb0e4d2d87da8fe9513463af869811eb8343f1/analysis/usage_instructions.Rmd" target="_blank">1abb0e4</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-10
+</td>
+<td>
+wflow_publish(“usage_instructions.Rmd”)
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -501,7 +517,7 @@ install_github(&quot;stephenslab/dsc&quot;,subdir = &quot;dscrutils&quot;)</code
 </div>
 <div id="rereating-the-workflowr-site" class="section level2">
 <h2>Rereating the workflowr site</h2>
-<p>To recreate and commit the website from the R Markdown files, this can be done using the “wflow_publish” function from the <a href="https://github.com/jdblischak/workflowr">workflowr</a> package, after setting your working directory to the “analysis” directory:</p>
+<p>To recreate and commit the website from the R Markdown files, this can be done using the <code>wflow_publish</code> function from the <a href="https://github.com/jdblischak/workflowr">workflowr</a> package, after setting your working directory to the “analysis” directory:</p>
 <pre class="r"><code>library(workflowr)
 wflow_publish(&quot;index.Rmd&quot;)
 wflow_publish(&quot;usage_instructions.Rmd&quot;)

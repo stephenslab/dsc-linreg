@@ -1,7 +1,7 @@
 ---
 title: "Comparison of linear regression methods in the four scenarios from Zou & Hastie (2005)"
 author: "Peter Carbonetto, Gao Wang and Matthew Stephens"
-date: April 2, 2019
+date: April 9, 2019
 site: workflowr::wflow_site
 output: workflowr::wflow_html
 ---
@@ -14,21 +14,12 @@ scenarios, similar to Examples 1 and 2 from Zou & Hastie (2005): a
 outcome; and a "one effect" scenario, in which only one of the
 predictors affects the outcome.
 
-The six methods compared are:
-
-+ ridge regression;
-
-+ the Lasso;
-
-+ the Elastic Net;
-
-+ "Sum of Single Effects" (SuSiE) regression, described [here][susie];
-
-+ variational inference for Bayesian variable selection, or "varbvs",
-  described [here][varbvs]; and
-
-+ "varbvsmix", an elaboration of varbvs that replaces the single normal
-  prior with a mixture-of-normals.
+The six methods compared are: (1) ridge regression; (2) the Lasso; (3)
+the Elastic Net; (4) "Sum of Single Effects" (SuSiE) regression,
+described [here][susie]; (5) variational inference for Bayesian
+variable selection, or "varbvs", described [here][varbvs]; and (6)
+"varbvsmix", an elaboration of varbvs that replaces the single normal
+prior with a mixture-of-normals.
 
 ```{r knitr, echo=FALSE}
 knitr::opts_chunk$set(comment = "#",results = "hold",collapse = TRUE,
@@ -60,8 +51,10 @@ in each scenario.
 ```{r import-dsc-results}
 library(dscrutils)
 methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
-dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
+dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),
+                c("simulate.scenario","simulate.seed"),
                 verbose = FALSE)
+dsc <- dsc[c("simulate","simulate.scenario","simulate.seed","fit","mse.err")]
 dsc <- transform(dsc,
                  simulate = factor(simulate),
                  fit      = factor(fit,methods))
@@ -86,26 +79,35 @@ write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 
 ## Summarize and discuss simulation results
 
+Compute the mean squared error (MSE) in the predictions relative to
+ridge regression, so that larger numbers mean greater error relative
+to predictions from ridge regressions.
+
+```{r compute-relative-mse}
+rmse <- compute.relative.mse(dsc)
+dsc  <- cbind(dsc,rmse)
+```
+
 The boxplots below summarize the prediction errors in each of the
 simulations.
 
 ```{r create-boxplots, fig.height=8, fig.width=7.5}
-p1 <- mse.boxplot(subset(dsc,simulate == "null_effects")) + ggtitle("null")
-p2 <- mse.boxplot(subset(dsc,simulate == "one_effect")) + ggtitle("one effect")
-p3 <- mse.boxplot(subset(dsc,simulate.scenario == 1)) + ggtitle("scenario 1")
-p4 <- mse.boxplot(subset(dsc,simulate.scenario == 2)) + ggtitle("scenario 2")
-p5 <- mse.boxplot(subset(dsc,simulate.scenario == 3)) + ggtitle("scenario 3")
-p6 <- mse.boxplot(subset(dsc,simulate.scenario == 4)) + ggtitle("scenario 4")
+p1 <- rmse.boxplot(subset(dsc,simulate == "null_effects"),"null")
+p2 <- rmse.boxplot(subset(dsc,simulate == "one_effect"),"one effect")
+p3 <- rmse.boxplot(subset(dsc,simulate.scenario == 1),"scenario 1")
+p4 <- rmse.boxplot(subset(dsc,simulate.scenario == 2),"scenario 2")
+p5 <- rmse.boxplot(subset(dsc,simulate.scenario == 3),"scenario 3")
+p6 <- rmse.boxplot(subset(dsc,simulate.scenario == 4),"scenario 4")
 p  <- plot_grid(p1,p2,p3,p4,p5,p6)
 print(p)
 ```
 
-Here are a few initial (*i.e.,* imprecise) impressions from these plots.
+Here are a few initial impressions from these plots.
 
 In most cases, the Elastic Net does at least as well, or better than
 the Lasso, which is what we would expect.
 
-Ridge regression actually achieves excellent accuracy in all cases
+Ridge regression actually achieves good accuracy in all cases
 except Scenario 4. Ridge regression is expected to do less well in
 Scenario 4 because the majority of the true coefficients are zero, so
 a sparse model would be favoured.
@@ -118,7 +120,7 @@ varbvsmix yields competitive predictions in all four scenarios.
 
 ## Session information
 
-```{r load-more-pkgs}
+```{r load-more-pkgs, include=FALSE}
 library(MASS)
 library(glmnet)
 library(susieR)
@@ -127,7 +129,7 @@ library(varbvs)
 
 Here we give the version of R and the packages that were used to
 generate these results. This listing includes the R packages that were
-also used in the DSC.
+also used to run the DSC.
 
 ```{r session-info}
 sessionInfo()

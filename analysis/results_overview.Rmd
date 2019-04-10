@@ -122,7 +122,8 @@ In Scenario 4, where the predictors are correlated in a structured
 way, and the effects are sparse, varbvs and varbvsmix perform
 considerably better than the other methods.
 
-The "varbvsmix" method yields competitive predictions in all scenarios.
+The "varbvsmix" method yields competitive predictions in all
+scenarios.
 
 ## Session information
 
@@ -133,13 +134,9 @@ library(susieR)
 library(varbvs)
 ```
 
-Here we give the version of R and the packages that were used to
-generate these results. This listing includes the R packages that were
-also used to run the DSC.
-
-```{r session-info}
-sessionInfo()
-```
+The "Session information" button below gives the version of R and the
+packages that were used to generate these results. This listing
+includes the R packages that were also used to run the DSC.
 
 [github-repo]:     https://github.com/stephenslab/dsc-linreg
 [susie]:           https://doi.org/10.1101/501114

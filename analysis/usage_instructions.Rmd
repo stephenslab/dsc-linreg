@@ -56,7 +56,7 @@ short analysis](results_overview.html) to explore the results of the
 DSC in R or RStudio. When running the R code, make sure your working
 directory is set to the "analysis" directory in the git repository.
 
-## Creating the workflowr site
+## Rereating the workflowr site
 
 To recreate and commit the website from the R Markdown files, this can
 be done using the "wflow_publish" function from the

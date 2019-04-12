@@ -54,6 +54,8 @@ zh: zh.R
 # (i.e., the normal prior on the coefficients) is estimated using
 # cross-validation.
 ridge: ridge.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out
@@ -61,6 +63,8 @@ ridge: ridge.R
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
 lasso: lasso.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out
@@ -68,12 +72,16 @@ lasso: lasso.R
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
 elastic_net: elastic_net.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out
     
 # Fit a "sum of single effects" (SuSiE) regression model.
 susie: susie.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out$fit
@@ -81,6 +89,8 @@ susie: susie.R
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
 varbvs: varbvs.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out$fit
@@ -89,6 +99,8 @@ varbvs: varbvs.R
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
 varbvsmix: varbvsmix.R
+  X:          $X
+  y:          $y
   $intercept: out$mu
   $beta_est:  out$beta
   $model:     out$fit

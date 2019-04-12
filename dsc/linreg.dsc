@@ -7,92 +7,91 @@
 # evaluate the linear regression models. Each training and test data
 # set should include an n x p matrix X and a vector y of length n,
 # where n is the number of samples, and p is the number of candidate
-# predictors. All simulate modules should inherit the inputs outputs,
-# and module parameters of the "generic" fit module.
-simulate_generic:
+# predictors.
+
+# Simulate data in the same way as Example 1 of Zou & Hastie (2005),
+# except that all the regression coefficients are zero.
+null_effects: null_effects.R
   seed:   R{1:20}
   $X:     X
   $y:     y
   $Xtest: Xtest
   $ytest: ytest
   $beta:  b
-
-# Simulate data in the same way as Example 1 of Zou & Hastie (2005),
-# except that all the regression coefficients are zero.
-null_effects(simulate_generic): null_effects.R
-  $se: se
+  $se:    se
 
 # Simulate data in the same way as Example 1 of Zou & Hastie (2005),
 # except that all the regression coefficients except one are zero.
 # The inputs, outputs and module parameters are the same as the "null"
 # simulate module.
-one_effect(simulate_generic): one_effect.R
-  $se: se
+one_effect: one_effect.R
+  seed:   R{1:20}
+  $X:     X
+  $y:     y
+  $Xtest: Xtest
+  $ytest: ytest
+  $beta:  b
+  $se:    se
   
 # Generate training and test data sets using one of the four scenarios
 # described in Zou & Hastie (2005). This module inherits the inputs,
 # outputs and module parameters from the "null" simulate module.
-zh(simulate_generic): zh.R
+zh: zh.R
   scenario: 1, 2, 3, 4
   $X:     out$train$X
   $y:     out$train$y
   $Xtest: out$test$X
   $ytest: out$test$y
   $beta:  out$b
+  $se:    out$se
 
 # fit modules
 # ===========
 # A "fit" module fits a linear regression model to the provided
-# training data, X and y. All fit modules should inherit the inputs
-# and outputs of the "generic" fit module.
-fit_generic:
-  X:          $X
-  y:          $y
-  $intercept: mu
-  $beta_est:  beta
+# training data, X and y.
 
 # Fit a ridge regression model using glmnet. The penalty strength
 # (i.e., the normal prior on the coefficients) is estimated using
 # cross-validation.
-ridge(fit_generic): ridge.R
-  $model:     out
+ridge: ridge.R
   $intercept: out$mu
   $beta_est:  out$beta
+  $model:     out
   
 # Fit a Lasso model using glmnet. The penalty strength ("lambda") is
 # estimated via cross-validation.
-lasso(fit_generic): lasso.R
-  $model:     out
+lasso: lasso.R
   $intercept: out$mu
   $beta_est:  out$beta
+  $model:     out
 
 # Fit an Elastic Net model using glmnet. The model parameters, lambda
 # and alpha, are estimated using cross-validation.
-elastic_net(fit_generic): elastic_net.R
+elastic_net: elastic_net.R
+  $intercept: out$mu
+  $beta_est:  out$beta
   $model:     out
-  $intercept: out$mu
-  $beta_est:  out$beta
-
+    
 # Fit a "sum of single effects" (SuSiE) regression model.
-susie(fit_generic): susie.R
-  $model:     out$fit
+susie: susie.R
   $intercept: out$mu
   $beta_est:  out$beta
+  $model:     out$fit
 
 # Compute a fully-factorized variational approximation for Bayesian
 # variable selection in linear regression (varbvs).
-varbvs(fit_generic): varbvs.R
-  $model:     out$fit
+varbvs: varbvs.R
   $intercept: out$mu
   $beta_est:  out$beta
+  $model:     out$fit
 
 # This is a variant on the varbvs method in which the "spike-and-slab"
 # prior on the regression coefficients is replaced with a
 # mixture-of-normals prior.
-varbvsmix(fit_generic): varbvsmix.R
-  $model:     out$fit
+varbvsmix: varbvsmix.R
   $intercept: out$mu
   $beta_est:  out$beta
+  $model:     out$fit
 
 # predict modules
 # ===============

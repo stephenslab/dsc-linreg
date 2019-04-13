@@ -310,10 +310,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea07986448130a7fd640b52c0ccec77239be81862targetblanka079864a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/a07986448130a7fd640b52c0ccec77239be81862" target="_blank">a079864</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreec8a0198c9e0cbc9fe5a8f45a473f2188c93d2756targetblankc8a0198a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/c8a0198c9e0cbc9fe5a8f45a473f2188c93d2756" target="_blank">c8a0198</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea07986448130a7fd640b52c0ccec77239be81862targetblanka079864a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreec8a0198c9e0cbc9fe5a8f45a473f2188c93d2756targetblankc8a0198a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -362,6 +362,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/c8a0198c9e0cbc9fe5a8f45a473f2188c93d2756/analysis/results_overview.Rmd" target="_blank">c8a0198</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-13
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/stephenslab/dsc-linreg/52ee840bf6b6223b757039ef848bf3e16e914008/docs/results_overview.html" target="_blank">52ee840</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-13
+</td>
+<td>
+Fixed up data frame in results_overview analysis.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -838,7 +872,7 @@ nrow(dsc)
 <p>After this call, the “dsc” data frame should contain results for 720 pipelines—6 methods times 6 scenarios times 20 data sets simulated in each scenario.</p>
 <pre class="r"><code>nrow(dsc)
 # [1] 720</code></pre>
-<p>After these steps, the “dsc” data frame should have five columns: “seed”, the seed used to simulate the data; “simulate”, the data simulation module used; “simulate.scenario”, the particular scenario used for for the “zh” simulation module; “fit”, the linear regression method used; and “mse.err”, the mean squared error in the test set predictions.</p>
+<p>After these steps, the “dsc” data frame should have five columns: “seed”, the seed used to simulate the data; “simulate”, the data simulation module used; “simulate.scenario”, the particular scenario used in the “zh” simulation module; “fit”, the linear regression method used; and “mse.err”, the mean squared error in the test set predictions.</p>
 <pre class="r"><code>head(dsc)
 #   seed     simulate simulate.scenario   fit   mse.err
 # 1    1 null_effects                NA ridge 11.774036

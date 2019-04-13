@@ -69,7 +69,7 @@ nrow(dsc)
 After these steps, the "dsc" data frame should have five columns:
 "seed", the seed used to simulate the data; "simulate", the data
 simulation module used; "simulate.scenario", the particular scenario
-used for for the "zh" simulation module; "fit", the linear regression
+used in the "zh" simulation module; "fit", the linear regression
 method used; and "mse.err", the mean squared error in the test set
 predictions.
 

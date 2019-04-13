@@ -1,5 +1,4 @@
 # This R script implements the "null_effects" module in the linreg DSC.
-set.seed(seed)
 se    <- 3
 b     <- rep(0,8)
 X     <- simulate_predictors_decaying_corr(40,8,0.5)

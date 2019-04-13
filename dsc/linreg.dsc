@@ -12,7 +12,6 @@
 # Simulate data in the same way as Example 1 of Zou & Hastie (2005),
 # except that all the regression coefficients are zero.
 null_effects: null_effects.R
-  seed:   R{1:20}
   $X:     X
   $y:     y
   $Xtest: Xtest
@@ -25,7 +24,6 @@ null_effects: null_effects.R
 # The inputs, outputs and module parameters are the same as the "null"
 # simulate module.
 one_effect: one_effect.R
-  seed:   R{1:20}
   $X:     X
   $y:     y
   $Xtest: Xtest
@@ -38,12 +36,12 @@ one_effect: one_effect.R
 # outputs and module parameters from the "null" simulate module.
 zh: zh.R
   scenario: 1, 2, 3, 4
-  $X:     out$train$X
-  $y:     out$train$y
-  $Xtest: out$test$X
-  $ytest: out$test$y
-  $beta:  out$b
-  $se:    out$se
+  $X:       out$train$X
+  $y:       out$train$y
+  $Xtest:   out$test$X
+  $ytest:   out$test$y
+  $beta:    out$b
+  $se:      out$se
 
 # fit modules
 # ===========
@@ -146,6 +144,7 @@ DSC:
              modules/fit,
              modules/predict,
              modules/score
+  replicate: 20
   define:
     simulate: null_effects, one_effect, zh
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix

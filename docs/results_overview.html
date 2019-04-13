@@ -310,10 +310,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree5811a58890a18795c37282b0b5179b23b8ae4df2targetblank5811a58a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/5811a58890a18795c37282b0b5179b23b8ae4df2" target="_blank">5811a58</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea07986448130a7fd640b52c0ccec77239be81862targetblanka079864a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/stephenslab/dsc-linreg/tree/a07986448130a7fd640b52c0ccec77239be81862" target="_blank">a079864</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtree5811a58890a18795c37282b0b5179b23b8ae4df2targetblank5811a58a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomstephenslabdsclinregtreea07986448130a7fd640b52c0ccec77239be81862targetblanka079864a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -324,10 +324,6 @@ Ignored files:
     Ignored:    analysis/.sos/
     Ignored:    dsc/.sos/
     Ignored:    dsc/linreg/
-
-Unstaged changes:
-    Modified:   code/plots.R
-    Modified:   output/linreg_mse.csv
 
 </code></pre>
 <p>
@@ -366,6 +362,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/stephenslab/dsc-linreg/blob/a07986448130a7fd640b52c0ccec77239be81862/analysis/results_overview.Rmd" target="_blank">a079864</a>
+</td>
+<td>
+Peter Carbonetto
+</td>
+<td>
+2019-04-13
+</td>
+<td>
+wflow_publish(“results_overview.Rmd”)
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -810,7 +823,7 @@ source(&quot;../code/plots.R&quot;)</code></pre>
 </div>
 <div id="import-dsc-results" class="section level2">
 <h2>Import DSC results</h2>
-<p>Here we use function “dscquery” from the dscrutils package to extract the DSC results we are interested in—the mean squared error in the predictions from each method and in each simulation scenario. After this call, the “dsc” data frame should contain results for 720 pipelines—6 methods times 6 scenarios times 20 data sets simulated in each scenario.</p>
+<p>Here we use function “dscquery” from the dscrutils package to extract the DSC results we are interested in—the mean squared error in the predictions from each method and in each simulation scenario.</p>
 <pre class="r"><code>library(dscrutils)
 methods &lt;- c(&quot;ridge&quot;,&quot;lasso&quot;,&quot;elastic_net&quot;,&quot;susie&quot;,&quot;varbvs&quot;,&quot;varbvsmix&quot;)
 dsc &lt;- dscquery(&quot;../dsc/linreg&quot;,c(&quot;fit&quot;,&quot;mse.err&quot;),&quot;simulate.scenario&quot;,
@@ -822,6 +835,18 @@ dsc &lt;- transform(dsc,
 names(dsc)[1] &lt;- &quot;seed&quot;
 nrow(dsc)
 # [1] 720</code></pre>
+<p>After this call, the “dsc” data frame should contain results for 720 pipelines—6 methods times 6 scenarios times 20 data sets simulated in each scenario.</p>
+<pre class="r"><code>nrow(dsc)
+# [1] 720</code></pre>
+<p>After these steps, the “dsc” data frame should have five columns: “seed”, the seed used to simulate the data; “simulate”, the data simulation module used; “simulate.scenario”, the particular scenario used for for the “zh” simulation module; “fit”, the linear regression method used; and “mse.err”, the mean squared error in the test set predictions.</p>
+<pre class="r"><code>head(dsc)
+#   seed     simulate simulate.scenario   fit   mse.err
+# 1    1 null_effects                NA ridge 11.774036
+# 2    2 null_effects                NA ridge 12.701627
+# 3    3 null_effects                NA ridge 10.762719
+# 4    4 null_effects                NA ridge 10.273239
+# 5    5 null_effects                NA ridge 10.433232
+# 6    6 null_effects                NA ridge  9.929293</code></pre>
 <p>Note that you will need to run the DSC before querying the results; see <a href="usage_instructions.html">here</a> for instructions on running the DSC. If you did not run the DSC to generate these results, you can replace the dscquery call above by this line to load the pre-extracted results stored in a CSV file:</p>
 <pre class="r"><code>dsc &lt;- read.csv(&quot;../output/linreg_mse.csv&quot;)</code></pre>
 <p>This is how the CSV file was created:</p>

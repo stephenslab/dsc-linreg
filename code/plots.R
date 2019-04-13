@@ -9,9 +9,8 @@ compute.relative.mse <- function (dat) {
     
   # Create a new column, "experiment", combining the simulate module,
   # scenario and seed.
-  dat <- transform(dat,
-                   experiment = paste(simulate,simulate.scenario,
-                                      simulate.seed,sep = "-"))
+  dat <-
+    transform(dat,experiment = paste(simulate,simulate.scenario,seed,sep="-"))
   
   # Compute the relative mean squared error; repeat for each
   # combination of simulate module, scenario and seed (an

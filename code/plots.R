@@ -1,6 +1,7 @@
 # This funtion is used in results_overview.Rmd to compute the mean
 # squared error (MSE) for each method in each experiment relative to
-# the ridge regression MSE.
+# the ridge regression MSE, which is then used in rmse.boxplot to
+# create a boxplot summarizing the relative MSE for each method.
 compute.relative.mse <- function (dat) {
 
   # Initialize the return value.
@@ -24,8 +25,8 @@ compute.relative.mse <- function (dat) {
   return(rmse)
 }
 
-# This function is used in linreg.Rmd to create a boxplot comparing
-# the relative mean squared error (MSE).
+# This function is used in results_overview.Rmd to create a boxplot
+# comparing the relative mean squared error (MSE).
 rmse.boxplot <- function (dat, plot.title = "") {
   colors <- c("skyblue","dodgerblue","limegreen","gold","orange")
   dat    <- subset(dat,fit != "ridge")

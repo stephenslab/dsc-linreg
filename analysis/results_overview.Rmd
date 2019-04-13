@@ -51,13 +51,13 @@ in each scenario.
 ```{r import-dsc-results}
 library(dscrutils)
 methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
-dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),
-                c("simulate.scenario","simulate.seed"),
+dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
                 verbose = FALSE)
-dsc <- dsc[c("simulate","simulate.scenario","simulate.seed","fit","mse.err")]
+dsc <- dsc[c("DSC","simulate","simulate.scenario","fit","mse.err")]
 dsc <- transform(dsc,
                  simulate = factor(simulate),
                  fit      = factor(fit,methods))
+names(dsc)[1] <- "seed"
 nrow(dsc)
 ```
 

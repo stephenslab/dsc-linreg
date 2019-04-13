@@ -43,10 +43,7 @@ Import DSC results
 
 Here we use function "dscquery" from the dscrutils package to extract
 the DSC results we are interested in---the mean squared error in the
-predictions from each method and in each simulation scenario. After
-this call, the "dsc" data frame should contain results for 720
-pipelines---6 methods times 6 scenarios times 20 data sets simulated
-in each scenario.
+predictions from each method and in each simulation scenario. 
 
 ```{r import-dsc-results}
 library(dscrutils)
@@ -59,6 +56,25 @@ dsc <- transform(dsc,
                  fit      = factor(fit,methods))
 names(dsc)[1] <- "seed"
 nrow(dsc)
+```
+
+After this call, the "dsc" data frame should contain results for 720
+pipelines---6 methods times 6 scenarios times 20 data sets simulated
+in each scenario.
+
+```{r check-dsc-results-1}
+nrow(dsc)
+```
+
+After these steps, the "dsc" data frame should have five columns:
+"seed", the seed used to simulate the data; "simulate", the data
+simulation module used; "simulate.scenario", the particular scenario
+used for for the "zh" simulation module; "fit", the linear regression
+method used; and "mse.err", the mean squared error in the test set
+predictions.
+
+```{r check-dsc-results-2}
+head(dsc)
 ```
 
 Note that you will need to run the DSC before querying the results;

@@ -1,5 +1,19 @@
 # A DSC for evaluating prediction accuracy of linear regression
 # methods in different scenarios.
+DSC:
+  R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-3
+  lib_path:  functions
+  exec_path: modules/simulate,
+             modules/fit,
+             modules/predict,
+             modules/score
+  replicate: 20
+  define:
+    simulate: null_effects, one_effect, zh
+    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
+    predict:  predict_linear
+    score:    mse, mae
+  run: simulate * fit * predict * score
 
 # simulate modules
 # ================
@@ -136,18 +150,3 @@ mae: mae.R
   y:    $ytest
   yest: $yest
   $err: err
-  
-DSC:
-  R_libs:    MASS, glmnet, susieR, varbvs >= 2.6-3
-  lib_path:  functions
-  exec_path: modules/simulate,
-             modules/fit,
-             modules/predict,
-             modules/score
-  replicate: 20
-  define:
-    simulate: null_effects, one_effect, zh
-    fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix
-    predict:  predict_linear
-    score:    mse, mae
-  run: simulate * fit * predict * score

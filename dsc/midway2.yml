@@ -3,15 +3,20 @@ DSC:
     address: localhost
     queue_type: pbs
     status_check_interval: 1
-    max_running_jobs: 2
+    max_running_jobs: 14
     job_template: |
       #!/bin/bash
       #SBATCH --time=6:00:00
       #SBATCH --account=pi-jnovembre
       #SBATCH --partition=jnovembre
+      #SBATCH --mem=4G
       #SBATCH --exclusive
       module load R/3.5.1
     submit_cmd: sbatch {job_file}
     submit_cmd_output: "Submitted batch job {job_id}"
     status_cmd: squeue --job {job_id}
     kill_cmd: scancel {job_id}
+
+default:
+  queue: midway2
+  instances_per_job: 100

@@ -7,7 +7,7 @@ DSC:
              modules/fit,
              modules/predict,
              modules/score
-  replicate: 20
+  replicate: 2
   define:
     simulate: null_effects, one_effect, zh
     fit:      ridge, lasso, elastic_net, susie, varbvs, varbvsmix

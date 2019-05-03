@@ -1,3 +1,9 @@
+# To run the DSC on the midway2 cluster, connect to a midway2 login
+# node, and run this:
+#
+#  dsc linreg.dsc --host midway2.yml
+# 
+
 DSC:
   midway2:
     address: localhost

@@ -13,8 +13,8 @@ DSC:
     job_template: |
       #!/bin/bash
       #SBATCH --time=6:00:00
-      #SBATCH --account=pi-jnovembre
-      #SBATCH --partition=jnovembre
+      #SBATCH --account=pi-mstephens
+      #SBATCH --partition=broadwl
       #SBATCH --mem=4G
       module load R/3.5.1
     submit_cmd: sbatch {job_file}

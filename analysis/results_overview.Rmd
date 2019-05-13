@@ -93,7 +93,8 @@ This is how the CSV file was created:
 write.csv(dsc,"../output/linreg_mse.csv",row.names = FALSE,quote = FALSE)
 ```
 
-## Summarize and discuss simulation results
+Summarize and discuss simulation results
+----------------------------------------
 
 Compute the mean squared error (MSE) in the predictions relative to
 ridge regression, so that larger numbers mean greater error relative
@@ -141,7 +142,8 @@ considerably better than the other methods.
 The "varbvsmix" method yields competitive predictions in all
 scenarios.
 
-## Session information
+Session information
+-------------------
 
 ```{r load-more-pkgs, include=FALSE}
 library(MASS)

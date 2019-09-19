@@ -10,7 +10,7 @@ DSC:
     queue_type: pbs
     status_check_interval: 120
     max_running_jobs: 10
-    instances_per_job: 100
+    instances_per_job: 200
     job_template: |
       #!/bin/bash
       #SBATCH --time=6:00:00

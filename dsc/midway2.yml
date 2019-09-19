@@ -1,7 +1,7 @@
 # To run the DSC on the midway2 cluster, connect to a midway2 login
 # node, and run this:
 #
-#  dsc linreg.dsc --host midway2.yml
+#  dsc --host midway2.yml linreg.dsc
 # 
 
 DSC:
@@ -10,7 +10,6 @@ DSC:
     queue_type: pbs
     status_check_interval: 120
     max_running_jobs: 10
-    instances_per_job: 200
     job_template: |
       #!/bin/bash
       #SBATCH --time=6:00:00
@@ -21,3 +20,7 @@ DSC:
     submit_cmd_output: "Submitted batch job {job_id}"
     status_cmd: squeue --job {job_id}
     kill_cmd: scancel {job_id}
+
+default:
+  queue: midway2
+  instances_per_job: 200

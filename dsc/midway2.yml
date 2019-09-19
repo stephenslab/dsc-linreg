@@ -25,3 +25,5 @@ DSC:
 default:
   queue: midway2
   instances_per_job: 200
+  cpus_per_node: 28
+  cpus_per_instance: 1

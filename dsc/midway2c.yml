@@ -1,4 +1,4 @@
-# dsc --replicate 28 --host midway2b.yml test.dsc
+# dsc --replicate 28 --host midway2c.yml test.dsc
 
 DSC:
   midway2:
@@ -8,8 +8,10 @@ DSC:
     max_running_jobs: 1
     job_template: |
       #!/bin/bash
-      #SBATCH --partition=broadwl
+      #SBATCH --partition=jnovembre
+      #SBATCH --account=pi-jnovembre
       #SBATCH --time=1:00:00
+      #SBATCH --nodes=2
       #SBATCH --exclusive
       module load R/3.5.1
     submit_cmd: sbatch {job_file}
@@ -19,6 +21,7 @@ DSC:
 
 default:
   queue: midway2
+  nodes_per_job: 2
   instances_per_job: 200
   cpus_per_node: 28
   cpus_per_instance: 1

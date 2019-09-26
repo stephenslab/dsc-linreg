@@ -1,4 +1,4 @@
-# dsc --replicate 28 --host midway2c.yml test.dsc
+# dsc --replicate 56 --host midway2c.yml test.dsc
 
 DSC:
   midway2:
@@ -8,8 +8,7 @@ DSC:
     max_running_jobs: 1
     job_template: |
       #!/bin/bash
-      #SBATCH --partition=jnovembre
-      #SBATCH --account=pi-jnovembre
+      #SBATCH --partition=broadwl
       #SBATCH --time=1:00:00
       #SBATCH --nodes=2
       #SBATCH --exclusive

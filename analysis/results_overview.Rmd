@@ -48,9 +48,9 @@ predictions from each method and in each simulation scenario.
 ```{r import-dsc-results}
 library(dscrutils)
 methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
-dsc <- dscquery("../dsc/linreg",c("fit","mse.err"),"simulate.scenario",
+dsc <- dscquery("../dsc/linreg",
+                c("simulate","simulate.scenario","fit","mse.err"),
                 verbose = FALSE)
-dsc <- dsc[c("DSC","simulate","simulate.scenario","fit","mse.err")]
 dsc <- transform(dsc,
                  simulate = factor(simulate),
                  fit      = factor(fit,methods))

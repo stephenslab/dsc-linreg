@@ -46,20 +46,19 @@ the DSC results we are interested in---the mean squared error in the
 predictions from each method and in each simulation scenario. 
 
 ```{r import-dsc-results}
-library(dscrutils)
 methods <- c("ridge","lasso","elastic_net","susie","varbvs","varbvsmix")
-dsc <- dscquery("../dsc/linreg",
-                c("simulate","simulate.scenario","fit","mse.err"),
-                verbose = FALSE)
+dsc <- dscquery("../dsc/linreg",c("simulate","fit","mse.err"),
+				"simulate.scenario",verbose = FALSE)
 dsc <- transform(dsc,
-                 simulate = factor(simulate),
-                 fit      = factor(fit,methods))
+                 simulate          = factor(simulate),
+				 simulate.scenario = factor(simulate.scenario),
+                 fit               = factor(fit,methods))
 names(dsc)[1] <- "seed"
 nrow(dsc)
 ```
 
-After this call, the "dsc" data frame should contain results for 720
-pipelines---6 methods times 6 scenarios times 20 data sets simulated
+After this call, the "dsc" data frame should contain results for 7,200
+pipelines---6 methods times 6 scenarios times 200 data sets simulated
 in each scenario.
 
 ```{r check-dsc-results-1}

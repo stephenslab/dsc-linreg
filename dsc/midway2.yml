@@ -4,15 +4,15 @@
 #  dsc --host midway2.yml linreg.dsc
 # 
 # Note that you might need to run "module load R" first
+#
 
 DSC:
   midway2:
     address: localhost
     queue_type: pbs
     status_check_interval: 60
-    max_running_jobs: 4    # is this a little low? I think using at least 6 for this specific part
-    # max_wall_time?
-    job_template: |
+    max_running_jobs: 4
+    task_template: |
       #!/bin/bash
       #SBATCH --time=6:00:00
       #SBATCH --partition=broadwl
@@ -26,5 +26,5 @@ DSC:
 default:
   queue: midway2
   instances_per_job: 200
-  instances_per_node: 28 # modified from: cpus_per_node: 28
+  instances_per_node: 28
   cpus_per_instance: 1
